@@ -1,0 +1,90 @@
+.flex-container {
+    display: flex;
+}
+
+.flex-child {
+    flex: 1;
+    margin: 100px;
+}  
+
+.flex-child:first-child {
+    margin-right: 20px;
+} 
+
+.card-title {
+    text-align: center;
+}
+
+.registration-card {
+    width: 200px;
+    text-align: center;
+}
+
+.example-full-width {
+    
+    font-size: large;
+}
+
+h2{
+    color: black;
+}
+
+body {
+    color: #fff;
+    background: #4FC3F7;
+    font-family: 'Roboto', sans-serif;
+}
+.form-control {
+    min-height: 41px;
+    box-shadow: none;
+    border-color: #ddd;
+}
+.form-control:focus {
+    border-color: #4FC3F7;
+}
+.form-control, .btn {        
+    border-radius: 2px;
+}
+.form-group{
+    margin: 10px;
+}
+.login-form {
+    width: 350px;
+    margin: 100px auto;
+    text-align: center;
+}
+.login-form h2 {
+    margin: 10px 0 25px;
+}
+.login-form form {
+    color: #7a7a7a;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    background: #fff;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+.login-form .btn {        
+    font-size: 16px;
+    font-weight: bold;
+    background: #4FC3F7;
+    border: none;
+    outline: none !important;
+}
+.login-form .btn:hover, .login-form .btn:focus {
+    background: #2389cd;
+}
+.login-form a {
+    color: #fff;
+    text-decoration: underline;
+}
+.login-form a:hover {
+    text-decoration: none;
+}
+.login-form form a {
+    color: #7a7a7a;
+    text-decoration: none;
+}
+.login-form form a:hover {
+    text-decoration: underline;
+}
