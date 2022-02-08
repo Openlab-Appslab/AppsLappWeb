@@ -1,31 +1,36 @@
 <div class="flex-container">
     <div class="flex-child text">
-      <p style="font-size:xx-large;">Welcome in AppsLapp!</p>
-      <p>Learn new skills with freedom.</p>
-      <img style="width: 60%;" src="https://brandlogos.net/wp-content/uploads/2022/01/siemens_healthineers-brandlogo.net_.png" alt="">
+        <p style="font-size:xx-large;">Welcome to AppsLapp!</p>
+        <p>Learn new skills with freedom.</p>
+        <img style="width: 60%;"
+            src="https://brandlogos.net/wp-content/uploads/2022/01/siemens_healthineers-brandlogo.net_.png" alt="">
     </div>
-    
+
     <div class="flex-child card">
-      
-<body>
+
+        <body>
 
 
-    <div class="login-form">
-        <form #logInForm="ngForm">
-            <h2>Login</h2>   
-            <div class="form-group has-error">
-                <input [(ngModel)]="model.username" type="text" class="form-control" name="username" placeholder="Username" required>
+            <div class="login-form">
+                <form #logInForm="ngForm">
+                    <h2>Login</h2>
+                    <div class="form-group has-error">
+                        <input [(ngModel)]="model.username" type="text" class="form-control" name="username"
+                            placeholder="Username" required>
+                    </div>
+                    <div class="form-group">
+                        <input [(ngModel)]="model.password" type="password" class="form-control" name="password"
+                            placeholder="Password" required="required">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="login()"
+                            [disabled]="!logInForm.form.valid" [routerLink]="['/dashboard']">Sign in</button>
+                    </div>
+                    <p><a href="#">Lost your Password?</a></p>
+                </form>
+                <p class="text-center small">Don't have an account? <a [routerLink]="['/registration']">Sign up
+                        here!</a></p>
             </div>
-            <div class="form-group">
-                <input [(ngModel)]="model.password" type="password" class="form-control" name="password" placeholder="Password" required="required">
-            </div>        
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-lg btn-block" (click)="login()" [disabled]="!logInForm.form.valid" [routerLink]="['/dashboard']">Sign in</button>
-            </div>
-            <p><a href="#">Lost your Password?</a></p>
-        </form>
-        <p class="text-center small">Don't have an account? <a [routerLink]="['/registration']">Sign up here!</a></p>
+        </body>
     </div>
-    </body>
-    </div>
-    </div>
+</div>
