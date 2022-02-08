@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './User-operations/login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { EmailVerificationComponent } from './Email/email-verification/email-verification.component';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import {MatSidenavModule} from '@angular/material/sidenav';
     RegistrationComponent,
     LoginComponent,
     DashboardComponent,
+    EmailVerificationComponent,
   ],
   imports: [
     BrowserModule,

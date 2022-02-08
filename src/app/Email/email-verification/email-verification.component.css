@@ -1,0 +1,13 @@
+.center {
+    margin: auto;
+    margin-top: 200px;
+    width: 30%;
+    background-color: #4FC3F7;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  h2 {
+      font-size: x-large;
+  }
+  
