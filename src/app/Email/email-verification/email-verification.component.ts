@@ -19,7 +19,6 @@ export class EmailVerificationComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams
-      .pipe(filter(params => params['code']))
       .subscribe(x => this.service.sendCode(x));
   }
 
