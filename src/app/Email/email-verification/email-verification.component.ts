@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Params } from '@angular/router'
+import { filter } from 'rxjs/operators';
+import { SignUpService } from 'src/app/User-operations/user.service';
+
+
+
 
 @Component({
   selector: 'app-email-verification',
@@ -8,14 +13,14 @@ import { ActivatedRoute } from '@angular/router'
 })
 export class EmailVerificationComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private service: SignUpService) { }
+
+  
 
   ngOnInit(): void {
     this.route.queryParams
-      .subscribe(params => {
-        console.log(params)
-        
-      });
+      .pipe(filter(params => params['code']))
+      .subscribe(x => this.service.sendCode(x));
   }
 
 }

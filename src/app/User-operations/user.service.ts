@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Params } from '@angular/router';
+
 import { CookieService } from 'ngx-cookie-service';
 import { User } from './user';
 
@@ -67,5 +69,23 @@ export class SignUpService {
     })
     .then(response => response.json())
     .then(data => console.log(data));
+  }
+
+
+  sendCode(param: Params){
+    fetch('https://apps-lapp-server.herokuapp.com/api/verify?code='+ param, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
   }
 }

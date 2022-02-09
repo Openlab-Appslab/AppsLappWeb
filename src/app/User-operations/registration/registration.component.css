@@ -81,6 +81,7 @@ body {
     border: none;
     min-width: 140px;
 }
+
 .signup-form .btn:hover, .signup-form .btn:active {
     background: #2389cd;
     outline: none !important;
