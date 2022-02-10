@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
-
 import { CookieService } from 'ngx-cookie-service';
+import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
 import { User } from './user';
 
 
@@ -9,7 +9,9 @@ import { User } from './user';
 @Injectable({ providedIn: 'root' })
 export class SignUpService {
 
-  constructor(private cookieService: CookieService) { }
+  constructor(private cookieService: NgxEncryptCookieService) { }
+
+  key = this.cookieService.generateKey();
 
   headers = new Headers();
 
@@ -40,8 +42,8 @@ export class SignUpService {
       headers: this.headers})
     .then(response => response.json())
     .then(data => {
-      this.cookieService.set('username', user.username);
-      this.cookieService.set('password', user.password);
+      this.cookieService.set('username', user.username, true, this.key);
+      this.cookieService.set('password', user.password, true, this.key);
     })
     .catch((error) => {
       console.error('Error:', error);
