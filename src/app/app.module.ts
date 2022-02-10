@@ -21,6 +21,8 @@ import { LoginComponent } from './User-operations/login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { EmailVerificationComponent } from './Email/email-verification/email-verification.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatListModule} from '@angular/material/list';
 
 
 
@@ -49,6 +51,8 @@ import { EmailVerificationComponent } from './Email/email-verification/email-ver
     HttpClientModule,
     MatSidenavModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
+    MatListModule,
     
   ],
   providers: [],

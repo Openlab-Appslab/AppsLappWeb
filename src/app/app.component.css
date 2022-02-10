@@ -1,22 +1,27 @@
-.example-spacer {
-    flex: 1 1 auto;
-  }
+/* primary header */
+.example-icon {
+  padding: 0 14px;
+}
 
-  .example-container {
-    width: auto;
-    height: 100px;
-    background-color: white;
-    position:absolute;
+.example-spacer {
+  flex: 1 1 auto;
+}
+.main {
+  height: 0px;
+  position: absolute;
+}
+
+.openlab-logo {
+  width: 10%;
+}
+
+@media screen and (max-width: 992px){
+  .openlab-logo {
+    width: 170px;
   }
-  
-  .example-sidenav-content {
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: center;
+}
+@media screen and (max-width: 310px){
+  .openlab-logo {
+    width: 100px;
   }
-  
-  .example-sidenav {
-    padding: 20px;
-  }
-  
+}
