@@ -10,7 +10,7 @@
 
     <body>
       <div class="signup-form">
-        <form #signUpForm="ngForm">
+        <form #signUpForm="ngForm" (ngSubmit)="onSubmit()">
           <h2>Sign Up</h2>
           <p>Please fill in this form to create an account!</p>
           <hr>
@@ -53,8 +53,7 @@
             </small>
           </div>
           <div class="form-group">
-            <button color="primary" type="submit" class="btn btn-primary btn-lg" (click)="signUp()"
-              [disabled]="!signUpForm.form.valid" [routerLink]="['/login']">Sign Up</button>
+            <button color="primary" type="submit" class="btn btn-primary btn-lg" [disabled]="!signUpForm.form.valid">Sign Up</button>
           </div>
         </form>
         <div class="text-center">Already have an account? <a [routerLink]="['/login']">Login here</a></div>

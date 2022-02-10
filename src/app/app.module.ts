@@ -14,13 +14,14 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './User-operations/login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { EmailVerificationComponent } from './Email/email-verification/email-verification.component';
+
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { EmailVerificationComponent } from './Email/email-verification/email-ver
     MatIconModule,
     HttpClientModule,
     MatSidenavModule,
+    ReactiveFormsModule,
     
   ],
   providers: [],

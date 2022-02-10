@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { User } from '../user';
@@ -14,6 +13,7 @@ import { SignUpService } from '../user.service';
 })
 export class LoginComponent implements OnInit {
 
+  
   model: User;
 
   constructor(private userService: SignUpService) { 
@@ -21,14 +21,13 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    
   }
 
   
 
-  login(): void {
+  onSubmit(){
     this.userService.loginUser(this.model);
-    console.log(this.model);
-    
   }
 
 }

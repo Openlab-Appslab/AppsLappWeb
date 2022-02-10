@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Params } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { Params, Router } from '@angular/router';
 import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
-import { min } from 'rxjs';
 import { User } from './user';
 
 
@@ -10,7 +8,7 @@ import { User } from './user';
 @Injectable({ providedIn: 'root' })
 export class SignUpService {
 
-  constructor(private cookieService: NgxEncryptCookieService) { }
+  constructor(private cookieService: NgxEncryptCookieService, private router: Router) { }
 
   key = this.cookieService.generateKey();
 
@@ -27,9 +25,11 @@ export class SignUpService {
     .then(response => response.json())
     .then(data => {
       console.log('Success:', data);
+      this.router.navigate(['/login']);
     })
     .catch((error) => {
       console.error('Error:', error);
+      alert("Registration failed, please try again.")
     });
   }
 
@@ -45,9 +45,11 @@ export class SignUpService {
     .then(data => {
       this.cookieService.set('username', user.username, true, this.key, 0.02);
       this.cookieService.set('password', user.password, true, this.key, 0.02);
+      this.router.navigate(['/dashboard']);
     })
     .catch((error) => {
-      console.error('Error:', error);
+      console.log('Error:', error);
+      alert("Login failed, please be sure your email is verified.")
     });
   }
 
