@@ -1,6 +1,11 @@
 .flex-container {
     display: flex;
     flex-direction:row;
+    overflow-y: scroll;
+}
+
+.flex-container::-webkit-scrollbar {
+    display: none;
 }
 
 .flex-child {
@@ -32,7 +37,7 @@
 
 body {
     color: #fff;
-    background: #4FC3F7;
+    background: #6D4FD8;
     font-family: 'Roboto', sans-serif;
 }
 .form-control {
@@ -41,7 +46,7 @@ body {
     border-color: #ddd;
 }
 .form-control:focus {
-    border-color: #4FC3F7;
+    border-color: #6D4FD8;
 }
 .form-control, .btn {        
     border-radius: 3px;
@@ -49,6 +54,12 @@ body {
 .signup-form {
     min-width: 340px;
     max-width: 450px;
+    width: auto;
+    margin: 0 auto;
+    padding: 30px 0;
+}
+
+.logo-text {
     width: auto;
     margin: 0 auto;
     padding: 30px 0;
@@ -76,7 +87,7 @@ body {
     body {
         min-width: 310px;
         color: #fff;
-        background: #4FC3F7;
+        background: #6D4FD8;
         font-family: 'Roboto', sans-serif;
     }
     
@@ -109,7 +120,7 @@ body {
         
         min-width: 260px;
         color: #fff;
-        background: #4FC3F7;
+        background: #6D4FD8;
         font-family: 'Roboto', sans-serif;
     }
 }
@@ -144,13 +155,13 @@ body {
 .signup-form .btn {        
     font-size: 16px;
     font-weight: bold;
-    background: #4FC3F7;
+    background: #6D4FD8;
     border: none;
     min-width: 140px;
 }
 
 .signup-form .btn:hover, .signup-form .btn:active {
-    background: #2389cd;
+    background: #7E87D9;
     outline: none !important;
 }
 .signup-form a {
@@ -161,9 +172,17 @@ body {
     text-decoration: none;
 }
 .signup-form form a {
-    color: #3598dc;
+    color: #6D4FD8;
     text-decoration: none;
 }
 .signup-form form a:hover {
     text-decoration: underline;
+}
+
+.line {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 5px;
+    width: 410px;
+    background-color: black;
 }

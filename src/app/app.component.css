@@ -12,7 +12,7 @@
 }
 
 .openlab-logo {
-  width: 10%;
+  width: 190px;
 }
 
 @media screen and (max-width: 992px){
@@ -25,3 +25,8 @@
     width: 100px;
   }
 }
+
+.content {
+  
+}
+
