@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Params, Router } from '@angular/router';
 import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
+import { LoginFailedComponent } from './login-failed/login-failed.component';
 import { User } from './user';
+
 
 
 
 @Injectable({ providedIn: 'root' })
 export class SignUpService {
 
-  constructor(private cookieService: NgxEncryptCookieService, private router: Router) { }
+  constructor(private cookieService: NgxEncryptCookieService, private router: Router, public dialog: MatDialog) { }
 
   key = this.cookieService.generateKey();
 
@@ -49,7 +52,7 @@ export class SignUpService {
     })
     .catch((error) => {
       console.log('Error:', error);
-      alert("Login failed, please be sure your email is verified.")
+      this.openDialogLoginFailed();
     });
   }
 
@@ -92,5 +95,10 @@ export class SignUpService {
     .catch((error) => {
       console.error('Error:', error);
     });
+  }
+
+
+  openDialogLoginFailed() {
+    this.dialog.open(LoginFailedComponent);
   }
 }
