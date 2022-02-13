@@ -6,10 +6,6 @@
 .example-spacer {
   flex: 1 1 auto;
 }
-.main {
-  height: 0px;
-  position: absolute;
-}
 
 .openlab-logo {
   width: 190px;
@@ -26,7 +22,7 @@
   }
 }
 
-.content {
-  
+.nav-bar {
+  background-color: #6D4FD8;
+  border-radius: 5px;
 }
-

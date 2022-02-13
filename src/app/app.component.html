@@ -1,5 +1,5 @@
 <div style="height: 100vh;">
-  <mat-toolbar style="background-color: #6D4FD8;">
+  <mat-toolbar class="nav-bar" >
     <mat-toolbar-row>
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
         <mat-icon>menu</mat-icon>
@@ -24,7 +24,7 @@
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <mat-sidenav-container fxFlexFill style="background-color:whitesmoke;">
+  <mat-sidenav-container fxFlexFill style="background-color: white;">
     <mat-sidenav #sidenav>
       <mat-nav-list>
         <a [routerLink]="['']" mat-list-item>
