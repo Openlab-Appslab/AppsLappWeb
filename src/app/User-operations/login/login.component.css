@@ -1,3 +1,6 @@
+.card {
+    border: none;
+}
 .flex-container {
     display: flex;
 }
@@ -32,6 +35,7 @@ h2{
 }
 
 body {
+    border-radius: 13px;
     color: #fff;
     background: #6D4FD8;
     font-family: 'Roboto', sans-serif;
@@ -76,6 +80,7 @@ body {
         text-align: center;
     }
     body {
+        border-radius: 13px;
         min-width: 310px;
         color: #fff;
         background: #6D4FD8;
@@ -108,7 +113,7 @@ body {
         text-align: center;
     }
     body {
-        
+        border-radius: 13px;
         min-width: 260px;
         color: #fff;
         background: #6D4FD8;
@@ -122,7 +127,7 @@ body {
 }
 .login-form form {
     color: #7a7a7a;
-    border-radius: 3px;
+    border-radius: 16px;
     margin-bottom: 15px;
     background: #fff;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
