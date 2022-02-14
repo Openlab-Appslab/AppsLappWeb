@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   model: User;
 
   constructor(private userService: SignUpService) { 
-    this.model = new User('', '', '');
+    this.model = new User('', '', '','','');
   }
 
   ngOnInit(): void {

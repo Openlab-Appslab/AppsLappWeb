@@ -18,6 +18,22 @@
           <p>Please fill in this form to create an account!</p>
           <hr>
           <div class="form-group">
+            <label>FirstName</label>
+            <input [(ngModel)]="model.firstName" type="text" class="form-control" name="firstName" required minlength="4"
+              maxlength="10" #firstName="ngModel">
+            <small *ngIf="firstName.touched && firstName.valid == false">
+              First name is required (minimum 4 characters).
+            </small>
+          </div>
+          <div class="form-group">
+            <label>LastName</label>
+            <input [(ngModel)]="model.lastName" type="text" class="form-control" name="lastName" required minlength="4"
+              maxlength="10" #lastName="ngModel">
+            <small *ngIf="lastName.touched && lastName.valid == false">
+              Last Name is required (minimum 4 characters).
+            </small>
+          </div>
+          <div class="form-group">
             <label>Username</label>
             <input [(ngModel)]="model.username" type="text" class="form-control" name="username" required minlength="4"
               maxlength="10" #username="ngModel">

@@ -21,7 +21,7 @@ export class RegistrationComponent implements OnInit {
 
   comfirmPassword: any;
 
-  model = new User('', '', '');
+  model = new User('', '', '', '','');
 
 
   onSubmit(){
