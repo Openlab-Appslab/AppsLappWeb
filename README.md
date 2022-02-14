@@ -5,10 +5,6 @@ Web-app created for appsLab students and labMasters to manage their progress and
 
 ## Description
 
-An in-depth paragraph about your project and overview of use.
-
-## Getting Started
-
 ### Web preview https://appslapp.000webhostapp.com/
 
 ## Used Technologies
