@@ -5,7 +5,7 @@ Web-app created for appsLab students and labMasters to manage their progress and
 
 ## Description
 
-### Web preview https://appslapp.000webhostapp.com/
+### Web preview https://appslappapp.vercel.app/
 
 ## Used Technologies
 
