@@ -80,9 +80,10 @@ export class SignUpService {
   }
 
 
-  sendCode(param: Params){
-    fetch('https://apps-lapp-server.herokuapp.com/api/verify?code='+ param, {
-      method: 'GET',
+  resendEmail(user: User){
+    var userN = `${user.username}`
+    fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resendEmail/${user.username}`, {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },

@@ -1,7 +1,7 @@
 <div class="flex-container">
     <div class="flex-child text">
         <div class="logo-text">
-            <img style="width: 40%;"
+            <img style="width: 65%; text-align: center;"
               src="/assets/images/Logo2.png" alt="">
               <div class="line"></div>
             <p class="welcome-text">Welcome to AppsLapp!</p>
@@ -16,7 +16,8 @@
 
             <div class="login-form">
                 <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
-                    <h2>Login</h2>
+                    <h2>Login </h2>
+                    
                     <div class="form-group has-error">
                         <input [(ngModel)]="model.username" type="text" class="form-control" name="username"
                             placeholder="Username" required>
@@ -32,6 +33,7 @@
                 </form>
                 <p class="text-center small">Don't have an account? <a [routerLink]="['/registration']">Sign up
                         here!</a></p>
+                
             </div>
         </body>
     </div>

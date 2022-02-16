@@ -7,7 +7,6 @@
 
 .flex-child {
     flex: 1;
-    margin: 100px;
 }  
 
 .flex-child:first-child {
@@ -76,6 +75,11 @@ body {
         font-size: large;
         text-align: center;
     }
+
+    .line{
+        width: 10px;
+    }
+
     p {
         text-align: center;
     }
@@ -104,6 +108,9 @@ body {
     }
     .welcome-text {
         font-size: large;
+        text-align: center;
+    }
+    .logo-text{
         text-align: center;
     }
     p {
@@ -163,6 +170,7 @@ body {
     width: auto;
     margin: 0 auto;
     padding: 30px 0;
+    
 }
 
 .line {
@@ -171,4 +179,5 @@ body {
     height: 5px;
     width: 410px;
     background-color: black;
+    ;
 }

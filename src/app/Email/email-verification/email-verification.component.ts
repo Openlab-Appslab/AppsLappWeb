@@ -13,13 +13,12 @@ import { SignUpService } from 'src/app/User-operations/user.service';
 })
 export class EmailVerificationComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private service: SignUpService) { }
+  constructor() { }
 
   
 
   ngOnInit(): void {
-    this.route.queryParams
-      .subscribe(x => this.service.sendCode(x));
+   
   }
 
 }

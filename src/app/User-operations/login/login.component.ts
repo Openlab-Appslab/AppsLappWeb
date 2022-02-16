@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
 import { User } from '../user';
 import { SignUpService } from '../user.service';
 
@@ -24,6 +22,10 @@ export class LoginComponent implements OnInit {
     
   }
 
+  resendEmail(){
+    this.userService.resendEmail(this.model.username);
+    console.log('nwm');
+  }
   
 
   onSubmit(){

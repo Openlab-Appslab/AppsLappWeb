@@ -13,7 +13,6 @@
 
 .flex-child {
     flex: 1;
-    margin: 100px;
 }  
 
 .flex-child:first-child {
@@ -112,6 +111,9 @@ body {
     }
     .welcome-text {
         font-size: large;
+        text-align: center;
+    }
+    .logo-text{
         text-align: center;
     }
     p {
