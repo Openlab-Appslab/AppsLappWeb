@@ -1,27 +1,21 @@
-# AppsLappWeb
+# ![Logo](https://user-images.githubusercontent.com/71752373/153940630-77420d68-6292-4b38-bae4-9c55f7944367.png)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
 
-## Development server
+Web-app created for appsLab students and labMasters to manage their progress and experience.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Description
 
-## Code scaffolding
+### Web preview https://appslappapp.vercel.app/
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Used Technologies
 
-## Build
+Web-app was created using Angular-cli and bootstrap
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Authors
 
-## Running unit tests
+FilipDavid1 https://github.com/FilipDavid1
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Jakkappro   https://github.com/jakkappro
+#
+![Logo2](https://user-images.githubusercontent.com/71752373/153942499-0e28400b-16da-41ad-83e8-c47a26a628d0.png)
 
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
