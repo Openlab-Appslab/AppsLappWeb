@@ -1,0 +1,33 @@
+<div class="center">
+<form action="">
+    <input placeholder="Lab name" type="text" class="form-control">
+    <div cdkDropListGroup>
+        <div class="example-container">
+          <h2>In Lab</h2>
+      
+          <div
+            cdkDropList
+            [cdkDropListData]="inLab"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of inLab" cdkDrag >{{item}}</div>
+          </div>
+        </div>
+      
+        <div class="example-container">
+          <h2>Not in Lab</h2>
+      
+          <div
+            cdkDropList
+            [cdkDropListData]="notInLab"
+            class="example-list"
+            (cdkDropListDropped)="drop($event)">
+            <div class="example-box" *ngFor="let item of notInLab" cdkDrag>{{item}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button color="primary" type="submit" class="btn btn-primary btn-lg" >Sign Up</button>
+      </div>
+</form>
+</div>

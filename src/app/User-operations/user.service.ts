@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Params, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
 import { LoginFailedComponent } from './login-failed/login-failed.component';
 import { User } from './user';
@@ -11,11 +11,12 @@ import { User } from './user';
 @Injectable({ providedIn: 'root' })
 export class SignUpService {
 
-  constructor(private cookieService: NgxEncryptCookieService, private router: Router, public dialog: MatDialog) { }
+  constructor(public cookieService: NgxEncryptCookieService, private router: Router, public dialog: MatDialog) { }
 
   key = this.cookieService.generateKey();
 
   headers = new Headers();
+
 
   createUser(user: User){
     fetch('https://apps-lapp-server.herokuapp.com/api/auth/register', {
@@ -46,9 +47,9 @@ export class SignUpService {
       headers: this.headers})
     .then(response => response.json())
     .then(data => {
-      this.cookieService.set('username', user.username, true, this.key, 0.02);
+      this.cookieService.set('username', user.username, false);
       this.cookieService.set('password', user.password, true, this.key, 0.02);
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/lab-form']);
     })
     .catch((error) => {
       console.log('Error:', error);
@@ -56,17 +57,13 @@ export class SignUpService {
     });
   }
 
-  getUser(){
-    fetch('https://jsonplaceholder.typicode.com/todos/205', {
-      method: 'GET',
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-        
-      }
-    })
-    .then(response => response.json())
-    .then(data => console.log(data));
+
+  getLoggedUser(user: User){
+   let cookieVal = this.cookieService.get('username', user.username);
+    cookieVal.toString();
   }
+
+  
 
   deleteUser(){
     fetch('https://jsonplaceholder.typicode.com/todos/205', {

@@ -12,7 +12,7 @@ import { SignUpService } from '../user.service';
 export class LoginComponent implements OnInit {
 
   
-  model: User;
+ public model: User;
 
   constructor(private userService: SignUpService) { 
     this.model = new User('', '', '','','');

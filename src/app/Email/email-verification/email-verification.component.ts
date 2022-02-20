@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core'
-import { ActivatedRoute, Params } from '@angular/router'
-import { filter } from 'rxjs/operators';
-import { SignUpService } from 'src/app/User-operations/user.service';
+
 
 
 
