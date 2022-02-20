@@ -12,8 +12,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$AppsLapp-web-primary: mat.define-palette(mat.$light-blue-palette, 300);
-$AppsLapp-web-accent: mat.define-palette(mat.$grey-palette, 300);
+$AppsLapp-web-primary: mat.define-palette(mat.$deep-purple-palette, 500);
+$AppsLapp-web-accent: mat.define-palette(mat.$purple-palette, 400);
 
 // The warn palette is optional (defaults to red).
 $AppsLapp-web-warn: mat.define-palette(mat.$red-palette);

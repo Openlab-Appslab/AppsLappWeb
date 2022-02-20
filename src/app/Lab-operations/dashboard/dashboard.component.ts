@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginComponent } from 'src/app/User-operations/login/login.component';
+import { User } from 'src/app/User-operations/user';
+import { SignUpService } from 'src/app/User-operations/user.service';
 
 
 @Component({
@@ -10,12 +13,13 @@ export class DashboardComponent implements OnInit {
 
   showFiller = false;
 
-  constructor() { }
+  constructor(private userService: SignUpService) { }
 
   ngOnInit(): void {
     
   }
 
+  login: LoginComponent;
   
 
 }

@@ -18,12 +18,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './User-operations/login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './Lab-operations/dashboard/dashboard.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { EmailVerificationComponent } from './Email/email-verification/email-verification.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatListModule} from '@angular/material/list';
 import { LoginFailedComponent } from './User-operations/login-failed/login-failed.component';
+import { LabFormComponent } from './Lab-operations/lab-form/lab-form.component';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -35,6 +37,7 @@ import { LoginFailedComponent } from './User-operations/login-failed/login-faile
     DashboardComponent,
     EmailVerificationComponent,
     LoginFailedComponent,
+    LabFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ import { LoginFailedComponent } from './User-operations/login-failed/login-faile
     ReactiveFormsModule,
     FlexLayoutModule,
     MatListModule,
+    DragDropModule,
     
   ],
   providers: [],
