@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { User } from 'src/app/User-operations/user';
 import { SignUpService } from 'src/app/User-operations/user.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { LabService } from '../lab.service';
 
 @Component({
   selector: 'app-lab-form',
@@ -10,32 +12,45 @@ import { SignUpService } from 'src/app/User-operations/user.service';
 })
 export class LabFormComponent implements OnInit {
 
-  constructor(private userService: SignUpService) { }
-  user = new User('','','','','');
+  constructor(private userService: SignUpService, fb: FormBuilder, private labService: LabService) { this.toppings = fb.group({
+    pepperoni: false
+  });
+}   
 
-  labMaster = this.userService.cookieService.get('username', this.user.username);
+  labName = '';
+
+  user = new User('', '', '', '', '');
+
+  toppings: FormGroup;
+
+  labMaster = this.userService.cookieService.get('username', this.user.firstName);
   
   inLab = [this.labMaster];
 
-  notInLab = ['peter', 'marek', 'zdenek', 'jano','robo', 'zdeno', 'karel'];
+  
+  notInLab: string[] = [];
+  
 
   ngOnInit(): void {
-    console.log();
-    
+    this.userService.getAllUsers().subscribe(response => this.notInLab = response)
+  
   }
 
-  
-  drop(event: CdkDragDrop<string[]>) {
-    if (event.previousContainer === event.container) {
-      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
-    } else {
-      transferArrayItem(
-        event.previousContainer.data,
-        event.container.data,
-        event.previousIndex,
-        event.currentIndex,
-      );
-    }
+  onSubmit(){}
+
+  addToLab(item: string){
+    this.inLab.push(item);
+    this.notInLab = this.notInLab.filter(h => h !== item);
   }
+  
+  deleteFromLab(item: string){
+    this.inLab = this.inLab.filter(h => h !== item);
+    this.notInLab.push(item);
+  }
+
+  createLab(lab: string[], labName: string){
+    this.labService.createLab(lab, labName);
+  }
+  
 
 }

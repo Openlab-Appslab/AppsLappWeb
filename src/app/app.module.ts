@@ -26,7 +26,7 @@ import {MatListModule} from '@angular/material/list';
 import { LoginFailedComponent } from './User-operations/login-failed/login-failed.component';
 import { LabFormComponent } from './Lab-operations/lab-form/lab-form.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -59,6 +59,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
     FlexLayoutModule,
     MatListModule,
     DragDropModule,
+    MatCheckboxModule,
     
   ],
   providers: [],
