@@ -1,7 +1,9 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
+import { Observable } from 'rxjs';
 import { LoginFailedComponent } from './login-failed/login-failed.component';
 import { User } from './user';
 
@@ -11,12 +13,14 @@ import { User } from './user';
 @Injectable({ providedIn: 'root' })
 export class SignUpService {
 
-  constructor(public cookieService: NgxEncryptCookieService, private router: Router, public dialog: MatDialog) { }
+  constructor(public cookieService: NgxEncryptCookieService, private router: Router, public dialog: MatDialog, private http: HttpClient) { }
 
   key = this.cookieService.generateKey();
 
   headers = new Headers();
 
+  
+  
 
   createUser(user: User){
     fetch('https://apps-lapp-server.herokuapp.com/api/auth/register', {
@@ -48,7 +52,7 @@ export class SignUpService {
     .then(response => response.json())
     .then(data => {
       this.cookieService.set('username', user.username, false);
-      this.cookieService.set('password', user.password, true, this.key, 0.02);
+      this.cookieService.set('password', user.password, false);
       this.router.navigate(['/lab-form']);
     })
     .catch((error) => {
@@ -57,14 +61,37 @@ export class SignUpService {
     });
   }
 
+/*
+  getAllUsers(){
 
-  getLoggedUser(user: User){
-   let cookieVal = this.cookieService.get('username', user.username);
-    cookieVal.toString();
+    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
+
+    this.headers.set('Authorization', 'Basic ' + btoa(authString))
+
+    fetch('https://apps-lapp-server.herokuapp.com/api/management/getStudents', {
+      method: 'GET',
+      headers: this.headers})
+    .then(response => response.json())
+    .then(data => {return data});
+  }
+*/
+
+  getAllUsers(): Observable<string[]> {
+
+    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
+
+  let  headerHttp = new HttpHeaders({
+      'Content-Type':  'application/json',
+      Authorization: 'Basic ' + btoa(authString)
+  });
+
+    
+    return this.http.get<string[]>('https://apps-lapp-server.herokuapp.com/api/management/getStudents', {headers: headerHttp} )
   }
 
   
 
+/*
   deleteUser(){
     fetch('https://jsonplaceholder.typicode.com/todos/205', {
       method: 'DELETE',
@@ -75,10 +102,9 @@ export class SignUpService {
     .then(response => response.json())
     .then(data => console.log(data));
   }
-
+*/
 
   resendEmail(user: User){
-    var userN = `${user.username}`
     fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resendEmail/${user.username}`, {
       method: 'POST',
       headers: {
