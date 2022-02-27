@@ -1,1 +1,17 @@
-<button mat-raised-button color="primary"><img src="https://img.icons8.com/material-rounded/24/000000/create.png"/> Create Lab</button>
+<button mat-raised-button style="margin-left: 5em;" color="primary" [routerLink]="['/lab-form']"><img src="https://img.icons8.com/material-rounded/24/000000/create.png"/> Create Lab</button>
+
+
+<div class="center">
+    
+    <div class="example-container">
+        <h2>LabName</h2> 
+        <div style="background-color: white; border-radius: 5px; margin-bottom: 3.5rem;">
+            <label>Members: 15</label>
+        </div>
+        
+          <div class="example-box">
+            <button color="primary" mat-raised-button>Add/remove member</button>
+            <button color="primary" mat-raised-button>Edit Exercises</button>
+        </div>
+      </div>
+</div>

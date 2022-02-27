@@ -1,5 +1,5 @@
 <div class="center">
-  <form #createLabForm="ngForm" (ngSubmit)="onSubmit()">
+  <form #createLabForm="ngForm" (ngSubmit)="onSubmit(inLab, labName)">
     <h2>Lab Name</h2>
             <input placeholder="Lab Name" [(ngModel)]="labName" type="text" class="form-control" name="username" required minlength="4"
               maxlength="10" #labN="ngModel">
@@ -23,14 +23,14 @@
         <div class="example-container">
           <h2>Not in Lab</h2>
 
-            <div class="example-box" *ngFor="let item of notInLab" >
-              <mat-list class="flex-container"   >
-                <mat-list-item >{{item}}</mat-list-item> 
+            <div class="example-box"  *ngFor="let item of notInLab" >
+              <mat-list  class="flex-container"   >
+                <mat-list-item  >{{item}}</mat-list-item> 
               </mat-list>
               <button style="margin-right: 5px;" mat-raised-button  color="primary" (click)="addToLab(item)">add</button>
           </div>
         </div>
       </div>
-      <button mat-flat-button color="primary" type="submit" [disabled]="!createLabForm.form.valid || inLab.length < 2 " (click)="createLab(inLab, labName)">Create</button>
+      <button mat-flat-button color="primary" type="submit" [disabled]="!createLabForm.form.valid || inLab.length < 2 " >Create</button>
   </form>
 </div>

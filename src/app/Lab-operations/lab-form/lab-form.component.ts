@@ -36,7 +36,9 @@ export class LabFormComponent implements OnInit {
   
   }
 
-  onSubmit(){}
+  onSubmit(lab: string[], labName: string){
+    this.labService.createLab(lab, labName);
+  }
 
   addToLab(item: string){
     this.inLab.push(item);
@@ -48,9 +50,6 @@ export class LabFormComponent implements OnInit {
     this.notInLab.push(item);
   }
 
-  createLab(lab: string[], labName: string){
-    this.labService.createLab(lab, labName);
-  }
   
 
 }
