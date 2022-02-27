@@ -27,6 +27,7 @@ import { LoginFailedComponent } from './User-operations/login-failed/login-faile
 import { LabFormComponent } from './Lab-operations/lab-form/lab-form.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ExercisesComponent } from './Lab-operations/exercises/exercises.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     EmailVerificationComponent,
     LoginFailedComponent,
     LabFormComponent,
+    ExercisesComponent,
   ],
   imports: [
     BrowserModule,

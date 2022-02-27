@@ -5,6 +5,7 @@ import { EmailVerificationComponent } from './Email/email-verification/email-ver
 import { LoginComponent } from './User-operations/login/login.component';
 import { RegistrationComponent } from './User-operations/registration/registration.component';
 import { LabFormComponent } from './Lab-operations/lab-form/lab-form.component';
+import { ExercisesComponent } from './Lab-operations/exercises/exercises.component';
 
 
 
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'dashboard', component: DashboardComponent },
   {path: 'emailV', component: EmailVerificationComponent},
   {path: 'lab-form', component: LabFormComponent},
+  {path: 'exercises', component: ExercisesComponent},
 ];
 
 @NgModule({
