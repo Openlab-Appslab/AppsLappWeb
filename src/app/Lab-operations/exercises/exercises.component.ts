@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Exercise } from '../exercise';
+import { LabService } from '../lab.service';
 
 
 @Component({
@@ -9,23 +10,16 @@ import { Exercise } from '../exercise';
 })
 export class ExercisesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private labService: LabService) { }
 
   ngOnInit(): void {
+    
   }
 
   exerciseModel = new Exercise('','',0, 0);
 
-  exerciseGroup: string;
-  exerciseDescription: string;
-  exercises: string[] = [];
-
-  addToExercises(){
-    this.exercises.push(this.exerciseModel.description);
-
-  }
-
-  deleteFromLab(item: string){
-    this.exercises = this.exercises.filter(h => h !== item);
+  
+  onSubmit(){
+    this.labService.createExercise(this.exerciseModel);
   }
 }

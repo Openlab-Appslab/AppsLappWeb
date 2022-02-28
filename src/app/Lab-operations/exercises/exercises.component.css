@@ -1,5 +1,5 @@
 .example-container {
-    width: 400px;
+    
     max-width: 100%;
     margin: 0 25px 25px 0;
     display: inline-block;
@@ -40,11 +40,12 @@
 
   .center {
       margin: auto;
-      width: 80%;
+      width: 60%;
       border-radius: 13px;
       text-align: center;
       background-color: #6D4FD8;
       padding: 10px;
+      height: auto;
   }
 
   .flex-container {
@@ -56,13 +57,38 @@
     padding: 20px;
     font-size: 30px;
   }
+  .test {
+    margin: auto;
+    width: 50%;
 
+    padding: 10px;
+  }
+
+  .list {
+    margin-bottom: 6em;
+    color: black;
+  }
+
+  textarea {
+    
+    margin-bottom: 2em;
+    color: black;
+  }
   input {
     color: black;
-    margin: 5px;
   }
 
   * {
     color: white;
   }
   
+  mat-list, mat-panel-title, mat-panel-description {
+    color: black;
+    
+  }
+  button {
+    position: relative;
+  }
+  mat-expansion-panel{
+    margin-bottom: 100px;
+  }

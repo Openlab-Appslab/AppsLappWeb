@@ -28,6 +28,9 @@ import { LabFormComponent } from './Lab-operations/lab-form/lab-form.component';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ExercisesComponent } from './Lab-operations/exercises/exercises.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatStepperModule} from '@angular/material/stepper';
+
 
 
 @NgModule({
@@ -62,7 +65,10 @@ import { ExercisesComponent } from './Lab-operations/exercises/exercises.compone
     MatListModule,
     DragDropModule,
     MatCheckboxModule,
+    MatExpansionModule,
+    MatStepperModule,
     
+
   ],
   providers: [],
   bootstrap: [AppComponent]

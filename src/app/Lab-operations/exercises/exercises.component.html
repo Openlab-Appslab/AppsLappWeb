@@ -1,26 +1,28 @@
 <div class="center">
-    <form #createLabForm="ngForm">
+    <form #createExerciseForm="ngForm" (ngSubmit)="onSubmit()">
         <h2>Create Exercise</h2>
-        <input placeholder="Exercise Group Name" [(ngModel)]="exerciseModel.name" type="text" class="form-control"
-            name="username" required minlength="4" maxlength="10" #exGroup="ngModel">
-        <small *ngIf="exGroup.touched && exGroup.valid == false">
-            Exercise group name is required (minimum 4 characters).
-        </small>
-        <div>
 
-            <input class="form-control" type="text" placeholder="Exercise Description"
-                [(ngModel)]="exerciseModel.description" required name="exercise" #exDescription>
+        <div class="form-group">
+            <label for="">Exercise Name</label>
+            <input class="form-control" type="text" placeholder="Exercise Name" [(ngModel)]="exerciseModel.name"
+                required name="group" #exGroup="ngModel">
+            <label style="margin-top: 2em;" for="">Exercise Description</label>
+            <textarea rows="5" type="text" name="description" id="" class="form-control"
+                placeholder="Description for exercise" [(ngModel)]="exerciseModel.description" required></textarea>
 
-            <button style="margin: 5px;" mat-raised-button color="primary" (click)="addToExercises()">add</button>
+                
+                <div class="example-box" >
+            <input class="form-control" type="number" placeholder="Minimum of Stars" [(ngModel)]="exerciseModel.minStars"
+                required name="group" #exGroup="ngModel">
+            <input class="form-control" type="number" placeholder="Maximum of Stars" [(ngModel)]="exerciseModel.maxStars"
+                required name="group" #exGroup="ngModel">
+            </div>
         </div>
 
-        <div class="example-box" *ngFor="let item of exerciseModel.description" >
-            <mat-list>
-              <mat-list-item>{{item}}</mat-list-item> 
-            </mat-list>
-            <button style="margin-right: 5px;" mat-raised-button color="primary" (click)="deleteFromLab(item)">delete</button>
-          </div>       
 
-        <button mat-flat-button color="primary" type="submit" [disabled]="">Create</button>
+
+        <div class="form-group">
+            <button style="margin-top: 2em;" mat-flat-button color="primary" type="submit" [disabled]="!createExerciseForm.valid || exerciseModel.maxStars < exerciseModel.minStars">Create</button>
+        </div>
     </form>
 </div>

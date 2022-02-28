@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
+import { Exercise } from './exercise';
 
 
 @Injectable({
@@ -31,5 +32,23 @@ export class LabService {
     .catch((error) => {
       console.error('Error:', error);
     });
+  }
+
+  createExercise(model: Exercise){
+      fetch('https://apps-lapp-server.herokuapp.com/api/auth/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(model),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        alert("Registration failed, please try again.")
+      });
   }
 }
