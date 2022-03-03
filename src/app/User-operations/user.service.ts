@@ -61,20 +61,19 @@ export class SignUpService {
     });
   }
 
-/*
-  getAllUsers(){
+
+ async getAllUsers1(){
 
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
 
     this.headers.set('Authorization', 'Basic ' + btoa(authString))
 
-    fetch('https://apps-lapp-server.herokuapp.com/api/management/getStudents', {
+    let aaaaaaaaaaaa = await fetch('https://apps-lapp-server.herokuapp.com/api/management/getStudents', {
       method: 'GET',
       headers: this.headers})
-    .then(response => response.json())
-    .then(data => {return data});
+      return aaaaaaaaaaaa.json();
   }
-*/
+
 
   getAllUsers(): Observable<string[]> {
 

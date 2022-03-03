@@ -30,6 +30,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ExercisesComponent } from './Lab-operations/exercises/exercises.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatStepperModule} from '@angular/material/stepper';
+import { LabDetailComponent } from './Lab-operations/lab-detail/lab-detail.component';
 
 
 
@@ -43,6 +44,7 @@ import {MatStepperModule} from '@angular/material/stepper';
     LoginFailedComponent,
     LabFormComponent,
     ExercisesComponent,
+    LabDetailComponent,
   ],
   imports: [
     BrowserModule,
