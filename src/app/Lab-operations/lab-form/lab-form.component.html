@@ -1,5 +1,5 @@
 <div class="center">
-  <form #createLabForm="ngForm" (ngSubmit)="onSubmit(inLab, labName)">
+  <form #createLabForm="ngForm" (ngSubmit)="onSubmit()">
     <h2>Lab Name</h2>
             <input placeholder="Lab Name" [(ngModel)]="labName" type="text" class="form-control" name="username" required minlength="4"
               maxlength="10" #labN="ngModel">
@@ -9,13 +9,16 @@
     <div>
         <div class="example-container">
           <h2>In Lab</h2>
+          <mat-list class="example-box">
+            <mat-list-item>{{labMaster}}</mat-list-item>
+          </mat-list>
       
           <div>
             <div class="example-box" *ngFor="let item of inLab" >
               <mat-list>
                 <mat-list-item>{{item}}</mat-list-item> 
               </mat-list>
-              <button style="margin-right: 5px;" mat-raised-button *ngIf="item !== labMaster" color="primary" (click)="deleteFromLab(item)">delete</button>
+              <button style="margin-right: 5px;" mat-raised-button *ngIf="item !== labMaster" color="primary" type="button" (click)="deleteFromLab(item)">delete</button>
             </div>
           </div>
         </div>
@@ -23,7 +26,7 @@
         <div class="example-container">
           <h2>Not in Lab</h2>
 
-            <div class="example-box"  *ngFor="let item of notInLab" >
+            <div class="example-box"  *ngFor="let item of notInLab " >
               <mat-list  class="flex-container"   >
                 <mat-list-item  >{{item}}</mat-list-item> 
               </mat-list>

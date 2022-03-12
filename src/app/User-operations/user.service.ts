@@ -53,7 +53,7 @@ export class SignUpService {
     .then(data => {
       this.cookieService.set('username', user.username, false);
       this.cookieService.set('password', user.password, false);
-      this.router.navigate(['/lab-form']);
+      this.router.navigate(['/dashboard']);
     })
     .catch((error) => {
       console.log('Error:', error);
@@ -61,8 +61,8 @@ export class SignUpService {
     });
   }
 
-
- async getAllUsers1(){
+/*
+ async getAllUsers(){
 
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
 
@@ -73,7 +73,7 @@ export class SignUpService {
       headers: this.headers})
       return aaaaaaaaaaaa.json();
   }
-
+*/
 
   getAllUsers(): Observable<string[]> {
 

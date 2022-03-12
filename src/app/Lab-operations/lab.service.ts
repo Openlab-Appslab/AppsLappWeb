@@ -11,18 +11,21 @@ export class LabService {
 
   constructor(private router: Router, private cookieService: NgxEncryptCookieService) { }
 
-  headers = new Headers();
 
-  createLab(lab: string[] , labName: string){
+  createLab(labStudents: string, labName: string){
 
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
 
-    this.headers.set('Authorization', 'Basic ' + btoa(authString))
+    console.log(JSON.stringify({studentNames: labStudents, name: labName}));
+    
 
-    fetch('https://apps-lapp-server.herokuapp.com/', {
+    fetch('https://apps-lapp-server.herokuapp.com/api/management/createLab', {
       method: 'POST',
-      headers: this.headers,
-      body: JSON.stringify({a: lab, b: labName}),
+      headers: new Headers({
+        'Authorization': 'Basic '+btoa(authString), 
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({studentNames: labStudents, name: labName}),
     })
     .then(response => response.json())
     .then(data => {

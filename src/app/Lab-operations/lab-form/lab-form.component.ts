@@ -25,7 +25,7 @@ export class LabFormComponent implements OnInit {
 
   labMaster = this.userService.cookieService.get('username', this.user.firstName);
   
-  inLab = [this.labMaster];
+  inLab: string[] = [];
 
   
   notInLab: string[] = [];
@@ -37,8 +37,13 @@ export class LabFormComponent implements OnInit {
     // console.log(this.test);
   }
 
-  onSubmit(lab: string[], labName: string){
-    this.labService.createLab(lab, labName);
+  onSubmit(){
+    let out =" ";
+    this.inLab.forEach(element => {
+      out += element + ",,,";
+    });
+    
+    this.labService.createLab(out.slice(0, -3), this.labName);    
   }
 
   addToLab(item: string){
