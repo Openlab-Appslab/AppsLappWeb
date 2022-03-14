@@ -19,7 +19,7 @@ export class ExercisesComponent implements OnInit {
   exerciseModel = new Exercise('','',0, 0);
 
   
-  onSubmit(){
+  onSubmit(){    
     this.labService.createExercise(this.exerciseModel);
   }
 }

@@ -38,11 +38,16 @@ export class LabService {
   }
 
   createExercise(model: Exercise){
-      fetch('https://apps-lapp-server.herokuapp.com/api/auth/register', {
+
+    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
+    
+
+      fetch('https://apps-lapp-server.herokuapp.com/api/management/createExercise', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: new Headers({
+        'Authorization': 'Basic '+btoa(authString), 
+        'Content-Type': 'application/json'
+      }),
         body: JSON.stringify(model),
       })
       .then(response => response.json())
@@ -51,7 +56,6 @@ export class LabService {
       })
       .catch((error) => {
         console.error('Error:', error);
-        alert("Registration failed, please try again.")
       });
   }
 }

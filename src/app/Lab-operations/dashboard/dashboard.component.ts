@@ -13,7 +13,11 @@ export class DashboardComponent implements OnInit {
 
   showFiller = false;
 
-  constructor(private userService: SignUpService) { }
+  isAdmin: boolean;
+
+  constructor(private userService: SignUpService) { 
+    this.userService.displayButton(this.isAdmin);
+  }
 
   ngOnInit(): void {
     

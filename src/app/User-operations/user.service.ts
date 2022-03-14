@@ -83,12 +83,23 @@ export class SignUpService {
       'Content-Type':  'application/json',
       Authorization: 'Basic ' + btoa(authString)
   });
-
     
     return this.http.get<string[]>('https://apps-lapp-server.herokuapp.com/api/management/getStudents', {headers: headerHttp} )
   }
 
-  
+ async displayButton(isAdmin: boolean){
+
+    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
+
+    this.headers.set('Authorization', 'Basic ' + btoa(authString))
+
+    let fetchTest = await fetch('https://apps-lapp-server.herokuapp.com/api/management/getStudents', {
+      method: 'GET',
+      headers: this.headers})
+
+      
+      
+  }
 
 /*
   deleteUser(){

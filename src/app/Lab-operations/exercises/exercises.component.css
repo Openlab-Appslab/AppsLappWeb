@@ -29,14 +29,9 @@
     border-radius: 5px;
   }
   
-  
-  
   .example-box:last-child {
     border: none;
   }
-  
-  
-  
 
   .center {
       margin: auto;
