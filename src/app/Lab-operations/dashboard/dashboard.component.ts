@@ -15,8 +15,8 @@ export class DashboardComponent implements OnInit {
 
   isAdmin: boolean;
 
-  constructor(private userService: SignUpService) { 
-    this.userService.displayButton(this.isAdmin);
+   constructor(public userService: SignUpService) { 
+     this.hideButton();
   }
 
   ngOnInit(): void {
@@ -25,5 +25,8 @@ export class DashboardComponent implements OnInit {
 
   login: LoginComponent;
   
+  async hideButton(){
+   this.isAdmin = await this.userService.displayButton(this.isAdmin);
+  }
 
 }
