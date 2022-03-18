@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../user';
 import { SignUpService } from '../user.service';
 
@@ -14,6 +15,9 @@ export class LoginComponent implements OnInit {
   
  public model: User;
 
+ public loading: boolean = false;
+  
+
   constructor(private userService: SignUpService) { 
     this.model = new User('', '', '','','');
   }
@@ -24,12 +28,16 @@ export class LoginComponent implements OnInit {
 
   resendEmail(){
     this.userService.resendEmail(this.model.username);
-    console.log('nwm');
   }
   
 
+
   onSubmit(){
-    this.userService.loginUser(this.model);
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 4000);
+    this.userService.loginUser(this.model)
   }
 
 }

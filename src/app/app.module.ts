@@ -34,6 +34,7 @@ import { LabDetailComponent } from './Lab-operations/lab-detail/lab-detail.compo
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,

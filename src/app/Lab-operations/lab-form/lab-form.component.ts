@@ -27,14 +27,14 @@ export class LabFormComponent implements OnInit {
   
   inLab: string[] = [];
 
+  test: boolean = true;
   
   notInLab: string[] = [];
   
   // test = this.userService.getAllUsers1();
 
   ngOnInit(): void {
-    this.userService.getAllUsers().subscribe(response => this.notInLab = response)
-    // console.log(this.test);
+    this.userService.getAllUsers().subscribe(response => this.notInLab = response);
   }
 
   onSubmit(){

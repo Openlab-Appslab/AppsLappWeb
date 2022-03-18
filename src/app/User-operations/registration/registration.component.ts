@@ -23,8 +23,13 @@ export class RegistrationComponent implements OnInit {
 
   model = new User('', '', '', '','');
 
+  loading: boolean = false;
 
   onSubmit(){
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+    }, 4000);
     this.userService.createUser(this.model);
   }
 }

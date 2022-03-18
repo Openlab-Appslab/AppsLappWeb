@@ -27,7 +27,11 @@
                             placeholder="Password" required="required">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!loginForm.form.valid" >Sign in</button>
+                        <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!loginForm.form.valid" >
+                            Sign in
+                            <span class="spinner-border spinner-border-sm" *ngIf="loading" role="status" aria-hidden="true"></span>
+                        </button>
+                        
                     </div>
                     <p><a href="#">Lost your Password?</a></p>
                 </form>

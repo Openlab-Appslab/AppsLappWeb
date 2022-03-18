@@ -6,6 +6,8 @@ import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
 import { Observable } from 'rxjs';
 import { LoginFailedComponent } from './login-failed/login-failed.component';
 import { User } from './user';
+import {throwError} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 
 
 
@@ -18,6 +20,7 @@ export class SignUpService {
   key = this.cookieService.generateKey();
 
   headers = new Headers();  
+  loading: boolean = false;
 
   createUser(user: User){
     fetch('https://apps-lapp-server.herokuapp.com/api/auth/register', {
@@ -47,7 +50,7 @@ export class SignUpService {
       method: 'GET',
       headers: this.headers,
       })
-    .then(response => response.json())
+    .then(response => response.json() )
     .then(data => {
       this.cookieService.set('username', user.username, false);
       this.cookieService.set('password', user.password, false);
@@ -59,7 +62,35 @@ export class SignUpService {
     });
   }
 
-/*
+  loginUserHttp(user: User){
+    let authString = `${user.username}:${user.password}`
+
+  let  headerHttp = new HttpHeaders({
+      'Content-Type':  'application/json',
+      Authorization: 'Basic ' + btoa(authString)
+  });
+  console.log(user) 
+   return this.http.get('https://apps-lapp-server.herokuapp.com/api/auth/login', {headers: headerHttp}, )
+   
+  }
+
+
+
+  getAllUsers(): Observable<string[]> {
+
+    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
+
+  let  headerHttp = new HttpHeaders({
+      'Content-Type':  'application/json',
+      Authorization: 'Basic ' + btoa(authString)
+  });
+    
+    return this.http.get<string[]>('https://apps-lapp-server.herokuapp.com/api/management/getStudents', {headers: headerHttp}, )
+    
+  }
+
+
+  /*
  async getAllUsers(){
 
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
@@ -72,21 +103,6 @@ export class SignUpService {
       return aaaaaaaaaaaa.json();
   }
 */
-
-  getAllUsers(): Observable<string[]> {
-
-    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
-
-  let  headerHttp = new HttpHeaders({
-      'Content-Type':  'application/json',
-      Authorization: 'Basic ' + btoa(authString)
-  });
-    
-    return this.http.get<string[]>('https://apps-lapp-server.herokuapp.com/api/management/getStudents', {headers: headerHttp} )
-  }
-
-
-  
 
 
 
