@@ -20,10 +20,9 @@ export class SignUpService {
   key = this.cookieService.generateKey();
 
   headers = new Headers();  
-  loading: boolean = false;
 
   createUser(user: User){
-    fetch('https://apps-lapp-server.herokuapp.com/api/auth/register', {
+    return fetch('https://apps-lapp-server.herokuapp.com/api/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -46,11 +45,11 @@ export class SignUpService {
 
     this.headers.set('Authorization', 'Basic ' + btoa(authString))
 
-    fetch('https://apps-lapp-server.herokuapp.com/api/auth/login', {
+    return fetch('https://apps-lapp-server.herokuapp.com/api/auth/login', {
       method: 'GET',
       headers: this.headers,
       })
-    .then(response => response.json() )
+    .then(response => response.json())
     .then(data => {
       this.cookieService.set('username', user.username, false);
       this.cookieService.set('password', user.password, false);
@@ -116,7 +115,8 @@ export class SignUpService {
       method: 'GET',
       headers: this.headers})
       .then(response => isAdmin = response.ok )
-      return  isAdmin;     
+
+    return  isAdmin;     
       
   }
 

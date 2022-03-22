@@ -10,11 +10,17 @@ import { LabService } from '../lab.service';
 })
 export class ExercisesComponent implements OnInit {
 
-  constructor(private labService: LabService) { }
+  constructor(private labService: LabService) { 
+    this.notInLab = this.labService.getAllExercises1();
+    console.log(this.notInLab);
+  }
 
   ngOnInit(): void {
     
   }
+ 
+
+  notInLab: any;
 
   exerciseModel = new Exercise('','',0, 0);
 

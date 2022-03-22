@@ -1,7 +1,10 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
+import { Observable, of } from 'rxjs';
 import { Exercise } from './exercise';
+import { SignUpService } from '../User-operations/user.service';
 
 
 @Injectable({
@@ -9,8 +12,8 @@ import { Exercise } from './exercise';
 })
 export class LabService {
 
-  constructor(private router: Router, private cookieService: NgxEncryptCookieService) { }
-
+  constructor(private router: Router, private cookieService: NgxEncryptCookieService, private http: HttpClient, private userService: SignUpService) { }
+  headers = new Headers();  
 
   createLab(labStudents: string, labName: string){
 
@@ -58,4 +61,35 @@ export class LabService {
         console.error('Error:', error);
       });
   }
+
+
+  getAllExercises(): Observable<string[]> {
+
+    let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`  
+
+  let  headerHttp = new HttpHeaders({
+      'Content-Type':  'application/json',
+      Authorization: 'Basic ' + btoa(authString)
+  });
+    
+  //  return this.http.get<string[]>('https://apps-lapp-server.herokuapp.com/api/management/getAllExercises', {headers: headerHttp}, )
+    return of(['cv1']);
+  }
+
+  async getAllExercises1(){
+
+    let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`  
+    console.log(authString);
+    
+
+    this.headers.set('Authorization', 'Basic ' + btoa(authString))
+
+    let aaaaaaaaaaaa = await fetch('https://apps-lapp-server.herokuapp.com/api/management/getAllExercises', {
+      method: 'GET',
+      headers: this.headers})
+      return aaaaaaaaaaaa.json();
+  }
 }
+
+
+

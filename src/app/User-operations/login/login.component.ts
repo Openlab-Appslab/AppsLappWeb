@@ -15,11 +15,12 @@ export class LoginComponent implements OnInit {
   
  public model: User;
 
- public loading: boolean = false;
+ loading: boolean;
   
 
   constructor(private userService: SignUpService) { 
     this.model = new User('', '', '','','');
+    console.log(this.loading);
   }
 
   ngOnInit(): void {
@@ -34,10 +35,8 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-    }, 4000);
-    this.userService.loginUser(this.model)
+    
+    this.userService.loginUser(this.model).then(() => { this.loading = false });
   }
 
 }

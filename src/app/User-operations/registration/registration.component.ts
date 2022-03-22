@@ -27,9 +27,7 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit(){
     this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-    }, 4000);
-    this.userService.createUser(this.model);
+    
+    this.userService.createUser(this.model).then(() => { this.loading = false });;
   }
 }
