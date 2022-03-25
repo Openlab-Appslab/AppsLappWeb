@@ -63,7 +63,7 @@ export class LabService {
   }
 
 
-  getAllExercises(): Observable<string[]> {
+  getAllExercises(): Observable<Exercise[]> {
 
     let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`  
 
@@ -71,9 +71,11 @@ export class LabService {
       'Content-Type':  'application/json',
       Authorization: 'Basic ' + btoa(authString)
   });
+  
+    return this.http.get<Exercise[]>('https://apps-lapp-server.herokuapp.com/api/management/getAllExercises', {headers: headerHttp})
     
-  //  return this.http.get<string[]>('https://apps-lapp-server.herokuapp.com/api/management/getAllExercises', {headers: headerHttp}, )
-    return of(['cv1']);
+    
+    
   }
 
   async getAllExercises1(){
@@ -87,7 +89,9 @@ export class LabService {
     let aaaaaaaaaaaa = await fetch('https://apps-lapp-server.herokuapp.com/api/management/getAllExercises', {
       method: 'GET',
       headers: this.headers})
-      return aaaaaaaaaaaa.json();
+      let test = await aaaaaaaaaaaa.json();
+      console.log(test, 'test');
+      return test;
   }
 }
 

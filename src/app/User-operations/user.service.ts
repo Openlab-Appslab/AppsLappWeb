@@ -40,27 +40,26 @@ export class SignUpService {
     });
   }
 
-  loginUser(user: User){
+  async loginUser(user: User){
     let authString = `${user.username}:${user.password}`
 
     this.headers.set('Authorization', 'Basic ' + btoa(authString))
 
-    return fetch('https://apps-lapp-server.herokuapp.com/api/auth/login', {
-      method: 'GET',
-      headers: this.headers,
-      })
-    .then(response => response.json())
-    .then(data => {
+    try {
+      const response = await fetch('https://apps-lapp-server.herokuapp.com/api/auth/login', {
+        method: 'GET',
+        headers: this.headers,
+      });
+      const data_1 = await response.json();
       this.cookieService.set('username', user.username, false);
       this.cookieService.set('password', user.password, false);
       this.router.navigate(['/dashboard']);
-    })
-    .catch((error) => {
+    } catch (error) {
       console.log('Error:', error);
       this.openDialogLoginFailed();
-    });
+    }
   }
-
+/*
   loginUserHttp(user: User){
     let authString = `${user.username}:${user.password}`
 
@@ -72,6 +71,7 @@ export class SignUpService {
    return this.http.get('https://apps-lapp-server.herokuapp.com/api/auth/login', {headers: headerHttp}, )
    
   }
+  */
 
 
 
@@ -154,4 +154,7 @@ export class SignUpService {
   openDialogLoginFailed() {
     this.dialog.open(LoginFailedComponent);
   }
+
+ 
 }
+

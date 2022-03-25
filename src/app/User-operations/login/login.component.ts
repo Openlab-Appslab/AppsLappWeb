@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: SignUpService) { 
     this.model = new User('', '', '','','');
-    console.log(this.loading);
   }
 
   ngOnInit(): void {

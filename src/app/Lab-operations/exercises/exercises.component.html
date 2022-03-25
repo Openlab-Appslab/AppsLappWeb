@@ -26,3 +26,33 @@
         </div>
     </form>
 </div>
+
+<div class="center" style="margin-top: 5em;">
+    <form #createExerciseForm="ngForm" (ngSubmit)="onSubmit()">
+        <h2>Create Exercise Group</h2>
+
+        <div class="form-group">
+            <label for="">Exercise Group</label>
+            <input class="form-control" type="text" placeholder="Exercise Group Name">
+            
+                
+                <div class="" >
+            <label for="">Add Exercise</label>
+            <div class="example-box"  *ngFor="let item of exercises " >
+                <mat-list  class="flex-container"   >
+                  <mat-list-item  >{{item.name}}</mat-list-item> 
+                </mat-list>
+                <button style="margin-right: 5px;" mat-raised-button  color="primary" >add</button>
+            </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            <button style="margin-top: 2em;" mat-flat-button color="primary" type="submit" [disabled]="!createExerciseForm.valid || exerciseModel.maxStars < exerciseModel.minStars">Create</button>
+        </div>
+    </form>
+</div>
+
+

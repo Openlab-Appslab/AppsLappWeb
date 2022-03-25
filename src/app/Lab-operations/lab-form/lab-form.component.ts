@@ -12,10 +12,7 @@ import { LabService } from '../lab.service';
 })
 export class LabFormComponent implements OnInit {
 
-  constructor(private userService: SignUpService, fb: FormBuilder, private labService: LabService) { this.toppings = fb.group({
-    pepperoni: false
-  });
-}   
+  constructor(private userService: SignUpService, fb: FormBuilder, private labService: LabService) { } 
 
   labName = '';
 

@@ -10,22 +10,27 @@ import { LabService } from '../lab.service';
 })
 export class ExercisesComponent implements OnInit {
 
-  constructor(private labService: LabService) { 
-    this.notInLab = this.labService.getAllExercises1();
-    console.log(this.notInLab);
+
+  constructor(private labService: LabService) {
+   
   }
 
   ngOnInit(): void {
-    
+    //this.labService.getAllExercises().subscribe(response => this.notInLab = response);
+    this.labService.getAllExercises().subscribe(response =>{
+      this.exercises = response;
+    });
   }
- 
 
-  notInLab: any;
 
-  exerciseModel = new Exercise('','',0, 0);
+  exercises: Exercise[];
 
-  
-  onSubmit(){    
+
+
+  exerciseModel = new Exercise('', '', 0, 0);
+
+
+  onSubmit() {
     this.labService.createExercise(this.exerciseModel);
   }
 }
