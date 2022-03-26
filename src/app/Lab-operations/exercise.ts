@@ -11,3 +11,4 @@ export class Exercise {
         minStars: number,
         ) { }
 }
+

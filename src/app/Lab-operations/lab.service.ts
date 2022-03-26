@@ -5,6 +5,7 @@ import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
 import { Observable, of } from 'rxjs';
 import { Exercise } from './exercise';
 import { SignUpService } from '../User-operations/user.service';
+import { ExerciseGroup } from './exercise-group';
 
 
 @Injectable({
@@ -52,6 +53,28 @@ export class LabService {
         'Content-Type': 'application/json'
       }),
         body: JSON.stringify(model),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+
+  createGroupOfExercises(exerciseGroupModel: ExerciseGroup){
+
+    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
+    
+
+      fetch('https://apps-lapp-server.herokuapp.com/api/management/createGroupOfExercises', {
+        method: 'POST',
+        headers: new Headers({
+        'Authorization': 'Basic '+btoa(authString), 
+        'Content-Type': 'application/json'
+      }),
+        body: JSON.stringify(exerciseGroupModel),
       })
       .then(response => response.json())
       .then(data => {
