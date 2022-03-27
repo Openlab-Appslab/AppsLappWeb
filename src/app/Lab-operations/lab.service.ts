@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
 import { Observable, of } from 'rxjs';
-import { Exercise } from './exercise';
+import { Exercise, Lab } from './exercise';
 import { SignUpService } from '../User-operations/user.service';
 import { ExerciseGroup } from './exercise-group';
 
@@ -20,8 +20,6 @@ export class LabService {
 
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
 
-    console.log(JSON.stringify({studentNames: labStudents, name: labName}));
-    
 
     fetch('https://apps-lapp-server.herokuapp.com/api/management/createLab', {
       method: 'POST',
@@ -116,6 +114,19 @@ export class LabService {
       console.log(test, 'test');
       return test;
   }
+
+  getLabs(): Observable<Lab[]> {
+      
+      let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`  
+  
+    let  headerHttp = new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Basic ' + btoa(authString)
+    });
+    
+      return this.http.get<Lab[]>('https://apps-lapp-server.herokuapp.com/api/management/getLab', {headers: headerHttp})   
+      
+    }
 }
 
 

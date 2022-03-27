@@ -12,3 +12,8 @@ export class Exercise {
         ) { }
 }
 
+export class Lab {
+    labMaster: string;
+    students: string[];
+    name: string;
+}
