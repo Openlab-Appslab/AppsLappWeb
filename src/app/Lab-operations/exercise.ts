@@ -14,6 +14,6 @@ export class Exercise {
 
 export class Lab {
     labMaster: string;
-    students: string[];
+    studentNames: string[];
     name: string;
 }

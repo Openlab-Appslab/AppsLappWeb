@@ -15,18 +15,20 @@ import { LabService } from '../lab.service';
 export class DashboardComponent implements OnInit {
 
   showFiller = false;
-  labs = new Array<Lab>();
+  labs = new Lab();
   isAdmin: boolean;
+  a: any[];
 
    constructor(private userService: SignUpService, private labService: LabService){ 
      this.hideButton();
+     
   }
 
   ngOnInit(): void {
     this.labService.getLabs().subscribe(response => {
       this.labs = response;
-      console.log(this.labs);
     });
+    
   }
 
   login: LoginComponent;

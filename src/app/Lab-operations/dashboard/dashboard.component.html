@@ -4,9 +4,9 @@
 <div class="center">
     
     <div class="example-container">
-        <h2>LabName</h2> 
+        <h2>{{labs.name}}</h2> 
         <div style="background-color: white; border-radius: 5px; margin-bottom: 3.5rem;">
-            <label>Members: 15</label>
+            <label>Members: {{labs.studentNames.length}}</label>
         </div>
             <button color="primary" [routerLink]="['/lab-detail']" mat-raised-button>Lab Details</button>
       </div>

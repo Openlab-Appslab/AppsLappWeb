@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Lab } from '../exercise';
+import { LabService } from '../lab.service';
 
 
 @Component({
@@ -10,9 +12,15 @@ export class LabDetailComponent implements OnInit {
   
 
 
-  constructor() { }
+  constructor(private labService: LabService) { }
+
+  labs: Lab;
 
   ngOnInit(): void {
+    this.labService.getLabs().subscribe(response => {
+      this.labs = response;
+    });
+    
   }
 
 }
