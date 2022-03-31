@@ -16,7 +16,7 @@ export class LabService {
   constructor(private router: Router, private cookieService: NgxEncryptCookieService, private http: HttpClient, private userService: SignUpService) { }
   headers = new Headers();  
 
-  createLab(labStudents: string, labName: string){
+  createLab(labStudents: string[], labName: string){
 
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
 
@@ -28,6 +28,7 @@ export class LabService {
         'Content-Type': 'application/json'
       }),
       body: JSON.stringify({name: labName, studentNames: labStudents}),
+      
     })
     .then(response => response.json())
     .then(data => {

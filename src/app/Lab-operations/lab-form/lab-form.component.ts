@@ -35,12 +35,8 @@ export class LabFormComponent implements OnInit {
   }
 
   onSubmit(){
-    let out =" ";
-    this.inLab.forEach(element => {
-      out += element + ",,,";
-    });
     
-    this.labService.createLab(out.slice(0, -3), this.labName);    
+    this.labService.createLab(this.inLab, this.labName);    
   }
 
   addToLab(item: string){
