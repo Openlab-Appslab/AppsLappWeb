@@ -31,6 +31,9 @@ export class ExercisesComponent implements OnInit {
 
   exerciseModel = new Exercise('', '', 0, 0);
 
+  options: string[] = ['Add to Existing Group', 'Create New Group'];
+  selectedOption: string;
+
   onSubmit() {
     this.labService.createExercise(this.exerciseModel);
     this.exercisesNotIn.push(this.exerciseModel);

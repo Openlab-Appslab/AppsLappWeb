@@ -27,7 +27,7 @@ export class LabService {
         'Authorization': 'Basic '+btoa(authString), 
         'Content-Type': 'application/json'
       }),
-      body: JSON.stringify({studentNames: labStudents, name: labName}),
+      body: JSON.stringify({name: labName, studentNames: labStudents}),
     })
     .then(response => response.json())
     .then(data => {

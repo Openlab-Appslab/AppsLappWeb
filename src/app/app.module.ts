@@ -31,6 +31,7 @@ import { ExercisesComponent } from './Lab-operations/exercises/exercises.compone
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatStepperModule} from '@angular/material/stepper';
 import { LabDetailComponent } from './Lab-operations/lab-detail/lab-detail.component';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 
@@ -70,6 +71,7 @@ import { LabDetailComponent } from './Lab-operations/lab-detail/lab-detail.compo
     MatCheckboxModule,
     MatExpansionModule,
     MatStepperModule,
+    MatRadioModule,
     
 
   ],

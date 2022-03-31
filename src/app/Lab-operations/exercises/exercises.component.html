@@ -9,62 +9,77 @@
             <label style="margin-top: 2em;" for="">Exercise Description</label>
             <textarea rows="5" type="text" name="description" id="" class="form-control"
                 placeholder="Description for exercise" [(ngModel)]="exerciseModel.description" required></textarea>
+            <div class="form-group">
+                <label for="">Add Exercise to Group</label> <br>
+            <mat-radio-group color="primary" aria-label="Select an option" [(ngModel)]="selectedOption">
+                <mat-radio-button class="example-radio-button" *ngFor="let option of options" [value]="option">
+                    {{option}}
+                  </mat-radio-button>
+            </mat-radio-group>
 
+            
+            <div *ngIf="selectedOption == 'Add to Existing Group';else createNew"></div>
+            </div>
+            <ng-template #createNew [ngOutletContext]="context">
                 
-                <div class="example-box" >
-            <input class="form-control" type="number" placeholder="Minimum of Stars" [(ngModel)]="exerciseModel.minStars"
-                required name="group" #exGroup="ngModel">
-            <input class="form-control" type="number" placeholder="Maximum of Stars" [(ngModel)]="exerciseModel.maxStars"
-                required name="group" #exGroup="ngModel">
+            </ng-template>
+
+            <div class="example-box">
+                <input class="form-control" type="number" placeholder="Minimum of Stars"
+                    [(ngModel)]="exerciseModel.minStars" required name="group" #exGroup="ngModel">
+                <input class="form-control" type="number" placeholder="Maximum of Stars"
+                    [(ngModel)]="exerciseModel.maxStars" required name="group" #exGroup="ngModel">
             </div>
         </div>
 
 
 
         <div class="form-group">
-            <button style="margin-top: 2em;" mat-flat-button color="primary" type="submit" [disabled]="!createExerciseForm.valid || exerciseModel.maxStars < exerciseModel.minStars">Create</button>
+            <button style="margin-top: 2em;" mat-flat-button color="primary" type="submit"
+                [disabled]="!createExerciseForm.valid || exerciseModel.maxStars < exerciseModel.minStars">Create</button>
         </div>
     </form>
 </div>
-
+<button mat-flat-button color="primary">Create Group</button>
 <div class="center" style="margin-top: 5em;">
     <form #createGroupForm="ngForm" (ngSubmit)="onSubmitGroup()">
         <h2>Create Exercise Group</h2>
 
         <div class="form-group">
             <label for="">Exercise Group</label>
-            <input class="form-control" type="text" placeholder="Exercise Group Name" [(ngModel)]="exerciseGroupModel.name"
-            required name="group" #exGroupName="ngModel">
-            
-                
+            <input class="form-control" type="text" placeholder="Exercise Group Name"
+                [(ngModel)]="exerciseGroupModel.name" required name="group" #exGroupName="ngModel">
+
+
             <div>
                 <label *ngIf="exercisesIn.length > 0" for="">Exercises in Group</label>
-                <div class="example-box" *ngFor="let item of exercisesIn" >
-                  <mat-list>
-                    <mat-list-item>{{item.name}}</mat-list-item> 
-                  </mat-list>
-                  <button style="margin-right: 5px;" mat-raised-button color="primary" type="button" (click)="deleteFromGroup(item)">delete</button>
+                <div class="example-box" *ngFor="let item of exercisesIn">
+                    <mat-list>
+                        <mat-list-item>{{item.name}}</mat-list-item>
+                    </mat-list>
+                    <button style="margin-right: 5px;" mat-raised-button color="primary" type="button"
+                        (click)="deleteFromGroup(item)">delete</button>
                 </div>
-              </div>
             </div>
+        </div>
 
-                <div>
+        <div>
             <label *ngIf="exercisesNotIn.length > 0" for="">Add Exercise</label>
-            <div class="example-box"  *ngFor="let item of exercisesNotIn " >
-                <mat-list  class="flex-container"   >
-                  <mat-list-item  >{{item.name}}</mat-list-item> 
+            <div class="example-box" *ngFor="let item of exercisesNotIn ">
+                <mat-list class="flex-container">
+                    <mat-list-item>{{item.name}}</mat-list-item>
                 </mat-list>
-                <button style="margin-right: 5px;" mat-raised-button  (click)="addToGroup(item)" color="primary" >add</button>
+                <button style="margin-right: 5px;" mat-raised-button (click)="addToGroup(item)"
+                    color="primary">add</button>
             </div>
-            </div>
-        
+        </div>
+
 
 
 
         <div class="form-group">
-            <button style="margin-top: 2em;" mat-flat-button color="primary" type="submit" [disabled]="!createGroupForm.valid || exercisesIn.length == 0 ">Create</button>
+            <button style="margin-top: 2em;" mat-flat-button color="primary" type="submit"
+                [disabled]="!createGroupForm.valid || exercisesIn.length == 0 ">Create</button>
         </div>
     </form>
 </div>
-
-
