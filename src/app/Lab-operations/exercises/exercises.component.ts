@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Exercise } from '../exercise';
 import { ExerciseGroup } from '../exercise-group';
 import { LabService } from '../lab.service';
+import { MatSelectChange } from '@angular/material/select';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -13,6 +15,7 @@ export class ExercisesComponent implements OnInit {
 
 
   constructor(private labService: LabService) {
+   console.log(this.selectedOption);
    
   }
 
@@ -29,12 +32,15 @@ export class ExercisesComponent implements OnInit {
 
   exerciseGroupModel = new ExerciseGroup('', this.exercisesIn);
 
-  exerciseModel = new Exercise('', '', 0, 0);
+  exerciseModel = new Exercise('', '', '', 0, 0);
 
   options: string[] = ['Add to Existing Group', 'Create New Group'];
+  groups: string[] = ['Group 1', 'Group 2', 'Group 3'];
   selectedOption: string;
 
   onSubmit() {
+    console.log(this.exerciseModel);
+    
     this.labService.createExercise(this.exerciseModel);
     this.exercisesNotIn.push(this.exerciseModel);
   }
@@ -52,4 +58,9 @@ export class ExercisesComponent implements OnInit {
     this.exercisesIn = this.exercisesIn.filter(h => h !== item);
     this.exercisesNotIn.push(item);
   }
+
+  dropDownChanged(event: MatSelectChange) {
+    this.exerciseModel.group = event.value;
+  }
+    selectedOrder = new FormControl();
 }

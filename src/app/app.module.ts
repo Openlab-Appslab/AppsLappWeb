@@ -32,7 +32,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatStepperModule} from '@angular/material/stepper';
 import { LabDetailComponent } from './Lab-operations/lab-detail/lab-detail.component';
 import {MatRadioModule} from '@angular/material/radio';
-
+import { MatSelectModule } from '@angular/material/select';
 
 
 
@@ -72,7 +72,7 @@ import {MatRadioModule} from '@angular/material/radio';
     MatExpansionModule,
     MatStepperModule,
     MatRadioModule,
-    
+    MatSelectModule,
 
   ],
   providers: [],

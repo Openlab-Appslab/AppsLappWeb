@@ -96,3 +96,12 @@
   .mat-radio-button ~ .mat-radio-button {
     margin-left: 16px;
   }
+  mat-select, mat-option, mat-list-item, section, mat-label {
+    color: black;
+  }
+  
+  section {
+    background-color: white;
+    border-radius: 5px;
+    margin: 5px;
+  }

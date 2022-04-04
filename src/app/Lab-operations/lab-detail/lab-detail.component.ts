@@ -18,7 +18,7 @@ export class LabDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.labService.getLabs().subscribe(response => {
-      this.labs = response;
+     // this.labs = response;
     });
     
   }

@@ -3,10 +3,10 @@
 
 <div class="center">
     
-    <div class="example-container">
-       <h2>{{labs.name}}</h2> 
+    <div class="example-container" *ngFor="let lab of labs">
+      <!----> <h2>{{lab.name}}</h2> 
         <div style="background-color: white; border-radius: 5px; margin-bottom: 3.5rem;">
-            <label>Members: {{labs.studentNames.length}}</label>
+            <label>Members: {{lab.studentNames}}</label>
         </div>
             <button color="primary" [routerLink]="['/lab-detail']" mat-raised-button>Lab Details</button>
       </div>

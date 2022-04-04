@@ -11,7 +11,7 @@ import { LabDetailComponent } from './Lab-operations/lab-detail/lab-detail.compo
 
 
 const routes: Routes = [
-  {path: '', redirectTo: '/registration', pathMatch: 'full'},
+  {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'registration', component: RegistrationComponent },
   {path: 'login', component: LoginComponent },
   {path: 'dashboard', component: DashboardComponent },

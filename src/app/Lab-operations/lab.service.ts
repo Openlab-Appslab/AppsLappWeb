@@ -116,7 +116,7 @@ export class LabService {
       return test;
   }
 
-  getLabs(): Observable<Lab> {
+  getLabs(): Observable<Lab[]> {
       
       let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`  
   
@@ -125,7 +125,7 @@ export class LabService {
         Authorization: 'Basic ' + btoa(authString)
     });
     
-      return this.http.get<Lab>('https://apps-lapp-server.herokuapp.com/api/management/getLab', {headers: headerHttp})   
+      return this.http.get<Lab[]>('https://apps-lapp-server.herokuapp.com/api/management/getLabs', {headers: headerHttp})   
       
     }
 }
