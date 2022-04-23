@@ -6,6 +6,8 @@
       </button>
       <img class="openlab-logo"  src="/assets/images/Logo.png" alt="openlab-logo">
       <span class="example-spacer"></span>
+      <h2>{{userName}}</h2>
+      <span class="example-spacer"></span>
       <div fxShow="true" fxHide.lt-md="true">
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
         <a [routerLink]="['/dashboard']" mat-button>
@@ -16,9 +18,9 @@
           <img src="https://img.icons8.com/color/48/000000/inspect-code.png"/>
           Exercises
         </a>
-        <a href="#" mat-button>
-          <img src="https://img.icons8.com/color/48/000000/olympic-medal-silver.png"/>
-          Badges
+        <a (click)="signOut()" mat-button>
+          <img src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/000000/external-sign-out-user-interface-tanah-basah-glyph-tanah-basah.png"/>
+          Sign Out
         </a>
       </div>
     </mat-toolbar-row>
@@ -35,8 +37,8 @@
           <img src="https://img.icons8.com/color/48/000000/inspect-code.png"/>
           Exercises</a>
         <a href="#" mat-list-item>
-          <img src="https://img.icons8.com/color/48/000000/olympic-medal-silver.png"/>
-          Badges
+          <img src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/48/000000/external-sign-out-user-interface-tanah-basah-glyph-tanah-basah.png"/>
+          Sign Out
         </a>
         
         <a (click)="sidenav.toggle()" mat-list-item>

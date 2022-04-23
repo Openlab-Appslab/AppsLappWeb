@@ -64,6 +64,10 @@ export class SignUpService {
   isLoggedIn(): boolean {
     return !!this.cookieService.get('username', false);
   }
+
+  logOut() {
+    this.cookieService.deleteAll();
+  }
 /*
   loginUserHttp(user: User){
     let authString = `${user.username}:${user.password}`
