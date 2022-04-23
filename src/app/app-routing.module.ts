@@ -7,6 +7,7 @@ import { RegistrationComponent } from './User-operations/registration/registrati
 import { LabFormComponent } from './Lab-operations/lab-form/lab-form.component';
 import { ExercisesComponent } from './Lab-operations/exercises/exercises.component';
 import { LabDetailComponent } from './Lab-operations/lab-detail/lab-detail.component';
+import { AuthGuard } from './guard/auth-guard';
 
 
 
@@ -14,11 +15,11 @@ const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'registration', component: RegistrationComponent },
   {path: 'login', component: LoginComponent },
-  {path: 'dashboard', component: DashboardComponent },
-  {path: 'emailV', component: EmailVerificationComponent},
-  {path: 'lab-form', component: LabFormComponent},
-  {path: 'exercises', component: ExercisesComponent},
-  {path: 'lab-detail', component: LabDetailComponent},
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
+  {path: 'emailV', component: EmailVerificationComponent, canActivate: [AuthGuard]},
+  {path: 'lab-form', component: LabFormComponent, canActivate: [AuthGuard]},
+  {path: 'exercises', component: ExercisesComponent, canActivate: [AuthGuard]},
+  {path: 'lab-detail', component: LabDetailComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

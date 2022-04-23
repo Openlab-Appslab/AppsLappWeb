@@ -8,6 +8,7 @@ import { LoginFailedComponent } from './login-failed/login-failed.component';
 import { User } from './user';
 import {throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
+import { AnimationFrameScheduler } from 'rxjs/internal/scheduler/AnimationFrameScheduler';
 
 
 
@@ -58,6 +59,10 @@ export class SignUpService {
       console.log('Error:', error);
       this.openDialogLoginFailed();
     }
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.cookieService.get('username', false);
   }
 /*
   loginUserHttp(user: User){
