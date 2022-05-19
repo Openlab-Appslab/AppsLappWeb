@@ -24,6 +24,7 @@ export class AppComponent {
 
   signOut(){
     this.userService.logOut();
+    this.userName = '';
     this.router.navigate(['/login']);
   }
 }

@@ -1,9 +1,12 @@
 .example-container {
   width: 400px;
   max-width: 100%;
-  margin: 0 25px 25px 0;
-  display: inline-block;
-  vertical-align: top;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  background-color: #6D4FD8;
+  border-radius: 13px;
+  padding: 10px;
 }
   
   .example-sidenav-content {
@@ -20,9 +23,9 @@
   .center {
     margin: auto;
     width: 40%;
-    border-radius: 13px;
+    
     text-align: center;
-    background-color: #6D4FD8;
+    
     padding: 10px;
 }
 .example-box {

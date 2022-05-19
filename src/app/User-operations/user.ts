@@ -5,7 +5,6 @@ export class User {
     username: any;
     email: any;
     password: any;
-    authority: any;
 
     constructor(
         firstName: any,
