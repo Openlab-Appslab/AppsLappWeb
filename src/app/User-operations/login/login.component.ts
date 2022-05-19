@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
+import { AppComponent } from 'src/app/app.component';
 import { User } from '../user';
 import { SignUpService } from '../user.service';
 
@@ -16,9 +18,10 @@ export class LoginComponent implements OnInit {
  public model: User;
 
  loading: boolean;
+
   
 
-  constructor(private userService: SignUpService) { 
+  constructor(private userService: SignUpService, private username: AppComponent, private cookieService: NgxEncryptCookieService, private router: Router)  { 
     this.model = new User('', '', '','','');
   }
 
@@ -34,7 +37,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     this.loading = true;
-    
+    this.username.userName = this.cookieService.get('username', false);
     this.userService.loginUser(this.model).then(() => { this.loading = false });
   }
 
