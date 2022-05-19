@@ -19,7 +19,7 @@ const routes: Routes = [
   {path: 'emailV', component: EmailVerificationComponent, canActivate: [AuthGuard]},
   {path: 'lab-form', component: LabFormComponent},
   {path: 'exercises', component: ExercisesComponent, },
-  {path: 'lab-detail', component: LabDetailComponent, },
+  {path: 'lab-detail/:id', component: LabDetailComponent, },
 ];
 
 @NgModule({

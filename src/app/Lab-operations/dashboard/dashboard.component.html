@@ -4,10 +4,11 @@
 <div class="center">
     
     <div class="example-container" *ngFor="let lab of labs">
-      <!----> <h2> hghgj{{lab.name}}</h2> 
+      <!----> <h2> {{lab.name}}</h2> 
         <div style="background-color: white; border-radius: 5px; margin-bottom: 3.5rem;">
             <label>Members: {{lab.studentNames.length}}</label>
         </div>
-            <button color="primary" [routerLink]="['/lab-detail']" mat-raised-button>Lab Details</button>
+            <button color="primary" routerLink="/lab-detail/{{lab.id}}" mat-raised-button>Lab Details</button>
       </div>
+
 </div> 

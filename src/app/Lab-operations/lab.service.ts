@@ -128,6 +128,17 @@ export class LabService {
       return this.http.get<Lab[]>('https://apps-lapp-server.herokuapp.com/api/management/getLabs', {headers: headerHttp})   
       
     }
+
+    getLab(id: number): Observable<Lab> {
+      let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`  
+  
+    let  headerHttp = new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Basic ' + btoa(authString)
+    });
+
+      return this.http.get<Lab>(`https://apps-lapp-server.herokuapp.com/api/management/getLab/${id}`, {headers: headerHttp});
+    }
 }
 
 

@@ -9,18 +9,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>{{labs.studentNames[0]}}</td>
-        <td>{{labs.studentNames[0]}}</td>
-        <td>-</td>
+      <tr *ngFor="let student of students">
+        <th scope="row"></th>
+        <td>{{lab.name}} ({{student.department}}) </td>
+        <td>{{student.score}}</td>
       </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>{{labs.studentNames[1]}}</td>
-        <td>{{labs.studentNames[1]}}</td>
-        <td>-</td>
-      </tr>
+      
       
     </tbody>
   </table>
