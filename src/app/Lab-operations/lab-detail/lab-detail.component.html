@@ -1,5 +1,5 @@
 <div class="center">
-<table class="table table-bordered" >
+  <table class="table table-bordered">
     <thead>
       <tr>
         <th scope="col">All</th>
@@ -11,11 +11,41 @@
     <tbody>
       <tr *ngFor="let student of students">
         <th scope="row"></th>
-        <td>{{lab.name}} ({{student.department}}) </td>
+        <td>{{student.name}} ({{student.department}}) </td>
         <td>{{student.score}}</td>
       </tr>
-      
-      
+
+
     </tbody>
   </table>
+
 </div>
+<button mat-raised-button style="margin-left: 5em;" color="primary" (click)="openTempDialog()"><img
+    src="https://img.icons8.com/material-rounded/24/000000/create.png" /> Add Exercise</button>
+
+<div class="center">
+  <h2 *ngIf="labExercises != []">Exercises</h2>
+  <div class="example-container" *ngFor="let exercise of labExercises">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2>Exercise Group</h2>
+          </mat-panel-title>
+          <mat-panel-description>
+            tap to see details
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <h3>{{exercise.name}} <p>(Max: {{exercise.maxStars}} <img src="https://img.icons8.com/fluency/20/000000/star.png"/>) (Min: {{exercise.minStars}} <img src="https://img.icons8.com/fluency/20/000000/star.png"/>) </p></h3><p>{{exercise.description}}</p>    
+        </mat-expansion-panel>
+    </mat-accordion>
+    
+  </div>
+
+</div>
+
+<ng-template #dialogRef let-mydata>
+  <div class="center" *ngFor="let exercise of allExercises">
+    <h2>{{exercise.name}} <button mat-raised-button (click)="addExercise(exercise)">ADD</button></h2>
+  </div>
+</ng-template>

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog/dialog';
 import { LoginComponent } from 'src/app/User-operations/login/login.component';
 import { User } from 'src/app/User-operations/user';
 import { SignUpService } from 'src/app/User-operations/user.service';
-import { Lab } from '../exercise';
+import { Exercise, Lab } from '../exercise';
 import { LabService } from '../lab.service';
 
 
@@ -16,10 +17,11 @@ export class DashboardComponent implements OnInit {
 
   showFiller = false;
   labs: Lab[] =[]
+  
   isAdmin: boolean;
   a: any[];
 
-   constructor(private userService: SignUpService, private labService: LabService){ 
+   constructor(private userService: SignUpService, private labService: LabService, ){ 
      this.hideButton();
      
   }
@@ -36,5 +38,7 @@ export class DashboardComponent implements OnInit {
   async hideButton(){
    this.isAdmin = await this.userService.displayButton(this.isAdmin);
   }
+
+  
 
 }

@@ -9,6 +9,7 @@ import { User } from './user';
 import {throwError} from 'rxjs';
 import {catchError, map} from 'rxjs/operators';
 import { AnimationFrameScheduler } from 'rxjs/internal/scheduler/AnimationFrameScheduler';
+import { AppComponent } from '../app.component';
 
 
 
@@ -16,9 +17,11 @@ import { AnimationFrameScheduler } from 'rxjs/internal/scheduler/AnimationFrameS
 @Injectable({ providedIn: 'root' })
 export class SignUpService {
 
-  constructor(public cookieService: NgxEncryptCookieService, private router: Router, public dialog: MatDialog, private http: HttpClient) { }
+  constructor(public cookieService: NgxEncryptCookieService, private router: Router, public dialog: MatDialog, private http: HttpClient, ) { }
 
   key = this.cookieService.generateKey();
+
+  appc: AppComponent;
 
   headers = new Headers();  
 
@@ -42,6 +45,7 @@ export class SignUpService {
   }
 
   async loginUser(user: User){
+    
     let authString = `${user.username}:${user.password}`
 
     this.headers.set('Authorization', 'Basic ' + btoa(authString))

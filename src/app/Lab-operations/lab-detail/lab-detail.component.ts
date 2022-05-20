@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { Lab } from '../exercise';
+import { Exercise, Lab } from '../exercise';
 import { LabService } from '../lab.service';
 
 
@@ -13,13 +14,17 @@ export class LabDetailComponent implements OnInit {
   
 
 
-  constructor(private labService: LabService,  private route: ActivatedRoute) { }
+  constructor(private labService: LabService,  private route: ActivatedRoute, public dialog: MatDialog) { }
 
   lab: Lab;
+  allExercises: Exercise[] = [];
+  labExercises: Exercise[] = [];
 
   ngOnInit(): void {
     this.getLab();
     console.log(this.lab);
+    this.getAllExercises();
+    console.log(this.allExercises);
     
   }
 
@@ -41,4 +46,23 @@ export class LabDetailComponent implements OnInit {
     {name: 'Peter', department: 'BE', score: 50},
   ];
   
+  @ViewChild('dialogRef')
+  dialogRef!: TemplateRef<any>;
+
+  openTempDialog() {
+    const myTempDialog = this.dialog.open(this.dialogRef);
+    myTempDialog.afterClosed();
+
+  }
+
+  getAllExercises(){
+    this.labService.getAllExercises().subscribe(response => {
+      this.allExercises = response;
+    });
+  }
+
+  addExercise(exercise: Exercise){
+    this.labExercises.push(exercise);
+    this.allExercises = this.allExercises.filter(h => h !== exercise);
+  }
 }
