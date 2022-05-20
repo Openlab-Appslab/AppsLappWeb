@@ -33,6 +33,7 @@ import {MatStepperModule} from '@angular/material/stepper';
 import { LabDetailComponent } from './Lab-operations/lab-detail/lab-detail.component';
 import {MatRadioModule} from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
+import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 
 
 
@@ -73,7 +74,10 @@ import { MatSelectModule } from '@angular/material/select';
     MatStepperModule,
     MatRadioModule,
     MatSelectModule,
-
+    MatBottomSheetModule,
+    MatDialogModule,
+    MatExpansionModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

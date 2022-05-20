@@ -37,11 +37,19 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     this.loading = true;
-    this.userService.loginUser(this.model).then(() => { this.loading = false });
-    console.log(this.cookieService.get('username', false));
+    this.userService.loginUser(this.model).then(() => { 
+      this.loading = false
+      //set username after no error
+      if(this.userService.isLoggedIn()){
+        this.username.userName = this.model.username;
+      }
+     })
+    //set username after successful login
     
-    this.username.userName = this.cookieService.get('username', false);
-    console.log(this.username.userName);
+
+    
+    
+
     
   }
 

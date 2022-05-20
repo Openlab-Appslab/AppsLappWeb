@@ -15,11 +15,11 @@ const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'registration', component: RegistrationComponent },
   {path: 'login', component: LoginComponent },
-  {path: 'dashboard', component: DashboardComponent, },
+  {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},
   {path: 'emailV', component: EmailVerificationComponent, canActivate: [AuthGuard]},
-  {path: 'lab-form', component: LabFormComponent},
-  {path: 'exercises', component: ExercisesComponent, },
-  {path: 'lab-detail/:id', component: LabDetailComponent, },
+  {path: 'lab-form', component: LabFormComponent, canActivate: [AuthGuard]},
+  {path: 'exercises', component: ExercisesComponent, canActivate: [AuthGuard] },
+  {path: 'lab-detail/:id', component: LabDetailComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
