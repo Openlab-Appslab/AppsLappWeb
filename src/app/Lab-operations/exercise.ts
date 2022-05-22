@@ -1,7 +1,7 @@
 export class Exercise {
     name: string;
     description: string;
-    group: string;
+    groupName: string;
     maxStars: number;
     minStars: number;
 

@@ -60,7 +60,7 @@ export class ExercisesComponent implements OnInit {
   }
 
   dropDownChanged(event: MatSelectChange) {
-    this.exerciseModel.group = event.value;
+    this.exerciseModel.groupName = event.value;
   }
     selectedOrder = new FormControl();
 }

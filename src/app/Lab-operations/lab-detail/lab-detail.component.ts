@@ -14,7 +14,7 @@ export class LabDetailComponent implements OnInit {
   
 
 
-  constructor(private labService: LabService,  private route: ActivatedRoute, public dialog: MatDialog) { }
+  constructor(private labService: LabService,  private route: ActivatedRoute, public dialog: MatDialog) {  }
 
   lab: Lab;
   allExercises: Exercise[] = [];
@@ -22,9 +22,7 @@ export class LabDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLab();
-    console.log(this.lab);
     this.getAllExercises();
-    console.log(this.allExercises);
     
   }
 
@@ -39,11 +37,11 @@ export class LabDetailComponent implements OnInit {
 
   studentss: any[];
   students = [
-    {name: 'John', department: 'FE', score: 80},
-    {name: 'Mary', department: 'BE', score: 90},
-    {name: 'Mike', department: 'BE', score: 70},
-    {name: 'Adam', department: 'FE', score: 60},
-    {name: 'Peter', department: 'BE', score: 50},
+    {position: 1, name: 'John', department: 'FE', score: 80, trophy: 3},
+    {position: 2, name: 'Mary', department: 'BE', score: 90, trophy: 2},
+    {position: 3, name: 'Mike', department: 'BE', score: 70, trophy: 1},
+    {position: 4, name: 'Adam', department: 'FE', score: 60, trophy: 0},
+    {position: 5, name: 'Peter', department: 'BE', score: 50, trophy: 10},
   ];
   
   @ViewChild('dialogRef')
@@ -52,7 +50,7 @@ export class LabDetailComponent implements OnInit {
   openTempDialog() {
     const myTempDialog = this.dialog.open(this.dialogRef);
     myTempDialog.afterClosed();
-
+    console.log(this.allExercises);
   }
 
   getAllExercises(){
@@ -65,4 +63,7 @@ export class LabDetailComponent implements OnInit {
     this.labExercises.push(exercise);
     this.allExercises = this.allExercises.filter(h => h !== exercise);
   }
+
+  displayedColumns: string[] = ['Position', 'Name', 'Score', 'Trophy'];
+  dataSource = this.students;
 }

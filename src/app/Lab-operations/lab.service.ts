@@ -100,21 +100,7 @@ export class LabService {
     
   }
 
-  async getAllExercises1(){
 
-    let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`  
-    console.log(authString);
-    
-
-    this.headers.set('Authorization', 'Basic ' + btoa(authString))
-
-    let aaaaaaaaaaaa = await fetch('https://apps-lapp-server.herokuapp.com/api/management/getAllExercises', {
-      method: 'GET',
-      headers: this.headers})
-      let test = await aaaaaaaaaaaa.json();
-      console.log(test, 'test');
-      return test;
-  }
 
   getLabs(): Observable<Lab[]> {
       
