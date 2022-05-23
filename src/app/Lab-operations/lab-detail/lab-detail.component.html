@@ -2,17 +2,18 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">All</th>
         <th scope="col">Name</th>
         <th scope="col">Score</th>
         <th scope="col">Trophies</th>
+        <th scope="col">Edit Student</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let student of students">
-        <th scope="row"></th>
         <td>{{student.name}} ({{student.department}}) </td>
         <td>{{student.score}}</td>
+        <td></td>
+        <td><button mat-flat-button color="primary">Edit</button></td>
       </tr>
 
 
@@ -22,34 +23,45 @@
 <button mat-raised-button style="margin-left: 5em;" color="primary" (click)="openTempDialog()"><img
     src="https://img.icons8.com/material-rounded/24/000000/create.png" /> Add Exercise</button>
 
-<div class="center">
-  <h2 *ngIf="labExercises.length != 0">Exercises</h2>
-  <div class="example-container" *ngFor="let exercise of labExercises">
+<div class="center" style="width: max-content !important;">
+  <h2 *ngIf="labGroups.length != 0">Exercises</h2>
+  <div class="example-container" *ngFor="let group of labGroups">
     <mat-accordion>
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <h2>{{exercise.groupName}}</h2>
+            <h2>{{group.name}}</h2>
           </mat-panel-title>
           <mat-panel-description>
             tap to see details
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <h3>
-          <p>(Max: {{exercise.maxStars}} <img src="https://img.icons8.com/fluency/20/000000/star.png" />) (Min:
-            {{exercise.minStars}} <img src="https://img.icons8.com/fluency/20/000000/star.png" />) </p>
-          {{exercise.name}}
-        </h3>
-        <p>{{exercise.description}}</p>
+
+        <div *ngFor="let exercise of allExercises">
+          <div *ngIf="exercise.groupName == group.name">
+            <mat-accordion>
+              <mat-expansion-panel hideToggle style="margin-bottom: 20px;">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <h3>{{exercise.name}} </h3>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    Min({{exercise.minStars}}) Max({{exercise.maxStars}})
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                {{exercise.description}}
+              </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+        </div>
       </mat-expansion-panel>
     </mat-accordion>
-
   </div>
-
+  <button mat-raised-button color="primary" (click)="saveLab()" *ngIf="labGroups.length != 0" >Save</button>
 </div>
 
 <ng-template #dialogRef let-mydata>
-  <div class="center" *ngFor="let exercise of allExercises">
+  <div class="center" *ngFor="let exercise of allGroups">
     <h2>{{exercise.name}} <button mat-raised-button (click)="addExercise(exercise)">ADD</button></h2>
   </div>
 </ng-template>

@@ -65,8 +65,6 @@ export class LabService {
   createGroupOfExercises(exerciseGroupModel: ExerciseGroup){
 
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
-    
-
       fetch('https://apps-lapp-server.herokuapp.com/api/management/createGroupOfExercises', {
         method: 'POST',
         headers: new Headers({
@@ -95,13 +93,20 @@ export class LabService {
   });
   
     return this.http.get<Exercise[]>('https://apps-lapp-server.herokuapp.com/api/management/getAllExercises', {headers: headerHttp})
-    
-    
-    
   }
 
+  getAllExerciseGroups(): Observable<ExerciseGroup[]> {
 
+    let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`  
 
+  let  headerHttp = new HttpHeaders({
+      'Content-Type':  'application/json',
+      Authorization: 'Basic ' + btoa(authString)
+  });
+  
+  
+    return this.http.get<ExerciseGroup[]>('https://apps-lapp-server.herokuapp.com/api/management/getAllGroups', {headers: headerHttp})
+  }
   getLabs(): Observable<Lab[]> {
       
       let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`  
@@ -124,6 +129,25 @@ export class LabService {
     });
 
       return this.http.get<Lab>(`https://apps-lapp-server.herokuapp.com/api/management/getLab/${id}`, {headers: headerHttp});
+    }
+
+    saveLab(labName: string, exercises: ExerciseGroup[]){
+      let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
+      fetch('https://apps-lapp-server.herokuapp.com/api/management/saveLab', {
+        method: 'POST',
+        headers: new Headers({
+        'Authorization': 'Basic '+btoa(authString), 
+        'Content-Type': 'application/json'
+      }),
+        body: JSON.stringify({labName: labName, exercises: exercises}),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
     }
 }
 

@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Exercise, Lab } from '../exercise';
+import { ExerciseGroup } from '../exercise-group';
 import { LabService } from '../lab.service';
 
 
@@ -23,7 +24,7 @@ export class LabDetailComponent implements OnInit {
   ngOnInit(): void {
     this.getLab();
     this.getAllExercises();
-    
+    this.getAllGroups();
   }
 
   getLab(): void {
@@ -50,7 +51,6 @@ export class LabDetailComponent implements OnInit {
   openTempDialog() {
     const myTempDialog = this.dialog.open(this.dialogRef);
     myTempDialog.afterClosed();
-    console.log(this.allExercises);
   }
 
   getAllExercises(){
@@ -59,11 +59,24 @@ export class LabDetailComponent implements OnInit {
     });
   }
 
-  addExercise(exercise: Exercise){
-    this.labExercises.push(exercise);
-    this.allExercises = this.allExercises.filter(h => h !== exercise);
+
+
+  addExercise(exercise: any){
+    this.labGroups.push(exercise);
+    this.allGroups = this.allGroups.filter(h => h !== exercise);
   }
 
-  displayedColumns: string[] = ['Position', 'Name', 'Score', 'Trophy'];
-  dataSource = this.students;
+  allGroups: ExerciseGroup[] = [];
+  labGroups: ExerciseGroup[] = [];
+
+
+
+  getAllGroups(){
+    this.labService.getAllExerciseGroups().subscribe(response => {
+      this.allGroups = response;
+    }); }
+
+    saveLab(){
+      this.labService.saveLab(this.lab.name, this.labGroups);
+    }
 }
