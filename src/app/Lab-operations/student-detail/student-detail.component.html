@@ -1,0 +1,40 @@
+<div class="center" *ngIf="student">
+    
+  <div class="example-container" style="background-color: #603CB0;" >
+    <!----> <h2 style="border-radius: 10px; ">{{student.firstName}} {{student.lastName}} (FE)</h2> 
+      <label style="font-size: large;" for="">Score: {{student.score}}</label>
+      
+
+
+    </div>
+
+</div> 
+
+<!--Exercises-->
+
+<div class="center">
+    
+  <div class="example-container" *ngFor="let exercise of exercises">
+    <!----> <h2 style="background-color: #603CB0; border-radius: 10px; ">{{exercise.name}}</h2> 
+      <label for="">Min({{exercise.minStars}}) Max({{exercise.maxStars}})</label>
+      
+      <div class="example-container" >
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h3>Click to edit Score</h3>
+              </mat-panel-title>
+              <mat-panel-description>
+
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <input class="form-control" type="number" placeholder="Enter Number of Stars" [(ngModel)]="student.score" style="margin-bottom: 2em;" >
+            <button mat-raised-button color="primary" (click)="updateScore(exercise)">Add Score</button>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+    </div>
+
+</div> 
