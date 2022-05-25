@@ -15,7 +15,6 @@ export class ExercisesComponent implements OnInit {
 
 
   constructor(private labService: LabService) {
-   console.log(this.selectedOption);
    
   }
 
@@ -39,8 +38,6 @@ export class ExercisesComponent implements OnInit {
   selectedOption: string;
 
   onSubmit() {
-    console.log(this.exerciseModel);
-    
     this.labService.createExercise(this.exerciseModel);
     this.exercisesNotIn.push(this.exerciseModel);
   }

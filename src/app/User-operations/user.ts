@@ -5,6 +5,7 @@ export class User {
     username: any;
     email: any;
     password: any;
+    score: number;
 
     constructor(
         firstName: any,
@@ -12,6 +13,13 @@ export class User {
         username: any,
         password: any,
         email: any,
-    ) { }
+    ) { 
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.score = 0;
+    }
 }
 

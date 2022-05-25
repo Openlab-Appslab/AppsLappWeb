@@ -1,6 +1,8 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/User-operations/user';
 import { Exercise, Lab } from '../exercise';
 import { ExerciseGroup } from '../exercise-group';
 import { LabService } from '../lab.service';
@@ -17,6 +19,8 @@ export class LabDetailComponent implements OnInit {
 
   constructor(private labService: LabService,  private route: ActivatedRoute, public dialog: MatDialog) {  }
 
+
+
   lab: Lab;
   allExercises: Exercise[] = [];
   labExercises: Exercise[] = [];
@@ -32,18 +36,17 @@ export class LabDetailComponent implements OnInit {
     this.labService.getLab(id)
       .subscribe(lab => {
         this.lab = lab;
-        this.studentss = lab.studentNames;
+        this.dataSource.data = lab.studentNames;
       });
   }
 
+
   studentss: any[];
-  students = [
-    {position: 1, name: 'John', department: 'FE', score: 80, trophy: 3},
-    {position: 2, name: 'Mary', department: 'BE', score: 90, trophy: 2},
-    {position: 3, name: 'Mike', department: 'BE', score: 70, trophy: 1},
-    {position: 4, name: 'Adam', department: 'FE', score: 60, trophy: 0},
-    {position: 5, name: 'Peter', department: 'BE', score: 50, trophy: 10},
-  ];
+  
+  public dataSource = new MatTableDataSource<any>();
+  public displayedColumns = ['Name', 'Score', 'Trophies', 'Edit'];
+
+  
   
   @ViewChild('dialogRef')
   dialogRef!: TemplateRef<any>;
@@ -61,13 +64,17 @@ export class LabDetailComponent implements OnInit {
 
 
 
-  addExercise(exercise: any){
+  addExercise(exercise: ExerciseGroup){
     this.labGroups.push(exercise);
+    this.labGroupsNames.push(exercise.name);
     this.allGroups = this.allGroups.filter(h => h !== exercise);
   }
 
   allGroups: ExerciseGroup[] = [];
-  labGroups: ExerciseGroup[] = [];
+  labGroups: ExerciseGroup[] = [
+    { name: 'Group 1', exercises: [] },
+  ];
+  labGroupsNames: string[] = [];
 
 
 
@@ -77,6 +84,6 @@ export class LabDetailComponent implements OnInit {
     }); }
 
     saveLab(){
-      this.labService.saveLab(this.lab.name, this.labGroups);
+      this.labService.saveLab(this.lab.id, this.labGroupsNames);
     }
 }

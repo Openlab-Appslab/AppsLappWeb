@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { Exercise, Lab } from './exercise';
 import { SignUpService } from '../User-operations/user.service';
 import { ExerciseGroup } from './exercise-group';
+import { User } from '../User-operations/user';
 
 
 @Injectable({
@@ -20,7 +21,7 @@ export class LabService {
 
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
 
-
+    
     fetch('https://apps-lapp-server.herokuapp.com/api/management/createLab', {
       method: 'POST',
       headers: new Headers({
@@ -131,15 +132,17 @@ export class LabService {
       return this.http.get<Lab>(`https://apps-lapp-server.herokuapp.com/api/management/getLab/${id}`, {headers: headerHttp});
     }
 
-    saveLab(labName: string, exercises: ExerciseGroup[]){
+    saveLab(labId: number, exercises: string[]){
+      console.log(labId, exercises);
+      
       let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
-      fetch('https://apps-lapp-server.herokuapp.com/api/management/saveLab', {
+      fetch('https://apps-lapp-server.herokuapp.com/api/management/addGroupToLab', {
         method: 'POST',
         headers: new Headers({
         'Authorization': 'Basic '+btoa(authString), 
         'Content-Type': 'application/json'
       }),
-        body: JSON.stringify({labName: labName, exercises: exercises}),
+        body: JSON.stringify({labId: labId, exercises: exercises}),
       })
       .then(response => response.json())
       .then(data => {
@@ -149,6 +152,38 @@ export class LabService {
         console.error('Error:', error);
       });
     }
+
+    getStudent(id: number): Observable<User> {
+      let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`  
+  
+    let  headerHttp = new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Basic ' + btoa(authString)
+    });
+
+      return this.http.get<User>(`https://apps-lapp-server.herokuapp.com/api/management/getStudent/${id}`, {headers: headerHttp});
+    }
+
+    updateScore(studentId: number, exerciseName: string, score: number){
+      let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
+      fetch('https://apps-lapp-server.herokuapp.com/api/management/updateScore', {
+        method: 'POST',
+        headers: new Headers({
+        'Authorization': 'Basic '+btoa(authString), 
+        'Content-Type': 'application/json'
+      }),
+        body: JSON.stringify({studentId: studentId, exerciseName: exerciseName, score: score}),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
+
+
 }
 
 

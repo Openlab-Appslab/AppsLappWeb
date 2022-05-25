@@ -34,6 +34,7 @@ import { LabDetailComponent } from './Lab-operations/lab-detail/lab-detail.compo
 import {MatRadioModule} from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
+import { StudentDetailComponent } from './Lab-operations/student-detail/student-detail.component';
 
 
 
@@ -48,6 +49,7 @@ import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
     LabFormComponent,
     ExercisesComponent,
     LabDetailComponent,
+    StudentDetailComponent,
   ],
   imports: [
     BrowserModule,
