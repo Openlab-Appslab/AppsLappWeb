@@ -136,13 +136,13 @@ export class LabService {
       console.log(labId, exercises);
       
       let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
-      fetch('https://apps-lapp-server.herokuapp.com/api/management/addGroupToLab', {
+      fetch('http://localhost:8081/api/management/addGroupToLab', {
         method: 'POST',
         headers: new Headers({
         'Authorization': 'Basic '+btoa(authString), 
         'Content-Type': 'application/json'
       }),
-        body: JSON.stringify({labId: labId, exercises: exercises}),
+        body: JSON.stringify({labId: labId, groupsOfExercises: exercises}),
       })
       .then(response => response.json())
       .then(data => {
