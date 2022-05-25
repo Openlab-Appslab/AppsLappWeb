@@ -71,9 +71,7 @@ export class LabDetailComponent implements OnInit {
   }
 
   allGroups: ExerciseGroup[] = [];
-  labGroups: ExerciseGroup[] = [
-    { name: 'Group 1', exercises: [] },
-  ];
+  labGroups: ExerciseGroup[] = [];
   labGroupsNames: string[] = [];
 
 
