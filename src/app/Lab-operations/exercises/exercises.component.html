@@ -23,7 +23,7 @@
                         <mat-form-field appearance="outline">
                         <mat-label>Add to Group:</mat-label>
                         <mat-select  [formControl]="selectedOrder" (selectionChange)="dropDownChanged($event)">
-                            <mat-option *ngFor="let group of groups" [value]="group" >
+                            <mat-option *ngFor="let group of groups" [value]="group.name" >
                             {{ group.name }} 
                             </mat-option>
                         </mat-select>

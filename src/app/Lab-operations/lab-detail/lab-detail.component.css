@@ -26,8 +26,9 @@
     overflow-x: auto;
     overflow-y: hidden;
     min-width: 500px;
+    margin-bottom: 2em;
   }
   th.mat-header-cell {
-    text-align: left;
-    max-width: 300px;
+    text-align: center !important;
+ 
   }

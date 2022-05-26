@@ -80,7 +80,6 @@ export class SignUpService {
       'Content-Type':  'application/json',
       Authorization: 'Basic ' + btoa(authString)
   });
-  console.log(user) 
    return this.http.get('https://apps-lapp-server.herokuapp.com/api/auth/login', {headers: headerHttp}, )
    
   }
