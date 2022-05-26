@@ -121,7 +121,7 @@ export class LabService {
       
     }
 
-    getLab(id: number): Observable<Lab> {
+    getLab(id: number): Observable<any> {
       let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`  
   
     let  headerHttp = new HttpHeaders({
@@ -129,7 +129,9 @@ export class LabService {
         Authorization: 'Basic ' + btoa(authString)
     });
 
-      return this.http.get<Lab>(`https://apps-lapp-server.herokuapp.com/api/management/getLab/${id}`, {headers: headerHttp});
+      return this.http.get<any>(`https://apps-lapp-server.herokuapp.com/api/management/getLab/${id}`, {headers: headerHttp});
+      
+      
     }
 
     saveLab(labId: number, exercises: string[]){      
@@ -168,7 +170,8 @@ export class LabService {
         method: 'POST',
         headers: new Headers({
         'Authorization': 'Basic '+btoa(authString), 
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       }),
         body: JSON.stringify({studentId: studentId, exerciseName: exerciseName, score: score}),
       })
@@ -178,6 +181,7 @@ export class LabService {
       })
       .catch((error) => {
         console.error('Error:', error);
+        JSON.parse(error); 
       });
     }
 

@@ -37,6 +37,8 @@ export class LabDetailComponent implements OnInit {
     this.labId = id;
     this.labService.getLab(id)
       .subscribe(lab => {
+        console.log(lab);
+        this.labGroups = lab.groupOfExercises;
         this.lab = lab;
         this.dataSource.data = lab.studentNames;
       });
@@ -44,6 +46,7 @@ export class LabDetailComponent implements OnInit {
 
 
   studentss: any[];
+
   
   public dataSource = new MatTableDataSource<any>();
   public displayedColumns = ['Name', 'Score', 'Trophies', 'Edit'];

@@ -20,10 +20,12 @@ export class StudentDetailComponent implements OnInit {
 
 
   student = new User('', '', '', '', '', );
+  studentId: number;
   exercises: Exercise[]
 
   getStudent(){
     const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.studentId = id;
     this.labService.getStudent(id).subscribe(response => {
       this.student = response;
     });
@@ -33,13 +35,17 @@ export class StudentDetailComponent implements OnInit {
     this.labService.getAllExercises().subscribe(response => {
       this.exercises = response;});
   }
+
   n: number;
 
   updateScore(exercise: Exercise, ){
-    this.labService.updateScore(this.student.id, exercise.name, this.n );
     
+    console.log(this.studentId);
+    console.log(exercise.name);
+    console.log(this.student.score);
+
     
-    
+    this.labService.updateScore(this.studentId, exercise.name, this.student.score );
   }
   
 }
