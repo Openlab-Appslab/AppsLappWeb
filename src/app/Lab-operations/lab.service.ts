@@ -132,9 +132,7 @@ export class LabService {
       return this.http.get<Lab>(`https://apps-lapp-server.herokuapp.com/api/management/getLab/${id}`, {headers: headerHttp});
     }
 
-    saveLab(labId: number, exercises: string[]){
-      console.log(labId, exercises);
-      
+    saveLab(labId: number, exercises: string[]){      
       let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
       fetch('https://apps-lapp-server.herokuapp.com/api/management/addGroupToLab', {
         method: 'POST',

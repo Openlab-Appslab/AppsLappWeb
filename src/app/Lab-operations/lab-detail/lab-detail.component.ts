@@ -22,6 +22,7 @@ export class LabDetailComponent implements OnInit {
 
 
   lab: Lab;
+  labId: number;
   allExercises: Exercise[] = [];
   labExercises: Exercise[] = [];
 
@@ -33,6 +34,7 @@ export class LabDetailComponent implements OnInit {
 
   getLab(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.labId = id;
     this.labService.getLab(id)
       .subscribe(lab => {
         this.lab = lab;
@@ -82,6 +84,6 @@ export class LabDetailComponent implements OnInit {
     }); }
 
     saveLab(){
-      this.labService.saveLab(this.lab.id, this.labGroupsNames);
+      this.labService.saveLab(this.labId, this.labGroupsNames);
     }
 }
