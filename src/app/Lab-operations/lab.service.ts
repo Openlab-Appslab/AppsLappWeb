@@ -117,7 +117,7 @@ export class LabService {
         Authorization: 'Basic ' + btoa(authString)
     });
     
-      return this.http.get<Lab[]>('https://apps-lapp-server.herokuapp.com/api/management/getLabs', {headers: headerHttp})   
+      return this.http.get<Lab[]>('http://localhost:8081/api/management/getLabs', {headers: headerHttp})   
       
     }
 
