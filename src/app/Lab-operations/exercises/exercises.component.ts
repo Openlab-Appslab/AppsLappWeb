@@ -19,7 +19,6 @@ export class ExercisesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //this.labService.getAllExercises().subscribe(response => this.notInLab = response);
     this.labService.getAllExercises().subscribe(response =>{
       this.exercisesNotIn = response;
     });
@@ -42,20 +41,6 @@ export class ExercisesComponent implements OnInit {
   onSubmit() {
     this.labService.createExercise(this.exerciseModel);
     this.exercisesNotIn.push(this.exerciseModel);
-  }
-
-  onSubmitGroup(){
-    this.labService.createGroupOfExercises(this.exerciseGroupModel);    
-  }
-
-  addToGroup(item: Exercise){
-    this.exercisesIn.push(item);
-    this.exercisesNotIn = this.exercisesNotIn.filter(h => h !== item);
-  }
-  
-  deleteFromGroup(item: Exercise){
-    this.exercisesIn = this.exercisesIn.filter(h => h !== item);
-    this.exercisesNotIn.push(item);
   }
 
   dropDownChanged(event: MatSelectChange) {
