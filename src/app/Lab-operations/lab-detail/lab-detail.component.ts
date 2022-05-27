@@ -87,5 +87,18 @@ export class LabDetailComponent implements OnInit {
 
     saveLab(){
       this.labService.saveLab(this.labId, this.labGroupsNames);
+      this.editExerciseTester = false;
+      this.editGroupTester = false;
     }
+
+    editGroupTester: boolean = false;
+    editExerciseTester: boolean = false;
+
+    editGroup(){
+      this.editGroupTester = true;
+    }
+    editExercise(){
+      this.editExerciseTester = true
+    }
+
 }

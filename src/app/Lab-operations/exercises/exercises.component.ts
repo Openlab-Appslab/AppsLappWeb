@@ -23,7 +23,9 @@ export class ExercisesComponent implements OnInit {
       this.exercisesNotIn = response;
     });
 
+    this.getAllExercises();
     this.getExestingGroup();
+    this.getAllGroups();
   }
 
 
@@ -37,6 +39,8 @@ export class ExercisesComponent implements OnInit {
   options: string[] = ['Add to Existing Group', 'Create New Group'];
   groups: any[] = [];
   selectedOption: string;
+  allGroups: ExerciseGroup[] = [];
+  allExercises: Exercise[] = [];
 
   onSubmit() {
     this.labService.createExercise(this.exerciseModel);
@@ -52,5 +56,16 @@ export class ExercisesComponent implements OnInit {
     this.labService.getAllExerciseGroups().subscribe(response => {
       this.groups = response;
     });
+  }
+
+  getAllGroups(){
+    this.labService.getAllExerciseGroups().subscribe(response => {
+      this.allGroups = response;
+    }); }
+
+  getAllExercises(){
+    this.labService.getAllExercises().subscribe(response => {
+      this.allExercises = response;
+    })
   }
 }

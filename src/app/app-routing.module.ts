@@ -9,6 +9,7 @@ import { ExercisesComponent } from './Lab-operations/exercises/exercises.compone
 import { LabDetailComponent } from './Lab-operations/lab-detail/lab-detail.component';
 import { AuthGuard } from './guard/auth-guard';
 import { StudentDetailComponent } from './Lab-operations/student-detail/student-detail.component';
+import { EditExerciseComponent } from './Lab-operations/edit-exercise/edit-exercise.component';
 
 
 
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path: 'exercises', component: ExercisesComponent, canActivate: [AuthGuard] },
   {path: 'lab-detail/:id', component: LabDetailComponent, canActivate: [AuthGuard]},
   {path: 'student-detail/:id', component: StudentDetailComponent, canActivate: [AuthGuard]},
+  {path: 'edit-exercise/:id', component: EditExerciseComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

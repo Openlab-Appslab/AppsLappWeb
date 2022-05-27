@@ -1,8 +1,10 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
 import { SignUpService } from './User-operations/user.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { LabService } from './Lab-operations/lab.service';
+import { User } from './User-operations/user';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +15,7 @@ export class AppComponent {
   title = 'AppsLapp-web';
   showFiller = false;
 
-  constructor(private userService: SignUpService, private cookieService: NgxEncryptCookieService, private router: Router, private bottomSheet: MatBottomSheet){
+  constructor(private userService: SignUpService, private cookieService: NgxEncryptCookieService, private router: Router, private bottomSheet: MatBottomSheet, private labService: LabService, private route: ActivatedRoute){
      this.userName = this.cookieService.get('username', false); 
     }
 
@@ -21,6 +23,7 @@ export class AppComponent {
   isLogged: boolean = false;
 
   userName: string = '';
+  // user = new User('', '', '', '', '', );
 
   signOut(){
     this.userService.logOut();
@@ -36,10 +39,19 @@ export class AppComponent {
   @ViewChild('templateBottomSheet') TemplateBottomSheet: TemplateRef<any>;
 
   openTemplateSheetMenu() {
+    // this.getUser();
     this.bottomSheet.open(this.TemplateBottomSheet);
   }
 
   closeTemplateSheetMenu() {
     this.bottomSheet.dismiss();
   }
+
+  // getUser(){
+  //   const id = Number(this.route.snapshot.paramMap.get('id'));
+  //   this.labService.getStudent(id).subscribe(response => {
+  //     console.log(response);
+  //     this.user = response;
+  //   });
+  // }
 }

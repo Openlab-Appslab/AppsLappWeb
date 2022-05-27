@@ -186,6 +186,32 @@ export class LabService {
     }
 
 
+    async displayButton(isAdmin: boolean){
+
+      let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
+  
+      this.headers.set('Authorization', 'Basic ' + btoa(authString))
+  
+      let fetchTest = await fetch('https://apps-lapp-server.herokuapp.com/api/management/getStudents', {
+        method: 'GET',
+        headers: this.headers})
+        .then(response => isAdmin = response.ok )
+  
+      return  isAdmin;     
+        
+    }
+
+    editExercise(id: number): Observable<any> {
+      let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`  
+  
+    let  headerHttp = new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Basic ' + btoa(authString)
+    });
+
+      return this.http.get<any>(`https://apps-lapp-server.herokuapp.com/api/management/editExercise/${id}`, {headers: headerHttp});
+    }
+
 }
 
 

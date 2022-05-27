@@ -1,14 +1,14 @@
-<div class="center">
+<div class="centel">
     <form #createExerciseForm="ngForm" (ngSubmit)="onSubmit()">
-        <h2>Create Exercise</h2>
+        <h2 style="color: white;" >Create Exercise</h2>
 
         <div class="form-group">
             <label for="">Exercise Name</label>
             <input class="form-control" type="text" placeholder="Exercise Name" [(ngModel)]="exerciseModel.name"
                 required name="group" #exGroup="ngModel">
             <label style="margin-top: 2em;" for="">Exercise Description</label>
-            <textarea rows="5" type="text" name="description" id="" class="form-control"
-                placeholder="Description for exercise" [(ngModel)]="exerciseModel.description" required></textarea>
+            <textarea rows="7" type="text" name="description" id="" class="form-control"
+                placeholder="Description for exercise" style="font-size: small;" [(ngModel)]="exerciseModel.description" required></textarea>
             <div class="form-group" style="margin-bottom: 3em;">
                     <label for="">Add Exercise to Group</label> <br>
                     <mat-radio-group color="primary" aria-label="Select an option" [(ngModel)]="selectedOption" name="option">
@@ -54,3 +54,40 @@
         </div>
     </form>
 </div>
+
+<div class="center" style="width: max-content !important;">
+    <h2>All Exercises</h2>
+    <div class="example-container" *ngFor="let group of allGroups">
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h2>{{group.name}}</h2>
+            </mat-panel-title>
+            <mat-panel-description>
+              tap to see details
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+  
+          <div *ngFor="let exercise of allExercises">
+            <div *ngIf="exercise.groupName == group.name">
+              <mat-accordion>
+                <mat-expansion-panel hideToggle style="margin-bottom: 20px; color: black;">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <h3>{{exercise.name}} </h3>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      Min({{exercise.minStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png"/>) Max({{exercise.maxStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png"/>)
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  {{exercise.description}}
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <button mat-raised-button color="primary">Save</button>
+  </div>
