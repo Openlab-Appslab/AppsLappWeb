@@ -35,6 +35,7 @@
 
           <input class="form-control" type="number" placeholder="Enter Number of Stars" [(ngModel)]="student.score"
             style="margin-bottom: 2em;">
+            <mat-checkbox style="margin-bottom: 0.5em;" [(ngModel)]="exercise.isDone">Done</mat-checkbox> <br>
           <button mat-raised-button color="primary" (click)="updateScore(exercise)">Add Score</button>
         </mat-expansion-panel>
       </mat-accordion>

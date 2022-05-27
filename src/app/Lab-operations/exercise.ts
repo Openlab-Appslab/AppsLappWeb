@@ -3,6 +3,7 @@ export class Exercise {
     description: string;
     groupName: string;
     requiredStars: number; 
+    isDone: boolean = false;
 
     constructor(name: string, description: string, groupName: string, requiredStars: number, maxStars: number) {
         this.name = name;

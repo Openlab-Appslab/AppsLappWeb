@@ -164,7 +164,7 @@ export class LabService {
       return this.http.get<User>(`https://apps-lapp-server.herokuapp.com/api/management/getStudent/${id}`, {headers: headerHttp});
     }
 
-    updateScore(studentId: number, exerciseName: string, score: number){
+    updateScore(studentId: number, exerciseName: string, score: number, isDone: boolean){
       let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
       fetch('https://apps-lapp-server.herokuapp.com/api/management/updateScore', {
         method: 'POST',
@@ -173,7 +173,7 @@ export class LabService {
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       }),
-        body: JSON.stringify({studentId: studentId, exerciseName: exerciseName, score: score}),
+        body: JSON.stringify({studentId: studentId, exerciseName: exerciseName, score: score, isDone: isDone}),
       })
       .then(response => response.json())
       .then(data => {

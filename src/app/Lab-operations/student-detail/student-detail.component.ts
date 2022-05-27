@@ -37,11 +37,10 @@ export class StudentDetailComponent implements OnInit {
       this.exercises = response;});
   }
 
-  n: number;
 
   updateScore(exercise: Exercise, ){
-    console.log(this.studentId, exercise.name, this.student.score);
-    this.labService.updateScore(this.studentId, exercise.name, this.student.score );
+    console.log(this.studentId, exercise.name, this.student.score, exercise.isDone);
+    this.labService.updateScore(this.studentId, exercise.name, this.student.score, exercise.isDone); 
   }
   
 }
