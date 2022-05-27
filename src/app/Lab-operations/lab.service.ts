@@ -212,6 +212,25 @@ export class LabService {
       return this.http.get<any>(`https://apps-lapp-server.herokuapp.com/api/management/editExercise/${id}`, {headers: headerHttp});
     }
 
+    saveExercise(exercise: Exercise){
+      let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
+      fetch('https://apps-lapp-server.herokuapp.com/api/management/saveEditedExercise', {
+        method: 'POST',
+        headers: new Headers({
+        'Authorization': 'Basic '+btoa(authString), 
+        'Content-Type': 'application/json'
+      }),
+        body: JSON.stringify(exercise),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+    }
+
 }
 
 
