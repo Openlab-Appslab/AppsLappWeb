@@ -1,12 +1,57 @@
-<div class="center" *ngIf="exercise">
+<div class="centel">
+  <form #createExerciseForm="ngForm" (ngSubmit)="onSubmit()">
+      <h2 style="color: white;" >Create Exercise</h2>
 
-    <div class="example-container" style="background-color: #603CB0;">
-      <!---->
-      <h2 style="border-radius: 10px; ">{{exercise.name}} </h2>
-      
-  
-  
-    </div>
-    <input type="text" name="" id="" [(ngModel)]="exercise.description">
-  
-  </div>
+      <div class="form-group">
+          <label for="">Exercise Name</label>
+          <input class="form-control" type="text" placeholder="Exercise Name" [(ngModel)]="exerciseTest.name"
+              required name="group" #exGroup="ngModel">
+              <textarea name="" id="" cols="30" rows="10" [(ngModel)]="exerciseTest.name"></textarea>
+          <label style="margin-top: 2em;" for="">Exercise Description</label>
+          <textarea rows="7" type="text" name="description" id="" class="form-control"
+              placeholder="Description for exercise" style="font-size: small;" [(ngModel)]="exerciseTest.description" required></textarea>
+          <div class="form-group" style="margin-bottom: 3em;">
+                  <label for="">Add Exercise to Group</label> <br>
+                  <mat-radio-group color="primary" aria-label="Select an option" [(ngModel)]="selectedOption" name="option">
+                  <mat-radio-button class="example-radio-button" *ngFor="let option of options" [value]="option">
+                      {{option}}
+                  </mat-radio-button>
+              </mat-radio-group>
+
+              
+              <div *ngIf="selectedOption == 'Add to Existing Group';">
+                  <section>
+                      <mat-form-field appearance="outline">
+                      <mat-label>Add to Group:</mat-label>
+                      <mat-select  [formControl]="selectedOrder" (selectionChange)="dropDownChanged($event)">
+                          <mat-option *ngFor="let group of groups" [value]="group.name" >
+                          {{ group.name }} 
+                          </mat-option>
+                      </mat-select>
+                      </mat-form-field>
+                  </section>
+              </div>
+
+              <div *ngIf="selectedOption == 'Create New Group';">
+                  <input class="form-control" type="text" placeholder="Exercise Group" [(ngModel)]="exerciseTest.groupName"
+              required name="group" #exGroup="ngModel">
+              </div>
+          </div>
+          
+
+          <div class="example-box">
+              <input class="form-control" type="number" placeholder="Minimum of Stars"
+                  [(ngModel)]="exerciseTest.minStars" required name="group" #exGroup="ngModel">
+              <input class="form-control" type="number" placeholder="Maximum of Stars"
+                  [(ngModel)]="exerciseTest.maxStars" required name="group" #exGroup="ngModel">
+          </div>
+      </div>
+
+
+
+      <div class="form-group">
+          <button style="margin-top: 2em;" mat-flat-button color="primary" type="submit"
+              [disabled]="!createExerciseForm.valid || exerciseTest.maxStars < exerciseTest.minStars">Save</button>
+      </div>
+  </form>
+</div>
