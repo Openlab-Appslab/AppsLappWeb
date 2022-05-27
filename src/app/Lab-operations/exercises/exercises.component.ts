@@ -32,7 +32,7 @@ export class ExercisesComponent implements OnInit {
   exercisesNotIn: Exercise[] = [];
   exercisesIn: Exercise[] = [];
 
-  exerciseGroupModel = new ExerciseGroup('', this.exercisesIn);
+  exerciseGroupModel = new ExerciseGroup('', this.exercisesIn,0,0);
 
   exerciseModel = new Exercise('', '', '', 0, 0);
 

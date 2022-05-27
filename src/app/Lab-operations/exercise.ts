@@ -2,16 +2,15 @@ export class Exercise {
     name: string;
     description: string;
     groupName: string;
-    maxStars: number;
-    minStars: number;
+    requiredStars: number; 
 
-    constructor(
-        name: string,
-        description: string,
-        group: string,
-        maxStars: number,
-        minStars: number,
-        ) { }
+    constructor(name: string, description: string, groupName: string, requiredStars: number, maxStars: number) {
+        this.name = name;
+        this.description = description;
+        this.groupName = groupName;
+        this.requiredStars = requiredStars;
+    }
+        
 }
 
 export class Lab {
@@ -19,4 +18,5 @@ export class Lab {
     name: string;
     labMaster: string;
     studentNames: string[];
+    
 }

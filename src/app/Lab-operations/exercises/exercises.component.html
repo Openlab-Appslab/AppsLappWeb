@@ -1,94 +1,101 @@
 <div class="centel">
-    <form #createExerciseForm="ngForm" (ngSubmit)="onSubmit()">
-        <h2 style="color: white;" >Create Exercise</h2>
+  <form #createExerciseForm="ngForm" (ngSubmit)="onSubmit()">
+    <h2 style="color: white;">Create Exercise</h2>
 
-        <div class="form-group">
-            <label for="">Exercise Name</label>
-            <input class="form-control" type="text" placeholder="Exercise Name" [(ngModel)]="exerciseModel.name"
-                required name="group" #exGroup="ngModel">
-            <label style="margin-top: 2em;" for="">Exercise Description</label>
-            <textarea rows="7" type="text" name="description" id="" class="form-control"
-                placeholder="Description for exercise" style="font-size: small;" [(ngModel)]="exerciseModel.description" required></textarea>
-            <div class="form-group" style="margin-bottom: 3em;">
-                    <label for="">Add Exercise to Group</label> <br>
-                    <mat-radio-group color="primary" aria-label="Select an option" [(ngModel)]="selectedOption" name="option">
-                    <mat-radio-button class="example-radio-button" *ngFor="let option of options" [value]="option">
-                        {{option}}
-                    </mat-radio-button>
-                </mat-radio-group>
+    <div class="form-group">
+      <label for="">Exercise Name</label>
+      <input class="form-control" type="text" placeholder="Exercise Name" [(ngModel)]="exerciseModel.name" required
+        name="group" #exGroup="ngModel">
+      <label style="margin-top: 2em;" for="">Exercise Description</label>
+      <textarea rows="7" type="text" name="description" id="" class="form-control"
+        placeholder="Description for exercise" style="font-size: small;" [(ngModel)]="exerciseModel.description"
+        required></textarea>
+      <div class="example-box">
+        <input class="form-control" type="number" placeholder="Required Stars for Exercise"
+          [(ngModel)]="exerciseModel.requiredStars" required name="requiredStars" #exGroup="ngModel">
+      </div>
+      <div class="form-group" style="margin-bottom: 3em;">
+        <label for="">Add Exercise to Group</label> <br>
+        <mat-radio-group color="primary" aria-label="Select an option" [(ngModel)]="selectedOption" name="option">
+          <mat-radio-button class="example-radio-button" *ngFor="let option of options" [value]="option">
+            {{option}}
+          </mat-radio-button>
+        </mat-radio-group>
 
-                
-                <div *ngIf="selectedOption == 'Add to Existing Group';">
-                    <section>
-                        <mat-form-field appearance="outline">
-                        <mat-label>Add to Group:</mat-label>
-                        <mat-select  [formControl]="selectedOrder" (selectionChange)="dropDownChanged($event)">
-                            <mat-option *ngFor="let group of groups" [value]="group.name" >
-                            {{ group.name }} 
-                            </mat-option>
-                        </mat-select>
-                        </mat-form-field>
-                    </section>
-                </div>
 
-                <div *ngIf="selectedOption == 'Create New Group';">
-                    <input class="form-control" type="text" placeholder="Exercise Group" [(ngModel)]="exerciseModel.groupName"
-                required name="group" #exGroup="ngModel">
-                </div>
-            </div>
-            
-
-            <div class="example-box">
-                <input class="form-control" type="number" placeholder="Minimum of Stars"
-                    [(ngModel)]="exerciseModel.minStars" required name="group" #exGroup="ngModel">
-                <input class="form-control" type="number" placeholder="Maximum of Stars"
-                    [(ngModel)]="exerciseModel.maxStars" required name="group" #exGroup="ngModel">
-            </div>
+        <div *ngIf="selectedOption == 'Add to Existing Group';">
+          <section>
+            <mat-form-field appearance="outline">
+              <mat-label>Add to Group:</mat-label>
+              <mat-select [formControl]="selectedOrder" (selectionChange)="dropDownChanged($event)">
+                <mat-option *ngFor="let group of groups" [value]="group.name">
+                  {{ group.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </section>
         </div>
 
-
-
-        <div class="form-group">
-            <button style="margin-top: 2em;" mat-flat-button color="primary" type="submit"
-                [disabled]="!createExerciseForm.valid || exerciseModel.maxStars < exerciseModel.minStars">Create</button>
+        <div *ngIf="selectedOption == 'Create New Group';">
+          <input class="form-control" type="text" placeholder="Exercise Group" [(ngModel)]="exerciseModel.groupName"
+            required name="group" #exGroup="ngModel">
         </div>
-    </form>
+      </div>
+
+
+      <div class="example-box">
+        <input class="form-control" type="number" placeholder="Minimum of Stars for Group"
+          [(ngModel)]="exerciseGroupModel.minStars" required name="minStars" #exGroup="ngModel">
+        <input class="form-control" type="number" placeholder="Maximum of Stars for Group"
+          [(ngModel)]="exerciseGroupModel.maxStars" required name="maxStars" #exGroup="ngModel">
+      </div>
+    </div>
+
+
+
+    <div class="form-group">
+      <button style="margin-top: 2em;" mat-flat-button color="primary" type="submit"
+        [disabled]="!createExerciseForm.valid || exerciseGroupModel.maxStars < exerciseGroupModel.minStars || exerciseModel.requiredStars > exerciseGroupModel.maxStars">Create</button>
+    </div>
+  </form>
 </div>
 
 <div class="center" style="width: max-content !important;">
-    <h2>All Exercises</h2>
-    <div class="example-container" *ngFor="let group of allGroups">
-      <mat-accordion>
-        <mat-expansion-panel hideToggle>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <h2>{{group.name}}</h2>
-            </mat-panel-title>
-            <mat-panel-description>
-              tap to see details
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-  
-          <div *ngFor="let exercise of allExercises">
-            <div *ngIf="exercise.groupName == group.name">
-              <mat-accordion>
-                <mat-expansion-panel hideToggle style="margin-bottom: 20px; color: black;">
-                  <mat-expansion-panel-header>
-                    <mat-panel-title>
-                      <h3>{{exercise.name}} </h3>
-                    </mat-panel-title>
-                    <mat-panel-description>
-                      Min({{exercise.minStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png"/>) Max({{exercise.maxStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png"/>)
-                    </mat-panel-description>
-                  </mat-expansion-panel-header>
-                  {{exercise.description}} <br>
-                  <button mat-raised-button  color="primary" style="margin-top: 1em;">Edit Exercise</button>
-                </mat-expansion-panel>
-              </mat-accordion>
-            </div>
+  <h2>All Exercises</h2>
+  <div class="example-container" *ngFor="let group of allGroups">
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h2>{{group.name}}</h2>
+          </mat-panel-title>
+          <mat-panel-description>
+            tap to see details
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div *ngFor="let exercise of allExercises">
+          <div *ngIf="exercise.groupName == group.name">
+            <mat-accordion>
+              <mat-expansion-panel hideToggle
+                style="margin-bottom: 20px; color: black; justify-content: space-between;">
+                <mat-expansion-panel-header>
+                  <mat-panel-title>
+                    <h3>{{exercise.name}} </h3>
+                  </mat-panel-title>
+                  <mat-panel-description>
+                    {{exercise.requiredStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" />
+                  </mat-panel-description>
+                </mat-expansion-panel-header>
+                {{exercise.description}} <br>
+                <button mat-raised-button color="primary" style="margin: 1em;">Edit Exercise</button>
+                <button mat-raised-button color="primary">Delete Exercise</button>
+              </mat-expansion-panel>
+            </mat-accordion>
           </div>
-        </mat-expansion-panel>
-      </mat-accordion>
-    </div>
-    <button mat-raised-button color="primary">Save</button>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
+  <button mat-raised-button color="primary">Save</button>
+</div>

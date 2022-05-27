@@ -4,6 +4,7 @@ import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/User-operations/user';
 import { Exercise } from '../exercise';
+import { ExerciseGroup } from '../exercise-group';
 import { LabService } from '../lab.service';
 
 
@@ -25,6 +26,7 @@ export class EditExerciseComponent implements OnInit {
   exerciseId: number;
   exercise = new Exercise('','','', 0, 0);
   exerciseTest: Exercise = new Exercise('','','', 0, 0);
+  exerciseGroupModel = new ExerciseGroup('', [],0,0);
 
   
   student = new User('','','','','');
@@ -57,7 +59,6 @@ export class EditExerciseComponent implements OnInit {
     this.exerciseTest.name = 'GitHub';
     this.exerciseTest.groupName = 'StarterPack';
     this.exerciseTest.description = 'pridaj repo na github';
-    this.exerciseTest.minStars = 4;
-    this.exerciseTest.maxStars = 10;
+    this.exerciseTest.requiredStars = 4;
   }
 }

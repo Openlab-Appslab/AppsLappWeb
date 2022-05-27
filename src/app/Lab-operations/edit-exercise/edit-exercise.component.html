@@ -40,9 +40,9 @@
 
           <div class="example-box">
               <input class="form-control" type="number" placeholder="Minimum of Stars"
-                  [(ngModel)]="exerciseTest.minStars" required name="minStars" #exGroup="ngModel">
+                  [(ngModel)]="exerciseGroupModel.minStars" required name="minStars" #exGroup="ngModel">
               <input class="form-control" type="number" placeholder="Maximum of Stars"
-                  [(ngModel)]="exerciseTest.maxStars" required name="maxStars" #exGroup="ngModel">
+                  [(ngModel)]="exerciseGroupModel.maxStars" required name="maxStars" #exGroup="ngModel">
           </div>
       </div>
 
@@ -50,7 +50,7 @@
 
       <div class="form-group">
           <button style="margin-top: 2em;" mat-flat-button color="primary" type="submit"
-              [disabled]="!createExerciseForm.valid || exerciseTest.maxStars < exerciseTest.minStars">Save</button>
+              [disabled]="!createExerciseForm.valid || exerciseGroupModel.maxStars < exerciseGroupModel.minStars">Save</button>
       </div>
   </form>
 </div>

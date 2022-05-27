@@ -19,7 +19,7 @@
   <div class="example-container" *ngFor="let exercise of exercises">
     <!---->
     <h2 style="background-color: #603CB0; border-radius: 10px; ">{{exercise.name}}</h2>
-    <label for="">Min({{exercise.minStars}}) Max({{exercise.maxStars}})</label>
+    <label for="">{{exercise.requiredStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png"/> </label>
 
     <div class="example-container">
       <mat-accordion>
