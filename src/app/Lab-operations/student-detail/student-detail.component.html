@@ -16,8 +16,9 @@
 
 <div class="center">
 
-  <div class="example-container" *ngFor="let exercise of exercises">
+  <div  *ngFor="let exercise of exercises" >
     <!---->
+    <div class="example-container" *ngIf="exercise.isDone == false || exercise.isDone == undefined">
     <h2 style="background-color: #603CB0; border-radius: 10px; ">{{exercise.name}}</h2>
     <label for="">{{exercise.requiredStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png"/> </label>
 
@@ -35,10 +36,11 @@
 
           <input class="form-control" type="number" placeholder="Enter Number of Stars" [(ngModel)]="student.score"
             style="margin-bottom: 2em;">
-            <mat-checkbox style="margin-bottom: 0.5em;" [(ngModel)]="exercise.isDone">Done</mat-checkbox> <br>
+            <mat-checkbox style="margin-bottom: 0.5em;" [(ngModel)]="isDone">Done</mat-checkbox> <br>
           <button mat-raised-button color="primary" (click)="updateScore(exercise)">Add Score</button>
         </mat-expansion-panel>
       </mat-accordion>
+    </div>
     </div>
   </div>
 

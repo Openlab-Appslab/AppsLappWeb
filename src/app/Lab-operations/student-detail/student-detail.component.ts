@@ -21,7 +21,8 @@ export class StudentDetailComponent implements OnInit {
 
   student = new User('', '', '', '', '', );
   studentId: number;
-  exercises: Exercise[]
+  exercises: Exercise[];
+  isDone: boolean;
 
   getStudent(){
     const id = Number(this.route.snapshot.paramMap.get('id'));
@@ -40,6 +41,7 @@ export class StudentDetailComponent implements OnInit {
 
   updateScore(exercise: Exercise, ){
     console.log(this.studentId, exercise.name, this.student.score, exercise.isDone);
+    exercise.isDone = this.isDone;
     this.labService.updateScore(this.studentId, exercise.name, this.student.score, exercise.isDone); 
   }
   
