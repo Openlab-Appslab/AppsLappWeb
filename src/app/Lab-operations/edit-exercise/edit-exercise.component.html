@@ -1,12 +1,11 @@
 <div class="centel">
   <form #createExerciseForm="ngForm" (ngSubmit)="onSubmit()">
-      <h2 style="color: white;" >Create Exercise</h2>
+      <h2 style="color: white;" >Edit Exercise</h2>
 
       <div class="form-group">
           <label for="">Exercise Name</label>
           <input class="form-control" type="text" placeholder="Exercise Name" [(ngModel)]="exerciseTest.name"
-              required name="group" #exGroup="ngModel">
-              <textarea name="" id="" cols="30" rows="10" [(ngModel)]="exerciseTest.name"></textarea>
+              required name="exName" #exGroup="ngModel">
           <label style="margin-top: 2em;" for="">Exercise Description</label>
           <textarea rows="7" type="text" name="description" id="" class="form-control"
               placeholder="Description for exercise" style="font-size: small;" [(ngModel)]="exerciseTest.description" required></textarea>
@@ -41,9 +40,9 @@
 
           <div class="example-box">
               <input class="form-control" type="number" placeholder="Minimum of Stars"
-                  [(ngModel)]="exerciseTest.minStars" required name="group" #exGroup="ngModel">
+                  [(ngModel)]="exerciseTest.minStars" required name="minStars" #exGroup="ngModel">
               <input class="form-control" type="number" placeholder="Maximum of Stars"
-                  [(ngModel)]="exerciseTest.maxStars" required name="group" #exGroup="ngModel">
+                  [(ngModel)]="exerciseTest.maxStars" required name="maxStars" #exGroup="ngModel">
           </div>
       </div>
 

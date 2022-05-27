@@ -54,10 +54,10 @@ export class EditExerciseComponent implements OnInit {
   }
 
   setTest(){
-    this.exerciseTest.name = 'test';
-    this.exerciseTest.groupName = 'test';
-    this.exerciseTest.description = 'test';
-    this.exerciseTest.minStars = 1;
-    this.exerciseTest.maxStars = 5;
+    this.exerciseTest.name = 'GitHub';
+    this.exerciseTest.groupName = 'StarterPack';
+    this.exerciseTest.description = 'pridaj repo na github';
+    this.exerciseTest.minStars = 4;
+    this.exerciseTest.maxStars = 10;
   }
 }
