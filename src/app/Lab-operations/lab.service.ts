@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
-import { Observable, of } from 'rxjs';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { Exercise, Lab } from './exercise';
 import { SignUpService } from '../User-operations/user.service';
 import { ExerciseGroup } from './exercise-group';
@@ -16,6 +16,7 @@ export class LabService {
 
   constructor(private router: Router, private cookieService: NgxEncryptCookieService, private http: HttpClient, private userService: SignUpService) { }
   headers = new Headers();  
+  exerciseUrl = 'https://apps-lapp-server.herokuapp.com/api/management/getExercise';
 
   createLab(labStudents: string[], labName: string){
 
@@ -250,6 +251,13 @@ export class LabService {
     //   });
     // }
 
+    searchExercise(term: string): Observable<Exercise[]> {
+      if(!term.trim()){
+        // if not search term, return empty hero array
+        return of([]);
+      }
+      return this.http.get<Exercise[]>(`${this.exerciseUrl}/?name=${term}`);
+    }
 }
 
 

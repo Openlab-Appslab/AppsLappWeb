@@ -36,6 +36,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatBottomSheetModule} from '@angular/material/bottom-sheet';
 import { StudentDetailComponent } from './Lab-operations/student-detail/student-detail.component';
 import { EditExerciseComponent } from './Lab-operations/edit-exercise/edit-exercise.component';
+import { ExerciseSearchComponent } from './Lab-operations/exercise-search/exercise-search.component';
 
 
 
@@ -52,6 +53,7 @@ import { EditExerciseComponent } from './Lab-operations/edit-exercise/edit-exerc
     LabDetailComponent,
     StudentDetailComponent,
     EditExerciseComponent,
+    ExerciseSearchComponent,
   ],
   imports: [
     BrowserModule,

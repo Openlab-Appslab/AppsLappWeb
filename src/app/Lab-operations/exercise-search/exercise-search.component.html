@@ -1,0 +1,13 @@
+<div id="search-component">
+    <label for="search-box">Exercise Search</label>
+    <input #searchBox id="search-box" (input)="search(searchBox.value)"/>
+
+    <ul class="search-result">
+        <li *ngFor="let exercise of exercises$ | async">
+x
+            <a routerLink="/detail/{{exercise.name}}">
+                {{exercise.name}}
+            </a>
+        </li>
+    </ul>
+</div>
