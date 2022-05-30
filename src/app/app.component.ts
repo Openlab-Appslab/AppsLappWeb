@@ -50,7 +50,6 @@ export class AppComponent {
   // getUser(){
   //   const id = Number(this.route.snapshot.paramMap.get('id'));
   //   this.labService.getStudent(id).subscribe(response => {
-  //     console.log(response);
   //     this.user = response;
   //   });
   // }

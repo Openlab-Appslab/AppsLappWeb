@@ -29,8 +29,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.labService.getLabs().subscribe(response => {
       this.labs = response;
-
-      
     });
     
   }

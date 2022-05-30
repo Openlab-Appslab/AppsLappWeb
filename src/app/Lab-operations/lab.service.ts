@@ -202,7 +202,7 @@ export class LabService {
         
     }
 
-    editExercise(id: number): Observable<any> {
+    editExercise(name: string): Observable<any> {
       let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`  
   
     let  headerHttp = new HttpHeaders({
@@ -210,7 +210,7 @@ export class LabService {
         Authorization: 'Basic ' + btoa(authString)
     });
 
-      return this.http.get<any>(`https://apps-lapp-server.herokuapp.com/api/management/editExercise/${id}`, {headers: headerHttp});
+      return this.http.get<any>(`https://apps-lapp-server.herokuapp.com/api/management/getExercise/${name}`, {headers: headerHttp});
     }
 
     saveExercise(exercise: Exercise){

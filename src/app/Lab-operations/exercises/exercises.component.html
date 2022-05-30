@@ -90,7 +90,7 @@
                   </mat-panel-description>
                 </mat-expansion-panel-header>
                 {{exercise.description}} <br>
-                <button mat-raised-button color="primary" style="margin: 1em;">Edit Exercise</button>
+                <button mat-raised-button color="primary" style="margin: 1em;" routerLink="/edit-exercise/{{exercise.name}}">Edit Exercise</button>
                 <button mat-raised-button color="primary">Delete Exercise</button>
               </mat-expansion-panel>
             </mat-accordion>

@@ -21,6 +21,7 @@ export class EditExerciseComponent implements OnInit {
     // this.getExercise();
     // this.getExestingGroup();
     this.setTest();
+    this.getExercise();
   }
 
   exerciseId: number;
@@ -42,11 +43,8 @@ export class EditExerciseComponent implements OnInit {
     this.labService.saveExercise(this.exerciseTest);
   }
   getExercise(){
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.exerciseId = id;
-    this.labService.editExercise(id).subscribe(response => {
-      console.log(response);
-
+    const name = String(this.route.snapshot.paramMap.get('id'));
+    this.labService.editExercise(name).subscribe(response => {
     });
   }
   getExestingGroup(){
