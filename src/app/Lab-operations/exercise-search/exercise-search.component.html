@@ -1,6 +1,6 @@
 <div id="search-component">
     <label for="search-box">Exercise Search</label>
-    <input #searchBox id="search-box" (input)="search(searchBox.value)"/>
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" placeholder="Search exercise to edit"/>
 
     <ul class="search-result">
         <li *ngFor="let exercise of exercises$ | async">
