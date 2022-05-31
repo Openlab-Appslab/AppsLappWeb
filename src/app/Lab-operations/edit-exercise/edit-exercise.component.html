@@ -1,18 +1,18 @@
 <div class="centel">
     <form #createExerciseForm="ngForm" (ngSubmit)="onSubmit()">
-      <h2 style="color: white;">Create Exercise</h2>
+      <h2 style="color: white;">Edit Exercise</h2>
   
       <div class="form-group">
         <label for="">Exercise Name</label>
-        <input class="form-control" type="text" placeholder="Exercise Name" [(ngModel)]="exerciseTest.name" required
+        <input class="form-control" type="text" placeholder="Exercise Name" [(ngModel)]="exercise.name" required
           name="group" #exGroup="ngModel">
         <label style="margin-top: 2em;" for="">Exercise Description</label>
         <textarea rows="7" type="text" name="description" id="" class="form-control"
-          placeholder="Description for exercise" style="font-size: small;" [(ngModel)]="exerciseTest.description"
+          placeholder="Description for exercise" style="font-size: small;" [(ngModel)]="exercise.description"
           required></textarea>
         <div class="example-box">
           <input class="form-control" type="number" placeholder="Required Stars for Exercise"
-            [(ngModel)]="exerciseTest.requiredStars" required name="requiredStars" #exGroup="ngModel">
+            [(ngModel)]="exercise.requiredStars" required name="requiredStars" #exGroup="ngModel">
         </div>
         <div class="form-group" style="margin-bottom: 3em;">
           <label for="">Add Exercise to Group</label> <br>
@@ -37,7 +37,7 @@
           </div>
   
           <div *ngIf="selectedOption == 'Create New Group';">
-            <input class="form-control" type="text" placeholder="Exercise Group" [(ngModel)]="exerciseTest.groupName"
+            <input class="form-control" type="text" placeholder="Exercise Group" [(ngModel)]="exercise.groupName"
               required name="group" #exGroup="ngModel">
           </div>
         </div>
@@ -55,7 +55,7 @@
   
       <div class="form-group">
         <button style="margin-top: 2em;" mat-flat-button color="primary" type="submit"
-          [disabled]="!createExerciseForm.valid || exerciseGroupModel.maxStars < exerciseGroupModel.minStars || exerciseTest.requiredStars > exerciseGroupModel.maxStars">Save</button>
+          [disabled]="!createExerciseForm.valid || exerciseGroupModel.maxStars < exerciseGroupModel.minStars || exercise.requiredStars > exerciseGroupModel.maxStars">Save</button>
       </div>
     </form>
   </div>

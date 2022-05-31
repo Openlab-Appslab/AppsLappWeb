@@ -5,7 +5,23 @@ export class Exercise {
     requiredStars: number; 
     isDone: boolean = false;
 
-    constructor(name: string, description: string, groupName: string, requiredStars: number, maxStars: number) {
+    constructor(name: string, description: string, groupName: string, requiredStars: number) {
+        this.name = name;
+        this.description = description;
+        this.groupName = groupName;
+        this.requiredStars = requiredStars;
+    }
+        
+}
+
+export class Exerciseh {
+    name: string;
+    description: string;
+    groupName: string;
+    requiredStars: number; 
+    
+
+    constructor(name: string, description: string, groupName: string, requiredStars: number) {
         this.name = name;
         this.description = description;
         this.groupName = groupName;

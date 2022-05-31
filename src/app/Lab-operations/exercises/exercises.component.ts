@@ -34,7 +34,7 @@ export class ExercisesComponent implements OnInit {
 
   exerciseGroupModel = new ExerciseGroup('', this.exercisesIn);
 
-  exerciseModel = new Exercise('', '', '', 0, 0);
+  exerciseModel = new Exercise('', '', '', 0,);
 
   options: string[] = ['Add to Existing Group', 'Create New Group'];
   groups: any[] = [];
@@ -43,6 +43,7 @@ export class ExercisesComponent implements OnInit {
   allExercises: Exercise[] = [];
 
   onSubmit() {
+
     this.labService.createExercise(this.exerciseModel);
     this.exercisesNotIn.push(this.exerciseModel);
   }

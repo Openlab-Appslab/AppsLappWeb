@@ -22,11 +22,12 @@ export class EditExerciseComponent implements OnInit {
     // this.getExestingGroup();
     this.setTest();
     this.getExercise();
+    this.getExestingGroup();
   }
 
   exerciseId: number;
-  exercise = new Exercise('','','', 0, 0);
-  exerciseTest: Exercise = new Exercise('','','', 0, 0);
+  exercise = new Exercise('','','', 0);
+  exerciseTest: Exercise = new Exercise('','','', 0);
   exerciseGroupModel = new ExerciseGroup('', []);
 
   
@@ -40,15 +41,19 @@ export class EditExerciseComponent implements OnInit {
     this.exerciseTest.groupName = event.value;
   }
   onSubmit(){
-    this.labService.saveExercise(this.exerciseTest);
+    this.labService.createExercise(this.exercise);
   }
   getExercise(){
     const name = String(this.route.snapshot.paramMap.get('id'));
     this.labService.editExercise(name).subscribe(response => {
+      this.exercise = response;
+      
     });
   }
   getExestingGroup(){
     this.labService.getAllExerciseGroups().subscribe(response => {
+      console.log(response);
+      
       this.groups = response;
     });
   }

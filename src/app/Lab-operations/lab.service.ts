@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
 import { catchError, Observable, of, tap } from 'rxjs';
-import { Exercise, Lab } from './exercise';
+import { Exercise, Exerciseh, Lab } from './exercise';
 import { SignUpService } from '../User-operations/user.service';
 import { ExerciseGroup } from './exercise-group';
 import { User } from '../User-operations/user';
@@ -43,17 +43,18 @@ export class LabService {
   }
 
   createExercise(model: Exercise){
-
+    let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
     
-
+    console.log(exerciseM);
+    
       fetch('https://apps-lapp-server.herokuapp.com/api/management/createExercise', {
         method: 'POST',
         headers: new Headers({
         'Authorization': 'Basic '+btoa(authString), 
         'Content-Type': 'application/json'
       }),
-        body: JSON.stringify(model),
+        body: JSON.stringify(exerciseM),
       })
       .then(response => response.json())
       .then(data => {
@@ -213,24 +214,24 @@ export class LabService {
       return this.http.get<any>(`https://apps-lapp-server.herokuapp.com/api/management/getExercise/${name}`, {headers: headerHttp});
     }
 
-    saveExercise(exercise: Exercise){
-      let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
-      fetch('https://apps-lapp-server.herokuapp.com/api/management/saveEditedExercise', {
-        method: 'POST',
-        headers: new Headers({
-        'Authorization': 'Basic '+btoa(authString), 
-        'Content-Type': 'application/json'
-      }),
-        body: JSON.stringify(exercise),
-      })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-    }
+    // saveExercise(exercise: Exercise){
+    //   let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
+    //   fetch('https://apps-lapp-server.herokuapp.com/api/management/saveEditedExercise', {
+    //     method: 'POST',
+    //     headers: new Headers({
+    //     'Authorization': 'Basic '+btoa(authString), 
+    //     'Content-Type': 'application/json'
+    //   }),
+    //     body: JSON.stringify(exercise),
+    //   })
+    //   .then(response => response.json())
+    //   .then(data => {
+    //     console.log('Success:', data);
+    //   })
+    //   .catch((error) => {
+    //     console.error('Error:', error);
+    //   });
+    // }
 
     // deleteExercise(id: number){
     //   let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
