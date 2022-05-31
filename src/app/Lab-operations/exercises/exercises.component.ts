@@ -44,7 +44,7 @@ export class ExercisesComponent implements OnInit {
 
   onSubmit() {
 
-    this.labService.createExercise(this.exerciseModel);
+    this.labService.createExercise(this.exerciseModel, this.exerciseGroupModel.minStars, this.exerciseGroupModel.maxStars);
     this.exercisesNotIn.push(this.exerciseModel);
   }
 

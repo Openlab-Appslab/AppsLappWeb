@@ -38,10 +38,11 @@ export class EditExerciseComponent implements OnInit {
   options: string[] = ['Add to Existing Group', 'Create New Group'];
 
   dropDownChanged(event: MatSelectChange) {
-    this.exerciseTest.groupName = event.value;
+    this.exercise.groupName = event.value;
+    console.log(this.exercise.groupName);
   }
   onSubmit(){
-    this.labService.createExercise(this.exercise);
+    this.labService.createExercise(this.exercise, this.exerciseGroupModel.minStars, this.exerciseGroupModel.maxStars);
   }
   getExercise(){
     const name = String(this.route.snapshot.paramMap.get('id'));

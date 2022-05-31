@@ -42,7 +42,7 @@ export class LabService {
     });
   }
 
-  createExercise(model: Exercise){
+  createExercise(model: Exercise, minStars: number, maxStars: number){
     let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
     
@@ -54,7 +54,7 @@ export class LabService {
         'Authorization': 'Basic '+btoa(authString), 
         'Content-Type': 'application/json'
       }),
-        body: JSON.stringify(exerciseM),
+        body: JSON.stringify({exercise: exerciseM, minStars: minStars, maxStars: maxStars}),
       })
       .then(response => response.json())
       .then(data => {
