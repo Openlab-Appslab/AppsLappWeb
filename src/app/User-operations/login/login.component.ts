@@ -23,6 +23,10 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: SignUpService, private username: AppComponent, private cookieService: NgxEncryptCookieService, private router: Router)  { 
     this.model = new User('', '', '','','');
+    
+    if(this.userService.isLoggedIn()){
+      this.router.navigate(['/dashboard']);
+    }
   }
 
   ngOnInit(): void {

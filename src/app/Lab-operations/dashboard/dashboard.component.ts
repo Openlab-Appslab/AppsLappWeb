@@ -15,6 +15,7 @@ import { LabService } from '../lab.service';
 })
 export class DashboardComponent implements OnInit {
 
+  loaded: boolean = true;
   showFiller = false;
   labs: Lab[] =[]
   
@@ -28,6 +29,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.labService.getLabs().subscribe(response => {
+      this.loaded = false;
       this.labs = response;
     });
     

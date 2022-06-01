@@ -65,6 +65,29 @@ export class LabService {
       });
   }
 
+    updateExercise(id: number,model: Exercise, minStars: number, maxStars: number){
+    let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
+    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
+    
+    console.log(exerciseM);
+    
+      fetch('https://apps-lapp-server.herokuapp.com/api/management/createExercise', {
+        method: 'POST',
+        headers: new Headers({
+        'Authorization': 'Basic '+btoa(authString), 
+        'Content-Type': 'application/json'
+      }),
+        body: JSON.stringify({id: id,exercise: exerciseM, minStars: minStars, maxStars: maxStars}),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+
   createGroupOfExercises(exerciseGroupModel: ExerciseGroup){
 
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`  
