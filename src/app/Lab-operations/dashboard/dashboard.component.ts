@@ -1,9 +1,6 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog/dialog';
-import { LoginComponent } from 'src/app/User-operations/login/login.component';
-import { User } from 'src/app/User-operations/user';
-import { SignUpService } from 'src/app/User-operations/user.service';
-import { Exercise, Lab } from '../exercise';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Lab } from '../exercise';
 import { LabService } from '../lab.service';
 
 
@@ -17,25 +14,25 @@ export class DashboardComponent implements OnInit {
 
   loaded: boolean = true;
   showFiller = false;
-  labs: Lab[] =[]
+  labs: Lab[] =[];
+  lab: Lab;
   
-  isAdmin: boolean;
+  isStudent: boolean = false;
   a: any[];
 
-   constructor(private userService: SignUpService, private labService: LabService, ){ }
+   constructor(private router: Router, private labService: LabService, ){ 
+     
+   }
 
   ngOnInit(): void {
     this.labService.getLabs().subscribe(response => {
       this.loaded = false;
       this.labs = response;
+      this.lab = response[0]
     });
-    
+
+    if(this.isStudent == true){
+      this.router.navigate(['/lab-detail']);
+     }
   }
-
-  login: LoginComponent;
-  
-  
-
-  
-
 }

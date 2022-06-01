@@ -25,6 +25,7 @@ export class LabDetailComponent implements OnInit {
   labId: number;
   allExercises: Exercise[] = [];
   labExercises: Exercise[] = [];
+  isStudent: boolean = false;
 
   ngOnInit(): void {
     this.getLab();
@@ -37,6 +38,8 @@ export class LabDetailComponent implements OnInit {
     this.labId = id;
     this.labService.getLab(id)
       .subscribe(lab => {
+        console.log(lab);
+        
         this.labGroups = lab.groupOfExercises;
         this.lab = lab;
         this.dataSource.data = lab.studentNames;
