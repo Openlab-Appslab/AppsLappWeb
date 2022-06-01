@@ -20,14 +20,13 @@ export class EditExerciseComponent implements OnInit {
   ngOnInit(): void {
     // this.getExercise();
     // this.getExestingGroup();
-    this.setTest();
+
     this.getExercise();
     this.getExestingGroup();
   }
 
   exerciseId: number;
   exercise = new Exercise('','','', 0);
-  exerciseTest: Exercise = new Exercise('','','', 0);
   exerciseGroupModel = new ExerciseGroup('', []);
 
   
@@ -48,22 +47,19 @@ export class EditExerciseComponent implements OnInit {
   getExercise(){
     const name = String(this.route.snapshot.paramMap.get('id'));
     this.labService.editExercise(name).subscribe(response => {
+      console.log(response);
+      
       this.exercise = response;
       this.id = response.id;
     });
   }
   getExestingGroup(){
     this.labService.getAllExerciseGroups().subscribe(response => {
-      
-      
       this.groups = response;
+      this.exerciseGroupModel.minStars = response[0].minStars;
+      this.exerciseGroupModel.maxStars = response[0].maxStars;
     });
   }
 
-  setTest(){
-    this.exerciseTest.name = 'GitHub';
-    this.exerciseTest.groupName = 'StarterPack';
-    this.exerciseTest.description = 'pridaj repo na github';
-    this.exerciseTest.requiredStars = 4;
-  }
+  
 }

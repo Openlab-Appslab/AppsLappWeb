@@ -22,10 +22,7 @@ export class DashboardComponent implements OnInit {
   isAdmin: boolean;
   a: any[];
 
-   constructor(private userService: SignUpService, private labService: LabService, ){ 
-     this.hideButton();
-     
-  }
+   constructor(private userService: SignUpService, private labService: LabService, ){ }
 
   ngOnInit(): void {
     this.labService.getLabs().subscribe(response => {
@@ -37,9 +34,7 @@ export class DashboardComponent implements OnInit {
 
   login: LoginComponent;
   
-  async hideButton(){
-   this.isAdmin = await this.userService.displayButton(this.isAdmin);
-  }
+  
 
   
 
