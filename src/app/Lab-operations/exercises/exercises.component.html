@@ -65,7 +65,7 @@
 <!-- <app-exercise-search></app-exercise-search> -->
   
   <div class="example-container" *ngFor="let group of allGroups">
-    <mat-accordion>
+    <mat-accordion *ngIf="group.exercises.length != 0">
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -92,7 +92,7 @@
                 </mat-expansion-panel-header>
                 {{exercise.description}} <br>
                 <button mat-raised-button color="primary" style="margin: 1em;" routerLink="/edit-exercise/{{exercise.name}}">Edit Exercise</button>
-                <button mat-raised-button color="primary">Delete Exercise</button>
+                <button mat-raised-button color="primary" (click)="deleteExercise(exercise)">Delete Exercise</button>
               </mat-expansion-panel>
             </mat-accordion>
           </div>

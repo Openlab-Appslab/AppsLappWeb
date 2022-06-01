@@ -61,12 +61,18 @@ export class ExercisesComponent implements OnInit {
 
   getAllGroups(){
     this.labService.getAllExerciseGroups().subscribe(response => {
+      console.log(response);
       this.allGroups = response;
     }); }
 
   getAllExercises(){
-    this.labService.getAllExercises().subscribe(response => {
+    this.labService.getAllExercises().subscribe(response => {  
       this.allExercises = response;
     })
+  }
+
+  deleteExercise(exercise: Exercise){
+    this.labService.deleteExercise(exercise.name);
+    this.allExercises = this.allExercises.filter(h => h !== exercise);
   }
 }
