@@ -38,7 +38,8 @@ import { StudentDetailComponent } from './Lab-operations/student-detail/student-
 import { EditExerciseComponent } from './Lab-operations/edit-exercise/edit-exercise.component';
 import { ExerciseSearchComponent } from './Lab-operations/exercise-search/exercise-search.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-
+import { HomeComponent } from './home/home.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     StudentDetailComponent,
     EditExerciseComponent,
     ExerciseSearchComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -85,6 +87,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
     MatDialogModule,
     MatExpansionModule,
     MatSlideToggleModule,
+    NgbModule,
     
   ],
   providers: [],

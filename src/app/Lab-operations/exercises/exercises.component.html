@@ -5,7 +5,7 @@
     <div class="form-group">
       <label for="">Exercise Name</label>
       <input class="form-control" type="text" placeholder="Exercise Name" [(ngModel)]="exerciseModel.name" required
-        name="group" #exGroup="ngModel">
+        name="exName" #exGroup="ngModel">
       <label style="margin-top: 2em;" for="">Exercise Description</label>
       <textarea rows="7" type="text" name="description" id="" class="form-control"
         placeholder="Description for exercise" style="font-size: small;" [(ngModel)]="exerciseModel.description"
@@ -64,8 +64,9 @@
   <h2>All Exercises</h2>
 <!-- <app-exercise-search></app-exercise-search> -->
   
-  <div class="example-container" *ngFor="let group of allGroups">
-    <mat-accordion *ngIf="group.exercises.length != 0">
+  <div  *ngFor="let group of allGroups">
+    <div class="example-container" *ngIf="group.exercises.length != 0">
+    <mat-accordion>
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -73,7 +74,7 @@
           </mat-panel-title>
           <mat-panel-description>
             tap to see details
-            {{group.minStars}} - {{group.maxStars}}
+            {{group.minStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /> - {{group.maxStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" />
           </mat-panel-description>
         </mat-expansion-panel-header>
 
@@ -100,5 +101,6 @@
       </mat-expansion-panel>
     </mat-accordion>
   </div>
+</div>
   <button mat-raised-button color="primary">Save</button>
 </div>

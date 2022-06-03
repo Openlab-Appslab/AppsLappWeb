@@ -46,8 +46,6 @@ export class LabService {
     let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
 
-    console.log(exerciseM);
-
     fetch('https://apps-lapp-server.herokuapp.com/api/management/createExercise', {
       method: 'POST',
       headers: new Headers({
@@ -68,8 +66,6 @@ export class LabService {
   updateExercise(id: number, model: Exercise, minStars: number, maxStars: number) {
     let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
-
-    console.log(exerciseM);
 
     fetch('https://apps-lapp-server.herokuapp.com/api/management/createExercise', {
       method: 'POST',

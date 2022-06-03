@@ -10,11 +10,13 @@ import { LabDetailComponent } from './Lab-operations/lab-detail/lab-detail.compo
 import { AuthGuard } from './guard/auth-guard';
 import { StudentDetailComponent } from './Lab-operations/student-detail/student-detail.component';
 import { EditExerciseComponent } from './Lab-operations/edit-exercise/edit-exercise.component';
+import { HomeComponent } from './home/home.component';
 
 
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
+  {path: 'home', component: HomeComponent },
   {path: 'registration', component: RegistrationComponent },
   {path: 'login', component: LoginComponent },
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},

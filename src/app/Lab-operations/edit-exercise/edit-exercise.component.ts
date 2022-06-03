@@ -39,7 +39,6 @@ export class EditExerciseComponent implements OnInit {
 
   dropDownChanged(event: MatSelectChange) {
     this.exercise.groupName = event.value;
-    console.log(this.exercise.groupName);
   }
   onSubmit(){
     this.labService.updateExercise(this.id,this.exercise, this.exerciseGroupModel.minStars, this.exerciseGroupModel.maxStars);
@@ -47,8 +46,6 @@ export class EditExerciseComponent implements OnInit {
   getExercise(){
     const name = String(this.route.snapshot.paramMap.get('id'));
     this.labService.editExercise(name).subscribe(response => {
-      console.log(response);
-      
       this.exercise = response;
       this.id = response.id;
     });

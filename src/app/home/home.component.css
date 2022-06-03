@@ -1,0 +1,22 @@
+.flex-container {
+    display: flex;
+    justify-content: center;
+    background-color: #9375ff;
+    padding: 2em;
+}
+
+.flex-child {
+    flex: 1;
+}
+
+.carousel-img {
+    text-align: center;
+    width: 50%;
+
+}
+
+.carousel {
+    text-align: center;
+    justify-content: center;
+    max-width: 500px;
+}
