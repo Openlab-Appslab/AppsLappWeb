@@ -52,16 +52,19 @@ export class SignUpService {
       method: 'GET',
       headers: this.headers,
     })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Success:', data);
+      .then(response => {
+        if(response.ok){
+          console.log('Success:',);
         this.cookieService.set('username', user.username, false);
         this.cookieService.set('password', user.password, false);
         this.router.navigate(['/dashboard']);
+        }
+        else {
+          this.openDialogLoginFailed();
+        }
       })
       .catch((error) => {
         console.log('Error:', error);
-        this.openDialogLoginFailed();
       });
   }
 
