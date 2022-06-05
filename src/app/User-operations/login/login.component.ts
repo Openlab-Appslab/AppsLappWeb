@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
 import { AppComponent } from 'src/app/app.component';
@@ -16,12 +17,15 @@ export class LoginComponent implements OnInit {
 
   
  public model: User;
+ email: any;
 
  loading: boolean;
 
+ @ViewChild('dialogRef')
+  dialogRef!: TemplateRef<any>
   
 
-  constructor(private userService: SignUpService, private username: AppComponent, private cookieService: NgxEncryptCookieService, private router: Router)  { 
+  constructor(private userService: SignUpService, private username: AppComponent, private cookieService: NgxEncryptCookieService, private router: Router, public dialog: MatDialog)  { 
     this.model = new User('', '', '','','');
     
     if(this.userService.isLoggedIn()){
@@ -51,4 +55,13 @@ export class LoginComponent implements OnInit {
     
   }
 
+
+  openTempDialog() {
+    const myTempDialog = this.dialog.open(this.dialogRef);
+    myTempDialog.afterClosed();
+  }
+
+  resetPassword(){
+    this.userService.resetPassword(this.email);
+  }
 }

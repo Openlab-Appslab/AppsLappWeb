@@ -53,11 +53,11 @@ export class SignUpService {
       headers: this.headers,
     })
       .then(response => {
-        if(response.ok){
+        if (response.ok) {
           console.log('Success:',);
-        this.cookieService.set('username', user.username, false);
-        this.cookieService.set('password', user.password, false);
-        this.router.navigate(['/dashboard']);
+          this.cookieService.set('username', user.username, false);
+          this.cookieService.set('password', user.password, false);
+          this.router.navigate(['/dashboard']);
         }
         else {
           this.openDialogLoginFailed();
@@ -112,6 +112,22 @@ export class SignUpService {
       });
   }
 
+  resetPassword(email: string) {
+    fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resetPassword/${email}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
 
   openDialogLoginFailed() {
     this.dialog.open(LoginFailedComponent);

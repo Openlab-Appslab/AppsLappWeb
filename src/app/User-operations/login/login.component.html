@@ -32,7 +32,7 @@
                         </button>
 
                     </div>
-                    <p><a href="#">Lost your Password?</a></p>
+                    <p><a (click)="openTempDialog()">Lost your Password?</a></p>
                 </form>
                 <p class="text-center small">Don't have an account? <a [routerLink]="['/registration']">Sign up
                         here!</a></p>
@@ -45,11 +45,13 @@
 </div>
 
 
-<ng-template  [ngOutletContext]="context">
-    <h1 mat-dialog-title>Enter Email to Reset Password</h1>
-    <div mat-dialog-content>
-        
-        <input type="text" class="form-control" name="resetPass"placeholder="Username" required>
-    </div>
 
+
+<ng-template #dialogRef let-mydata>
+  <h2>Enter email to reset password</h2>
+  <input [(ngModel)]="email" type="text" class="form-control" name="ressPass"placeholder="Email" required>
+  <div style="display: flex; justify-content: space-between; margin-top: 0.5em">
+    <button mat-raised-button color="primary" (click)="resetPassword()">Submit</button>
+    <button mat-button mat-dialog-close="I am from dialog land...">Close</button>
+  </div>
 </ng-template>
