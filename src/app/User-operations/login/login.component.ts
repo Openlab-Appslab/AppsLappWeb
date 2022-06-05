@@ -48,12 +48,6 @@ export class LoginComponent implements OnInit {
         this.username.userName = this.model.username;
       }
      })
-    //set username after successful login
-    
-
-    
-    
-
     
   }
 

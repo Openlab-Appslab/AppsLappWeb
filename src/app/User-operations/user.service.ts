@@ -95,8 +95,8 @@ export class SignUpService {
   }
 
 
-  resendEmail(user: User) {
-    fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resendEmail/${user.username}`, {
+  resendEmail(username: string) {
+    fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resendEmail/${username}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

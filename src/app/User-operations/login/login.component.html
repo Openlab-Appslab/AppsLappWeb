@@ -1,43 +1,55 @@
 <div class="flex-container">
     <div class="flex-child text">
         <div class="logo-text">
-            <img style="width: 65%; text-align: center;"
-              src="/assets/images/Logo2.png" alt="">
-              <div class="line"></div>
+            <img style="width: 65%; text-align: center;" src="/assets/images/Logo2.png" alt="">
+            <div class="line"></div>
             <p class="welcome-text">Welcome to AppsLapp!</p>
             <p>Learn new skills with freedom.</p>
-            </div> 
+        </div>
     </div>
 
     <div class="flex-child card">
+
         <body>
             <div class="login-form">
                 <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
                     <h2>Login </h2>
-                    
+
                     <div class="form-group has-error">
                         <input [(ngModel)]="model.username" type="text" class="form-control" name="username"
                             placeholder="Username" required>
                     </div>
                     <div class="form-group">
-                        <input [(ngModel)]="model.password"  type="password" class="form-control" name="password"
+                        <input [(ngModel)]="model.password" type="password" class="form-control" name="password"
                             placeholder="Password" required="required">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block" [disabled]="!loginForm.form.valid" >
+                        <button type="submit" class="btn btn-primary btn-lg btn-block"
+                            [disabled]="!loginForm.form.valid">
                             Sign in
-                            <span class="spinner-border spinner-border-sm" *ngIf="loading" role="status" aria-hidden="true"></span>
+                            <span class="spinner-border spinner-border-sm" *ngIf="loading" role="status"
+                                aria-hidden="true"></span>
                         </button>
-                        
+
                     </div>
                     <p><a href="#">Lost your Password?</a></p>
                 </form>
                 <p class="text-center small">Don't have an account? <a [routerLink]="['/registration']">Sign up
                         here!</a></p>
 
-                              
+
             </div>
-            
+
         </body>
     </div>
 </div>
+
+
+<ng-template  [ngOutletContext]="context">
+    <h1 mat-dialog-title>Enter Email to Reset Password</h1>
+    <div mat-dialog-content>
+        
+        <input type="text" class="form-control" name="resetPass"placeholder="Username" required>
+    </div>
+
+</ng-template>

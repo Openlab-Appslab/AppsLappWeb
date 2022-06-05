@@ -1,10 +1,10 @@
 <div class="flex-container">
     <div class="flex-child text">
         <div class="logo-text">
-            <h1 style="padding: 1.5em; color: white; font-size: xx-large;">Poď študovať AppsLab
+            <h1 class="heading">Poď študovať AppsLab
                 a nauč sa tvoriť softvérové aplikácie</h1>
             <p style="color: white; padding: 3em;">Technológie používané na vývoj softvéru predstavujú aktuálne veľkú časť technologického priemyslu. Počas
-                štúdia v OpenLabe sa preto naučíš ako vytvoriť softvérovú aplikáciu v mobile a na webe s použitím
+                štúdia v <b>OpenLabe</b> sa preto naučíš ako vytvoriť softvérovú aplikáciu v mobile a na webe s použitím
                 populárnych programovacích jazykov ako Java, C#, Angular, naučíš sa princípy objektovo orientovaného
                 programovania a skúsiš si aj prácu s databázou.</p>
         </div>
@@ -22,4 +22,16 @@
             </ngb-carousel>
         </div>
     </div>
+</div>
+<div class="center">
+    <h1 class="heading">Labmastri v AppsLabe</h1>
+    <div class="lab-masters">
+        <div class="lab-masters-text" *ngFor="let labMaster of labMasters">
+          <p class="lab-masters-txt">{{ labMaster.text }}</p>
+          <div class="flex">
+            <p class="description">{{labMaster.name}}</p>
+            <img class="lab-masters-images" [src]="labMaster.src" alt="" />
+        </div>
+        </div>
+      </div>
 </div>
