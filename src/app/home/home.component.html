@@ -1,28 +1,38 @@
-<div class="flex-container">
-    <div class="flex-child text">
-        <div class="logo-text">
-            <h1 class="heading">Poď študovať AppsLab
-                a nauč sa tvoriť softvérové aplikácie</h1>
-            <p style="color: white; padding: 3em;">Technológie používané na vývoj softvéru predstavujú aktuálne veľkú časť technologického priemyslu. Počas
-                štúdia v <b>OpenLabe</b> sa preto naučíš ako vytvoriť softvérovú aplikáciu v mobile a na webe s použitím
-                populárnych programovacích jazykov ako Java, C#, Angular, naučíš sa princípy objektovo orientovaného
-                programovania a skúsiš si aj prácu s databázou.</p>
+
+
+<div class="curved upper">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200"><path fill="#6850D0" fill-opacity="1" d="M0,96L34.3,106.7C68.6,117,137,139,206,133.3C274.3,128,343,96,411,69.3C480,43,549,21,617,21.3C685.7,21,754,43,823,53.3C891.4,64,960,64,1029,58.7C1097.1,53,1166,43,1234,32C1302.9,21,1371,11,1406,5.3L1440,0L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path></svg>
+</div>
+<div class="curved">
+    <div class="flex-container">
+        <div class="flex-child text">
+            <div class="logo-text">
+                <h1 class="heading">Poď študovať AppsLab
+                    a nauč sa tvoriť softvérové aplikácie</h1>
+                <p style="color: white; padding: 3em;">Technológie používané na vývoj softvéru predstavujú aktuálne veľkú časť technologického priemyslu. Počas
+                    štúdia v <b>OpenLabe</b> sa preto naučíš ako vytvoriť softvérovú aplikáciu v mobile a na webe s použitím
+                    populárnych programovacích jazykov ako Java, C#, Angular, naučíš sa princípy objektovo orientovaného
+                    programovania a skúsiš si aj prácu s databázou.</p>
+            </div>
         </div>
+    
+        <div class="flex-child card" style="border: none;">
+            <div class="carousel">
+                <ngb-carousel [showNavigationArrows]="showNavigationArrows"
+                    [showNavigationIndicators]="showNavigationIndicators">
+                    <ng-template ngbSlide *ngFor="let image of images">
+                        <div class="picsum-img-wrapper">
+                            <img [src]="image.src" alt="Random first slide" class="carousel-img">
+                        </div>
+                    </ng-template>
+                </ngb-carousel>
+            </div>
+        </div>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 300"><path fill="#fff" fill-opacity="1" d="M0,192L34.3,208C68.6,224,137,256,206,229.3C274.3,203,343,117,411,74.7C480,32,549,32,617,58.7C685.7,85,754,139,823,170.7C891.4,203,960,213,1029,208C1097.1,203,1166,181,1234,149.3C1302.9,117,1371,75,1406,53.3L1440,32L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z"></path>
+    </svg>
     </div>
 
-    <div class="flex-child card" style="border: none;">
-        <div class="carousel">
-            <ngb-carousel [showNavigationArrows]="showNavigationArrows"
-                [showNavigationIndicators]="showNavigationIndicators">
-                <ng-template ngbSlide *ngFor="let image of images">
-                    <div class="picsum-img-wrapper">
-                        <img [src]="image.src" alt="Random first slide" class="carousel-img">
-                    </div>
-                </ng-template>
-            </ngb-carousel>
-        </div>
-    </div>
-</div>
 <div class="center">
     <h1 class="heading">Labmastri v AppsLabe</h1>
     <div class="lab-masters">

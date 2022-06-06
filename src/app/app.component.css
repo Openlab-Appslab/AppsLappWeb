@@ -9,6 +9,12 @@
 
 .openlab-logo {
   width: 190px;
+  border-radius: 10px;
+}
+
+.openlab-logo:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 992px){
@@ -24,9 +30,9 @@
 
 .nav-bar {
   background-color: #6D4FD8;
-  margin-bottom: 2em;
 }
 a {
   font-size: large;
   color: white;
 }
+
