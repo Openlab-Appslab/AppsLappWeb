@@ -20,10 +20,12 @@ export class ResetPasswordComponent implements OnInit {
   username: string;
   password: string;
   repeatPassword: string;
+  loading: boolean = false;
 
 
   onSubmit() {
-    this.userService.submitNewPassword(this.username, this.password);
+    this.loading = true;
+    this.userService.submitNewPassword(this.username, this.password)
   }
 
 }

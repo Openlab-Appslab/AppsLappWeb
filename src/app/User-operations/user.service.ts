@@ -96,7 +96,7 @@ export class SignUpService {
 
 
   resendEmail(username: string) {
-    fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resendEmail/${username}`, {
+    return fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resendEmail/${username}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ export class SignUpService {
   }
 
   resetPassword(username: string) {
-    fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resetPassword/${username}`, {
+   return fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resetPassword/${username}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -129,8 +129,8 @@ export class SignUpService {
       });
   }
 
-  submitNewPassword(username: string, password: string) {
-    fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resetPassword`, {
+  submitNewPassword(username: string, password: string): any {
+   return fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resetPassword`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -140,6 +140,7 @@ export class SignUpService {
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
+        this.router.navigate(['/login']);
       })
       .catch((error) => {
         console.error('Error:', error);

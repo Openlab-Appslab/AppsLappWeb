@@ -48,7 +48,7 @@ body {
     border-radius: 13px;
     color: #fff;
     background: #6D4FD8;
-    font-family: 'Roboto', sans-serif;
+
     min-width: 360px;
 }
 
@@ -108,7 +108,7 @@ body {
         min-width: 310px;
         color: #fff;
         background: #6D4FD8;
-        font-family: 'Roboto', sans-serif;
+
     }
 
 }
@@ -147,7 +147,7 @@ body {
         min-width: 260px;
         color: #fff;
         background: #6D4FD8;
-        font-family: 'Roboto', sans-serif;
+
     }
 }
 

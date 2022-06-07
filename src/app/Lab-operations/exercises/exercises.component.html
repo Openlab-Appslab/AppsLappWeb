@@ -1,4 +1,4 @@
-<button mat-raised-button color="primary" (click)="openTempDialog()"><img src="https://img.icons8.com/external-simple-solid-edt.graphics/30/undefined/external-Plus-add-and-remove-simple-solid-edt.graphics-7.png"/> Create Exercise</button>
+<button mat-raised-button color="primary" (click)="openTempDialog()"><img src="https://img.icons8.com/windows/30/undefined/add--v1.png"/> Create Exercise</button>
 
 
 
@@ -48,8 +48,8 @@
 </div>
 
 
-<ng-template #dialogRef let-mydata>
-  <div class="centel">
+<ng-template #dialogRef let-mydata class="dialog">
+  <div class="centel" style="color: black;">
     <form #createExerciseForm="ngForm" (ngSubmit)="onSubmit()">
       <h2 style="color: white;">Create Exercise</h2>
   

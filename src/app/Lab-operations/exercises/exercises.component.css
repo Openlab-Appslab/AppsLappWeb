@@ -35,7 +35,7 @@
 
   .centel {
       margin: auto;
-      width: 50%;
+      width: 40rem !important;
       border-radius: 13px;
       text-align: center;
       background-color: #6D4FD8;
