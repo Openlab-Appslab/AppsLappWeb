@@ -26,11 +26,16 @@ export class LabDetailComponent implements OnInit {
   allExercises: Exercise[] = [];
   labExercises: Exercise[] = [];
   isStudent: boolean = false;
+  sortedStudents: any[];
+  event: string = '';
 
   ngOnInit(): void {
     this.getLab();
     this.getAllExercises();
     this.getAllGroups();
+    // this.dataSource.data = this.dataSource.data.sort((a, b) => a.score < b.score ? -1 : a.score > b.score ? 1 : 0);
+      
+    
   }
 
   getLab(): void {
@@ -101,5 +106,10 @@ export class LabDetailComponent implements OnInit {
     editExercise(){
       this.editExerciseTester = true
     }
+
+    // sortStudents(){
+    //  // this.dataSource.data.sort((a, b) => a.score < b.score ? -1 : a.score > b.score ? 1 : 0);
+    //   return this.dataSource.data.sort((a, b) => a.name.localeCompare(b.name));
+    // }
 
 }

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, TemplateRef } from '@angular/core';
 import { Exercise } from '../exercise';
 import { ExerciseGroup } from '../exercise-group';
 import { LabService } from '../lab.service';
 import { MatSelectChange } from '@angular/material/select';
 import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -13,8 +14,10 @@ import { FormControl } from '@angular/forms';
 })
 export class ExercisesComponent implements OnInit {
 
-
-  constructor(private labService: LabService) {
+  @ViewChild('dialogRef')
+  dialogRef!: TemplateRef<any>;
+  
+  constructor(private labService: LabService, public dialog: MatDialog) {
    
   }
 
@@ -74,5 +77,10 @@ export class ExercisesComponent implements OnInit {
   deleteExercise(exercise: Exercise){
     this.labService.deleteExercise(exercise.name);
     this.allExercises = this.allExercises.filter(h => h !== exercise);
+  }
+
+  openTempDialog() {
+    const myTempDialog = this.dialog.open(this.dialogRef);
+    myTempDialog.afterClosed();
   }
 }

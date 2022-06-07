@@ -40,6 +40,7 @@ import { ExerciseSearchComponent } from './Lab-operations/exercise-search/exerci
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ResetPasswordComponent } from './User-operations/reset-password/reset-password.component';
 
 
 
@@ -58,6 +59,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     EditExerciseComponent,
     ExerciseSearchComponent,
     HomeComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,

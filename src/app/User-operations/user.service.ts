@@ -112,13 +112,30 @@ export class SignUpService {
       });
   }
 
-  resetPassword(email: string) {
-    fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resetPassword/${email}`, {
+  resetPassword(username: string) {
+    fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resetPassword/${username}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
 
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
+  }
+
+  submitNewPassword(username: string, password: string) {
+    fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resetPassword`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username: username, password: password }),
     })
       .then(response => response.json())
       .then(data => {

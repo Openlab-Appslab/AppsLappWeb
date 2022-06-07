@@ -11,6 +11,7 @@ import { AuthGuard } from './guard/auth-guard';
 import { StudentDetailComponent } from './Lab-operations/student-detail/student-detail.component';
 import { EditExerciseComponent } from './Lab-operations/edit-exercise/edit-exercise.component';
 import { HomeComponent } from './home/home.component';
+import { ResetPasswordComponent } from './User-operations/reset-password/reset-password.component';
 
 
 
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: 'lab-detail/:id', component: LabDetailComponent, canActivate: [AuthGuard]},
   {path: 'student-detail/:id', component: StudentDetailComponent, canActivate: [AuthGuard]},
   {path: 'edit-exercise/:id', component: EditExerciseComponent, canActivate: [AuthGuard]},
+  {path: 'reset-password', component: ResetPasswordComponent},
 ];
 
 @NgModule({

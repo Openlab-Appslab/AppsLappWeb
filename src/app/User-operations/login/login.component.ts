@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
 
   
  public model: User;
- email: any;
+ userName: string;
 
  loading: boolean;
 
@@ -62,6 +62,6 @@ export class LoginComponent implements OnInit {
   }
 
   resetPassword(){
-    this.userService.resetPassword(this.email);
+    this.userService.resetPassword(this.userName);
   }
 }
