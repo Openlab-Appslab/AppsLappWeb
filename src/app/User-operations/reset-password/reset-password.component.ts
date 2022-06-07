@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { SignUpService } from '../user.service';
 
 @Component({
@@ -8,13 +9,17 @@ import { SignUpService } from '../user.service';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  constructor(private userService: SignUpService) { }
+  constructor(private userService: SignUpService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(event => {
+      this.username = event['username'];
+     });
   }
 
   username: string;
   password: string;
+  repeatPassword: string;
 
 
   onSubmit() {
