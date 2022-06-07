@@ -27,7 +27,7 @@ const routes: Routes = [
   {path: 'lab-detail/:id', component: LabDetailComponent, canActivate: [AuthGuard]},
   {path: 'student-detail/:id', component: StudentDetailComponent, canActivate: [AuthGuard]},
   {path: 'edit-exercise/:id', component: EditExerciseComponent, canActivate: [AuthGuard]},
-  {path: 'reset-password', component: ResetPasswordComponent},
+  {path: 'reset-password/:username', component: ResetPasswordComponent},
 ];
 
 @NgModule({
