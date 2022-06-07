@@ -49,7 +49,7 @@
 
 <ng-template #dialogRef let-mydata>
   <h2>Enter username to reset password</h2>
-  <input [(ngModel)]="userName" type="text" class="form-control" name="ressPass"placeholder="Email" required>
+  <input [(ngModel)]="userName" type="text" class="form-control" name="ressPass"placeholder="Enter Username" required>
   <div style="display: flex; justify-content: space-between; margin-top: 0.5em">
     <button mat-raised-button color="primary" (click)="resetPassword()">Submit</button>
     <button mat-button mat-dialog-close="I am from dialog land...">Close</button>
