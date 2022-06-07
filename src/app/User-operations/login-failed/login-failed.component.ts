@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SignUpService } from '../user.service';
 
 
 
@@ -10,11 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginFailedComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: SignUpService) { }
 
   ngOnInit(): void {
   }
 
-  
+  username: string;
+  displayInput: boolean = false;
 
+  click() {
+    this.displayInput = true;
+  }
+
+  resendEmail() {
+    this.userService.resendEmail(this.username);
+  }
 }
