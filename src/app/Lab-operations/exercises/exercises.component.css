@@ -100,8 +100,6 @@
   }
 
   textarea {
-    
-    margin-bottom: 2em;
     color: black;
   }
   input {
@@ -132,12 +130,20 @@
   mat-select, mat-option, mat-list-item, section, mat-label {
     color: black;
   }
-  
+
   section {
     background-color: white;
+    width: 50%;
     border-radius: 5px;
     margin: 5px;
+  }
+  
+  .sel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   h2, p, h3 {
     color: black;
   }
+ 

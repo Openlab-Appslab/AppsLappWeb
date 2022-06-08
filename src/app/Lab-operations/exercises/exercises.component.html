@@ -1,9 +1,9 @@
-<button mat-raised-button color="primary" (click)="openTempDialog()"><img src="https://img.icons8.com/windows/30/undefined/add--v1.png"/> Create Exercise</button>
+<button mat-raised-button color="primary" (click)="openTempDialog()"><img src="https://img.icons8.com/windows/30/undefined/add--v1.png"/> Vytvoriť Cvičenie</button>
 
 
 
 <div class="center" style="width: max-content !important;">
-  <h2>All Exercises</h2>
+  <h2>Zoznam Cvičení</h2>
 <!-- <app-exercise-search></app-exercise-search> -->
   
   <div  *ngFor="let group of allGroups">
@@ -44,41 +44,40 @@
     </mat-accordion>
   </div>
 </div>
-  <button mat-raised-button color="primary">Save</button>
 </div>
 
 
 <ng-template #dialogRef let-mydata class="dialog">
   <div class="centel" style="color: black;">
     <form #createExerciseForm="ngForm" (ngSubmit)="onSubmit()">
-      <h2 style="color: white;">Create Exercise</h2>
+      <h2 style="color: white;">Vytvorenie Cvičenia</h2>
   
       <div class="form-group">
-        <label for="">Exercise Name</label>
-        <input class="form-control" type="text" placeholder="Exercise Name" [(ngModel)]="exerciseModel.name" required
+        <label for="">Meno Cvičenia</label>
+        <input class="form-control" type="text"  [(ngModel)]="exerciseModel.name" required
           name="exName" #exGroup="ngModel">
-        <label style="margin-top: 2em;" for="">Exercise Description</label>
+        <label style="margin-top: 2em;" for="">Popis Cvičenia</label>
         <textarea rows="7" type="text" name="description" id="" class="form-control"
-          placeholder="Description for exercise" style="font-size: small;" [(ngModel)]="exerciseModel.description"
+           style="font-size: small;" [(ngModel)]="exerciseModel.description"
           required></textarea>
-        <div class="example-box">
-          <input class="form-control" type="number" placeholder="Required Stars for Exercise"
-            [(ngModel)]="exerciseModel.requiredStars" required name="requiredStars" #exGroup="ngModel">
+        <div class="form-group">
+          <label style="margin-top: 2em;" for="">Počet hviezd za cvičenie</label>
+          <input class="form-control" type="number" [(ngModel)]="exerciseModel.requiredStars" required name="requiredStars" #exGroup="ngModel" style="margin-bottom: 2em">
         </div>
         <div class="form-group" style="margin-bottom: 3em;">
-          <label for="">Add Exercise to Group</label> <br>
+          <label for="">Pridajte cvičenie do skupiny</label> <br>
           <mat-radio-group color="primary" aria-label="Select an option" [(ngModel)]="selectedOption" name="option">
-            <mat-radio-button class="example-radio-button" *ngFor="let option of options" [value]="option">
+            <mat-radio-button class="example-radio-button" *ngFor="let option of options" [value]="option" style="margin-bottom: 0.5em;">
               {{option}}
             </mat-radio-button>
           </mat-radio-group>
   
   
-          <div *ngIf="selectedOption == 'Add to Existing Group';">
+          <div class="sel" *ngIf="selectedOption == 'Pridať do existujúcej skupiny';">
             <section>
               <mat-form-field appearance="outline">
                 <mat-label>Add to Group:</mat-label>
-                <mat-select [formControl]="selectedOrder" (selectionChange)="dropDownChanged($event)">
+                <mat-select [formControl]="selectedOrder" (selectionChange)="dropDownChanged($event)" >
                   <mat-option *ngFor="let group of groups" [value]="group.name">
                     {{ group.name }}
                   </mat-option>
@@ -87,19 +86,27 @@
             </section>
           </div>
   
-          <div *ngIf="selectedOption == 'Create New Group';">
+          <div *ngIf="selectedOption == 'Vytvoriť novú skupinu';">
             <input class="form-control" type="text" placeholder="Exercise Group" [(ngModel)]="exerciseModel.groupName"
               required name="group" #exGroup="ngModel">
           </div>
         </div>
   
   
-        <div class="example-box">
-          <input class="form-control" type="number" placeholder="Minimum of Stars for Group"
-            [(ngModel)]="exerciseGroupModel.minStars" required name="minStars" #exGroup="ngModel">
-          <input class="form-control" type="number" placeholder="Maximum of Stars for Group"
-            [(ngModel)]="exerciseGroupModel.maxStars" required name="maxStars" #exGroup="ngModel">
+        <div class="flex" style="display: flex; flex-direction: row; justify-content: space-evenly;">
+          <div class="form-group">
+            <label for="">Meno Cvičenia</label>
+            <input class="form-control" type="number" placeholder="Minimum of Stars for Group"
+              [(ngModel)]="exerciseGroupModel.minStars" required name="minStars" #exGroup="ngModel">
+          </div>
+  
+          <div class="form-group">
+              <label for="">Meno Cvičenia</label>
+            <input class="form-control" type="number" placeholder="Maximum of Stars for Group"
+              [(ngModel)]="exerciseGroupModel.maxStars" required name="maxStars" #exGroup="ngModel">
+          </div>
         </div>
+        
       </div>
   
   

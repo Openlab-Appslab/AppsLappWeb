@@ -34,14 +34,15 @@ export class ExercisesComponent implements OnInit {
 
   exercisesNotIn: Exercise[] = [];
   exercisesIn: Exercise[] = [];
+  stars: any = undefined;
 
   exerciseGroupModel = new ExerciseGroup('', this.exercisesIn);
 
-  exerciseModel = new Exercise('', '', '', 0,);
+  exerciseModel = new Exercise('', '', '', this.stars);
 
-  options: string[] = ['Add to Existing Group', 'Create New Group'];
+  options: string[] = ['Pridať do existujúcej skupiny', 'Vytvoriť novú skupinu'];
   groups: any[] = [];
-  selectedOption: string = 'Add to Existing Group';
+  selectedOption: string = 'Pridať do existujúcej skupiny';
   allGroups: ExerciseGroup[] = [];
   allExercises: Exercise[] = [];
 
