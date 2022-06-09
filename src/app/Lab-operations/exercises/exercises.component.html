@@ -1,4 +1,4 @@
-<button mat-raised-button color="primary" (click)="openTempDialog()"><img src="https://img.icons8.com/windows/30/undefined/add--v1.png"/> Vytvoriť Cvičenie</button>
+<button mat-raised-button color="primary" (click)="openTempDialog()"><img src="https://img.icons8.com/windows/30/ffffff/add--v1.png"/> Vytvoriť Cvičenie</button>
 
 
 
@@ -14,8 +14,7 @@
           <mat-panel-title>
             <h2>{{group.name}}</h2>
           </mat-panel-title>
-          <mat-panel-description>
-            tap to see details
+          <mat-panel-description style="margin-left: 2.5em;">
             {{group.minStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /> - {{group.maxStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" />
           </mat-panel-description>
         </mat-expansion-panel-header>
@@ -34,8 +33,8 @@
                   </mat-panel-description>
                 </mat-expansion-panel-header>
                 {{exercise.description}} <br>
-                <button mat-raised-button color="primary" style="margin: 1em;" routerLink="/edit-exercise/{{exercise.name}}">Edit Exercise</button>
-                <button mat-raised-button color="primary" (click)="deleteExercise(exercise)">Delete Exercise</button>
+                <button mat-raised-button color="primary" style="margin: 1em;" routerLink="/edit-exercise/{{exercise.name}}">Upraviť Cvičenie</button>
+                <button mat-raised-button color="primary" (click)="deleteExercise(exercise)">Vymazať Cvičenie</button>
               </mat-expansion-panel>
             </mat-accordion>
           </div>
@@ -95,14 +94,14 @@
   
         <div class="flex" style="display: flex; flex-direction: row; justify-content: space-evenly;">
           <div class="form-group">
-            <label for="">Meno Cvičenia</label>
-            <input class="form-control" type="number" placeholder="Minimum of Stars for Group"
+            <label for="">Minimálny počet hviezd</label>
+            <input class="form-control" type="number" 
               [(ngModel)]="exerciseGroupModel.minStars" required name="minStars" #exGroup="ngModel">
           </div>
   
           <div class="form-group">
-              <label for="">Meno Cvičenia</label>
-            <input class="form-control" type="number" placeholder="Maximum of Stars for Group"
+              <label for="">Maximálny počet hviezd</label>
+            <input class="form-control" type="number" 
               [(ngModel)]="exerciseGroupModel.maxStars" required name="maxStars" #exGroup="ngModel">
           </div>
         </div>

@@ -1,7 +1,7 @@
 <mat-slide-toggle [(ngModel)]="isStudent">Is Student: {{isStudent}}</mat-slide-toggle>
 <div *ngIf="!isStudent">
   <button mat-raised-button style="margin-left: 5em;" color="primary" [routerLink]="['/lab-form']"><img
-      src="https://img.icons8.com/material-rounded/24/000000/create.png" /> Create Lab</button>
+      src="https://img.icons8.com/material-rounded/24/000000/create.png" /> Vytvoriť Lab</button>
 
   <div class="center">
     <mat-spinner *ngIf="loaded"></mat-spinner>
@@ -10,7 +10,7 @@
       <!---->
       <h2> {{lab.name}}</h2>
       <div style="background-color: white; border-radius: 5px; margin-bottom: 3.5rem;">
-        <label>Members: {{lab.studentNames.length}}</label>
+        <label>Členovia: {{lab.studentNames.length}}</label>
       </div>
       <button color="primary" routerLink="/lab-detail/{{lab.id}}" mat-raised-button>Lab Details</button>
     </div>
@@ -25,7 +25,7 @@
     <div class="example-container">
       <h2> {{lab.name}}</h2>
       <div style="background-color: white; border-radius: 5px; margin-bottom: 3.5rem;">
-        <label>Members: {{lab.studentNames.length}}</label>
+        <label>Členovia: {{lab.studentNames.length}}</label>
       </div>
       <button color="primary" routerLink="/lab-detail/{{lab.id}}" mat-raised-button>Lab Details</button>
     </div>

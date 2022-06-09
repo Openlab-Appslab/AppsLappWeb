@@ -3,8 +3,8 @@
         <div class="logo-text">
             <img style="width: 65%; text-align: center;" src="/assets/images/Logo2.png" alt="">
             <div class="line"></div>
-            <p class="welcome-text">Welcome to AppsLapp!</p>
-            <p>Learn new skills with freedom.</p>
+            <p class="welcome-text">Vitajte v AppsLappe!</p>
+            <p>Študuj moderne. Študuj v Appslabe</p>
         </div>
     </div>
 
@@ -13,29 +13,28 @@
         <body>
             <div class="login-form">
                 <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
-                    <h2>Login </h2>
+                    <h2>Prihlásenie</h2>
 
                     <div class="form-group has-error">
                         <input [(ngModel)]="model.username" type="text" class="form-control" name="username"
-                            placeholder="Username" required>
+                            placeholder="Prihlasovacie Meno" required>
                     </div>
                     <div class="form-group">
                         <input [(ngModel)]="model.password" type="password" class="form-control" name="password"
-                            placeholder="Password" required="required">
+                            placeholder="Heslo" required="required">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary btn-lg btn-block"
                             [disabled]="!loginForm.form.valid">
-                            Sign in
+                            Prihlásiť
                             <span class="spinner-border spinner-border-sm" *ngIf="loading" role="status"
                                 aria-hidden="true"></span>
                         </button>
 
                     </div>
-                    <p><a (click)="openTempDialog()">Lost your Password?</a></p>
+                    <p><a (click)="openTempDialog()">Zabudli ste Heslo ?</a></p>
                 </form>
-                <p class="text-center small">Don't have an account? <a [routerLink]="['/registration']">Sign up
-                        here!</a></p>
+                <p class="text-center small">Nemáte Účet ? <a [routerLink]="['/registration']">Zaregistrujte sa Tu!</a></p>
 
 
             </div>

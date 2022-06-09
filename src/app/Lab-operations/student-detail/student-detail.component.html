@@ -18,28 +18,17 @@
 
   <div  *ngFor="let exercise of exercises" >
     <!---->
-    <div class="example-container" *ngIf="exercise.isDone == false || exercise.isDone == undefined">
+    <div class="example-container" >
     <h2 style="background-color: #603CB0; border-radius: 10px; ">{{exercise.name}}</h2>
     <label for="">{{exercise.requiredStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png"/> </label>
 
     <div class="example-container">
-      <mat-accordion>
-        <mat-expansion-panel hideToggle>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <h3>Click to edit Score</h3>
-            </mat-panel-title>
-            <mat-panel-description>
+      
 
-            </mat-panel-description>
-          </mat-expansion-panel-header>
+       
 
-          <input class="form-control" type="number" placeholder="Enter Number of Stars" [(ngModel)]="student.score"
-            style="margin-bottom: 2em;">
-            <mat-checkbox style="margin-bottom: 0.5em;" [(ngModel)]="isDone">Done</mat-checkbox> <br>
-          <button mat-raised-button color="primary" (click)="updateScore(exercise)">Add Score</button>
-        </mat-expansion-panel>
-      </mat-accordion>
+          <button mat-raised-button color="primary" (click)="updateScore(exercise)">OZNAČIŤ AKO HOTOVÉ</button>
+       
     </div>
     </div>
   </div>

@@ -2,7 +2,7 @@
   <mat-toolbar class="nav-bar" >
     <mat-toolbar-row>
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
-        <mat-icon>menu</mat-icon>
+        <img src="https://img.icons8.com/material-rounded/30/ffffff/menu--v1.png"/>
       </button>
       <img [routerLink]="['/dashboard']" class="openlab-logo"  src="/assets/images/LogoEffect.png" alt="openlab-logo">
       <span class="example-spacer"></span>
@@ -12,19 +12,19 @@
       <div fxShow="true" fxHide.lt-md="true">
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
         <a *ngIf="userName != ''" [routerLink]="['/dashboard']" mat-button>
-          DASHBOARD
+          LABY
         </a>
         <a *ngIf="userName != ''" [routerLink]="['/exercises']" mat-button>
-          EXERCISES
+          CVIČENIA
         </a>
         <a  [routerLink]="['/home']" mat-button>
-          HOME
+          DOMOV
         </a>
         <a *ngIf="userName == ''" [routerLink]="['/login']" mat-button>
-          LOGIN
+          PRIHLÁSENIE
         </a>
         <a *ngIf="userName == ''" [routerLink]="['/registration']" mat-button>
-          SIGN UP
+          REGISTRÁCIA
         </a>
         <button *ngIf="userName != ''" mat-raised-button color="primary" (click)="openTemplateSheetMenu()" >
           {{userName}} <img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/24/ffffff/external-chevron-arrows-tanah-basah-basic-outline-tanah-basah-4.png"/>
@@ -36,21 +36,33 @@
   <mat-sidenav-container fxFlexFill style="background-color: white;">
     <mat-sidenav #sidenav>
       <mat-nav-list>
-        <a [routerLink]="['/dashboard']" mat-list-item>
-          DASHBOARD
+        <a *ngIf="userName != ''" [routerLink]="['/dashboard']" mat-list-item>
+          LABY
         </a>
-        <a [routerLink]="['/exercises']" mat-list-item>
-          EXERCISES</a>
-          <button mat-raised-button color="primary" (click)="openTemplateSheetMenu()" >
+        <a *ngIf="userName != ''" [routerLink]="['/exercises']" mat-list-item>
+          CVIČENIA
+        </a>
+        <a  [routerLink]="['/home']" mat-button>
+          DOMOV
+        </a>
+        <a *ngIf="userName == ''" [routerLink]="['/login']" mat-list-item>
+          PRIHLÁSENIE
+        </a>
+        <a *ngIf="userName == ''" [routerLink]="['/registration']" mat-list-item>
+          REGISTRÁCIA
+        </a>
+          <button *ngIf="userName != ''" mat-raised-button color="primary" (click)="openTemplateSheetMenu()" >
             {{userName}} <img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/24/ffffff/external-chevron-arrows-tanah-basah-basic-outline-tanah-basah-4.png"/>
           </button>
         
         <a (click)="sidenav.toggle()" mat-list-item>
-          <img src="https://img.icons8.com/material-sharp/24/000000/close-window.png"/> Close
+          <img src="https://img.icons8.com/material-sharp/24/000000/close-window.png"/> CLOSE
         </a>
       </mat-nav-list>
     </mat-sidenav>
-    <mat-sidenav-content class="main" fxFlexFill><router-outlet></router-outlet></mat-sidenav-content>
+    <mat-sidenav-content class="main" fxFlexFill>
+      <div style="height: 1em;"></div>
+      <router-outlet></router-outlet></mat-sidenav-content>
   </mat-sidenav-container>
 </div>
   
@@ -64,7 +76,7 @@
         
         <h3>{{userName}}</h3>
         <button type="submit" mat-raised-button (click)="signOut()" (click)="closeTemplateSheetMenu()">
-          SIGN OUT
+          ODHLÁSIŤ
         </button>
       </div>
   </div>

@@ -1,6 +1,6 @@
 <div class="center">
   <form #createLabForm="ngForm" (ngSubmit)="onSubmit()">
-    <h2>Lab Name</h2>
+    <h2>Meno Labu</h2>
             <input placeholder="Lab Name" [(ngModel)]="labName" type="text" class="form-control" name="username" required minlength="4"
               maxlength="10" #labN="ngModel">
             <small *ngIf="labN.touched && labN.valid == false">
@@ -8,7 +8,7 @@
             </small>
     <div>
         <div class="example-container">
-          <h2>In Lab</h2>
+          <h2>V Labe</h2>
           <mat-list class="example-box">
             <mat-list-item>{{labMaster}}</mat-list-item>
           </mat-list>

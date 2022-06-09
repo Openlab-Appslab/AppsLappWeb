@@ -34,12 +34,15 @@ export class StudentDetailComponent implements OnInit {
 
   getAllExercises(){
     this.labService.getAllExercises().subscribe(response => {
-      this.exercises = response;});
+      this.exercises = response;
+    });
   }
 
 
   updateScore(exercise: Exercise, ){
-    exercise.isDone = this.isDone;
+    exercise.isDone = true;
+    this.student.score = this.student.score + exercise.requiredStars;
+    
     this.labService.updateScore(this.studentId, exercise.name, this.student.score, exercise.isDone); 
   }
   

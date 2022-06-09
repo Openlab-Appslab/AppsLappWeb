@@ -1,16 +1,17 @@
 <div class="centel">
     <form #createExerciseForm="ngForm" (ngSubmit)="onSubmit()">
-      <h2 style="color: white;">Edit Exercise</h2>
+      <h2 style="color: white;">Úprava Cvičenia</h2>
   
       <div class="form-group">
-        <label for="">Exercise Name</label>
+        <label for="">Meno Cvičenia</label>
         <input class="form-control" type="text" placeholder="Exercise Name" [(ngModel)]="exercise.name" required
           name="exName" #exGroup="ngModel">
-        <label style="margin-top: 2em;" for="">Exercise Description</label>
+        <label style="margin-top: 2em;" for="">Popis Cvičenia</label>
         <textarea rows="7" type="text" name="description" id="" class="form-control"
           placeholder="Description for exercise" style="font-size: small;" [(ngModel)]="exercise.description"
           required></textarea>
-        <div class="example-box">
+          <div class="form-group">
+            <label style="margin-top: 2em;" for="">Počet hviezd za cvičenie</label>
           <input class="form-control" type="number" placeholder="Required Stars for Exercise"
             [(ngModel)]="exercise.requiredStars" required name="requiredStars" #exGroup="ngModel">
         </div>
@@ -55,7 +56,7 @@
   
       <div class="form-group">
         <button style="margin-top: 2em;" mat-flat-button color="primary" type="submit"
-          [disabled]="!createExerciseForm.valid || exerciseGroupModel.maxStars < exerciseGroupModel.minStars || exercise.requiredStars > exerciseGroupModel.maxStars">Save</button>
+          [disabled]="!createExerciseForm.valid || exerciseGroupModel.maxStars < exerciseGroupModel.minStars || exercise.requiredStars > exerciseGroupModel.maxStars">Uložiť</button>
       </div>
     </form>
   </div>

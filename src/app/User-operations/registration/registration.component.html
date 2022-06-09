@@ -4,8 +4,8 @@
     <img style="width: 65%;"
       src="/assets/images/Logo2.png" alt="">
       <div class="line"></div>
-    <p class="welcome-text">Welcome to AppsLapp!</p>
-    <p>Learn new skills with freedom.</p>
+      <p class="welcome-text">Vitajte v AppsLappe !</p>
+      <p>Študuj moderne. Študuj v Appslabe !</p>
     </div>
   </div>
 
@@ -14,11 +14,10 @@
     <body>
       <div class="signup-form">
         <form #signUpForm="ngForm" (ngSubmit)="onSubmit()">
-          <h2>Sign Up</h2>
-          <p>Please fill in this form to create an account!</p>
+          <h2>Registrácia</h2>
           <hr>
           <div class="form-group">
-            <label>FirstName</label>
+            <label>Krstné Meno</label>
             <input [(ngModel)]="model.firstName" type="text" class="form-control" name="firstName" required minlength="4"
               maxlength="10" #firstName="ngModel">
             <small *ngIf="firstName.touched && firstName.valid == false">
@@ -26,7 +25,7 @@
             </small>
           </div>
           <div class="form-group">
-            <label>LastName</label>
+            <label>Priezvysko</label>
             <input [(ngModel)]="model.lastName" type="text" class="form-control" name="lastName" required minlength="4"
               maxlength="10" #lastName="ngModel">
             <small *ngIf="lastName.touched && lastName.valid == false">
@@ -34,7 +33,7 @@
             </small>
           </div>
           <div class="form-group">
-            <label>Username</label>
+            <label>Prihlasovacie Meno</label>
             <input [(ngModel)]="model.username" type="text" class="form-control" name="username" required minlength="4"
               maxlength="10" #username="ngModel">
             <small *ngIf="username.touched && username.valid == false">
@@ -42,16 +41,16 @@
             </small>
           </div>
           <div class="form-group">
-            <label>Email Address</label>
+            <label>Emailová Adresa</label>
             <input [(ngModel)]="model.email" type="email" class="form-control" name="email" required
               pattern="^[_A-Za-z0-9-+]+(.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(.[A-Za-z0-9]+)*(.[A-Za-z]{2,})$"
               #email="ngModel">
             <small *ngIf="email.touched && !email.valid">
-              Email is required and format should be <i>robo@gmail.com</i>.
+              Email is required and format should be <i>igorMatovic@example.com</i>.
             </small>
           </div>
           <div class="form-group">
-            <label>Password</label>
+            <label>Heslo</label>
             <input [(ngModel)]="model.password" type="password" class="form-control" name="password" required
               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-.]).{8,16}$" #password="ngModel">
             <small
@@ -64,7 +63,7 @@
             </small>
           </div>
           <div class="form-group">
-            <label>Confirm Password</label>
+            <label>Zopakujte Heslo</label>
             <input [(ngModel)]="comfirmPassword" type="password" class="form-control" name="confirm_password" required
               pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" #comfPassword="ngModel">
             <small *ngIf="comfPassword.touched && comfirmPassword != model.password">
@@ -72,12 +71,12 @@
             </small>
           </div>
           <div class="form-group">
-            <button color="primary" type="submit" class="btn btn-primary btn-lg" [disabled]="!signUpForm.form.valid">Sign Up
+            <button color="primary" type="submit" class="btn btn-primary btn-lg" [disabled]="!signUpForm.form.valid">Registrovať
               <span class="spinner-border spinner-border-sm" *ngIf="loading" role="status" aria-hidden="true"></span>
             </button>
           </div>
         </form>
-        <div class="text-center">Already have an account? <a [routerLink]="['/login']">Login here</a></div>
+        <div class="text-center">Už máte Účet ? <a [routerLink]="['/login']">Prihlásenie</a></div>
       </div>
     </body>
   </div>
