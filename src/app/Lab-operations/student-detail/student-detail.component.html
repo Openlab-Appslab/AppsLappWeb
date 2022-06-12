@@ -1,36 +1,43 @@
 <div class="center" *ngIf="student">
-
-  <div class="example-container" style="background-color: #603CB0;">
+  <div class="example-container" style="background-color: #603cb0">
     <!---->
-    <h2 style="border-radius: 10px; ">{{student.firstName}} {{student.lastName}} (FE)</h2>
-    <label>{{student.email}}</label>
-    <label style="font-size: large;" for="">Score: {{student.score}}</label>
-
-
-
+    <h2 style="border-radius: 10px">
+      {{ student.firstName }} {{ student.lastName }} (FE)
+    </h2>
+    <label>{{ student.email }}</label>
+    <label style="font-size: large" for="">Score: {{ student.score }}</label>
   </div>
-
 </div>
 
 <!--Exercises-->
-
+<h1 style="text-align: center; font-size: xx-large;">Cvičenia</h1>
 <div class="center">
-
-  <div  *ngFor="let exercise of exercises" >
-    <!---->
-    <div class="example-container" >
-    <h2 style="background-color: #603CB0; border-radius: 10px; ">{{exercise.name}}</h2>
-    <label for="">{{exercise.requiredStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png"/> </label>
-
+  
+  <div *ngFor="let exercise of exercises">
     <div class="example-container">
-      
+      <h2 style="background-color: #603cb0; border-radius: 10px">
+        {{ exercise.name }}
+      </h2>
+      <label for="">{{ exercise.requiredStars }}
+        <img src="https://img.icons8.com/fluency/18/000000/star.png" />
+      </label>
 
-       
-
-          <button mat-raised-button color="primary" (click)="updateScore(exercise)">OZNAČIŤ AKO HOTOVÉ</button>
-       
-    </div>
+      <div class="example-container">
+        <button mat-raised-button color="primary" (click)="updateScore(exercise)">
+          OZNAČIŤ AKO HOTOVÉ
+        </button>
+      </div>
     </div>
   </div>
-
+</div>
+<h1 style="text-align: center; font-size: xx-large;">Hotové Cvičenia <img src="https://img.icons8.com/ios-filled/40/undefined/checkmark--v1.png"/> </h1>
+<div class="center">
+  <div *ngFor="let exercise of doneExercises">
+    <!---->
+    <div class="example-container" style="background-color: rgb(200, 255, 200);">
+      <h2 style="background-color: rgb(69, 113, 69); border-radius: 10px">
+        {{ exercise }}
+      </h2>
+    </div>
+  </div>
 </div>
