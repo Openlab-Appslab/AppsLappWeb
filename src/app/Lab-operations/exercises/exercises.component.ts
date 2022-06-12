@@ -47,10 +47,11 @@ export class ExercisesComponent implements OnInit {
   allExercises: Exercise[] = [];
 
   onSubmit() {
-    this.getAllGroups();
-    this.getAllExercises();
+    if(this.allGroups)
     this.labService.createExercise(this.exerciseModel, this.exerciseGroupModel.minStars, this.exerciseGroupModel.maxStars);
     this.exercisesNotIn.push(this.exerciseModel);
+    this.getAllGroups();
+    this.getAllExercises();
   }
 
   dropDownChanged(event: MatSelectChange) {
@@ -67,6 +68,7 @@ export class ExercisesComponent implements OnInit {
   getAllGroups(){
     this.labService.getAllExerciseGroups().subscribe(response => {
       this.allGroups = response;
+      console.log(response);
     }); }
 
   getAllExercises(){

@@ -7,6 +7,10 @@
   flex: 1 1 auto;
 }
 
+.example-spacer1 {
+  flex: 0;
+}
+
 .openlab-logo {
   width: 190px;
   border-radius: 10px;
@@ -18,11 +22,17 @@
 }
 
 @media screen and (max-width: 992px){
+  .example-spacer1 {
+    flex: 1.9 1 auto;
+  }
   .openlab-logo {
     width: 170px;
   }
 }
 @media screen and (max-width: 310px){
+  .example-spacer1 {
+    flex: 1 1 auto;
+  }
   .openlab-logo {
     width: 100px;
   }
