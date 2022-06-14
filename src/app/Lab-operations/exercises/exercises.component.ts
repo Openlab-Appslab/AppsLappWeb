@@ -45,14 +45,21 @@ export class ExercisesComponent implements OnInit {
   selectedOption: string = 'Pridať do existujúcej skupiny';
   allGroups: ExerciseGroup[] = [];
   allExercises: Exercise[] = [];
+  loading: boolean = false;
 
   onSubmit() {
+    this.loading = true;
     if (this.selectedOption != 'Pridať do existujúcej skupiny') {
-      this.labService.createExercise(this.exerciseModel, this.exerciseGroupModel.minStars, this.exerciseGroupModel.maxStars);
       this.exercisesNotIn.push(this.exerciseModel);
+      this.labService.createExercise(this.exerciseModel, this.exerciseGroupModel.minStars, this.exerciseGroupModel.maxStars).then(() => { 
+        this.loading = false;
+      });
+      
     }
     else {
-      this.labService.createExercise(this.exerciseModel, 0, 0);
+      this.labService.createExercise(this.exerciseModel, 0, 0).then(() => { 
+        this.loading = false;
+      });
       this.exercisesNotIn.push(this.exerciseModel);
     }
 

@@ -14,7 +14,7 @@
 <div class="center">
   
   <div *ngFor="let exercise of exercises">
-    <div class="example-container">
+    <div class="example-container" *ngIf="exercise.isDone != true">
       <h2 style="background-color: #603cb0; border-radius: 10px">
         {{ exercise.name }}
       </h2>

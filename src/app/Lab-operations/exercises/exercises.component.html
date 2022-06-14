@@ -112,7 +112,8 @@
   
       <div class="form-group">
         <button style="margin-top: 2em;" mat-flat-button color="primary" type="submit"
-          [disabled]="!createExerciseForm.valid || exerciseGroupModel.maxStars < exerciseGroupModel.minStars || exerciseModel.requiredStars > exerciseGroupModel.maxStars">Create</button>
+          [disabled]="!createExerciseForm.valid || exerciseGroupModel.maxStars < exerciseGroupModel.minStars || exerciseModel.requiredStars > exerciseGroupModel.maxStars">Vytvoriť <span class="spinner-border spinner-border-sm" *ngIf="loading" role="status"
+          aria-hidden="true"></span></button>
       </div>
     </form>
   </div>

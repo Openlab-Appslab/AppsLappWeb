@@ -44,7 +44,8 @@ export class StudentDetailComponent implements OnInit {
     exercise.isDone = true;
     this.student.score = this.student.score + exercise.requiredStars;
     
-    this.labService.updateScore(this.studentId, exercise.name, this.student.score, exercise.isDone); 
+    this.labService.updateScore(this.studentId, exercise.name, exercise.requiredStars, exercise.isDone); 
+
   }
   
 }

@@ -46,7 +46,7 @@ export class LabService {
     let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
 
-    fetch('https://apps-lapp-server.herokuapp.com/api/management/createExercise', {
+    return fetch('https://apps-lapp-server.herokuapp.com/api/management/createExercise', {
       method: 'POST',
       headers: new Headers({
         'Authorization': 'Basic ' + btoa(authString),
@@ -63,7 +63,7 @@ export class LabService {
       });
   }
 
-  updateExercise(id: number, model: Exercise, minStars: number, maxStars: number) {
+  updateExercise(id: number, model: Exercise, groupName: string) {
     let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
 
@@ -73,7 +73,7 @@ export class LabService {
         'Authorization': 'Basic ' + btoa(authString),
         'Content-Type': 'application/json'
       }),
-      body: JSON.stringify({ id: id, exercise: exerciseM, minStars: minStars, maxStars: maxStars }),
+      body: JSON.stringify({ id: id, exercise: exerciseM, groupName: groupName }),
     })
       .then(response => response.json())
       .then(data => {
@@ -188,6 +188,10 @@ export class LabService {
   }
 
   updateScore(studentId: number, exerciseName: string, score: number, isDone: boolean) {
+    console.log(score);
+    
+    console.log(isDone);
+    
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
     fetch('https://apps-lapp-server.herokuapp.com/api/management/updateScore', {
       method: 'POST',

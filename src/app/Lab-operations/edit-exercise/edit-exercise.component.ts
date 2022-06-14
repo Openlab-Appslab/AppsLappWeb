@@ -22,7 +22,6 @@ export class EditExerciseComponent implements OnInit {
     // this.getExestingGroup();
 
     this.getExercise();
-    this.getExestingGroup();
   }
 
   exerciseId: number;
@@ -33,7 +32,7 @@ export class EditExerciseComponent implements OnInit {
   student = new User('','','','','');
   selectedOption: string;
   selectedOrder = new FormControl();
-  groups: any[] = [];
+  group: string;
   options: string[] = ['Add to Existing Group', 'Create New Group'];
   id: number;
 
@@ -41,22 +40,18 @@ export class EditExerciseComponent implements OnInit {
     this.exercise.groupName = event.value;
   }
   onSubmit(){
-    this.labService.updateExercise(this.id,this.exercise, this.exerciseGroupModel.minStars, this.exerciseGroupModel.maxStars);
+    this.labService.updateExercise(this.id, this.exercise, this.group);
   }
   getExercise(){
     const name = String(this.route.snapshot.paramMap.get('id'));
     this.labService.editExercise(name).subscribe(response => {
       this.exercise = response;
       this.id = response.id;
+      this.group = response.groupName;
+      
     });
   }
-  getExestingGroup(){
-    this.labService.getAllExerciseGroups().subscribe(response => {
-      this.groups = response;
-      this.exerciseGroupModel.minStars = response[0].minStars;
-      this.exerciseGroupModel.maxStars = response[0].maxStars;
-    });
-  }
+  
 
   
 }
