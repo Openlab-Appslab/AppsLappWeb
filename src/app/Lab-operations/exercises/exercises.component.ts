@@ -16,13 +16,13 @@ export class ExercisesComponent implements OnInit {
 
   @ViewChild('dialogRef')
   dialogRef!: TemplateRef<any>;
-  
+
   constructor(private labService: LabService, public dialog: MatDialog) {
-   
+
   }
 
   ngOnInit(): void {
-    this.labService.getAllExercises().subscribe(response =>{
+    this.labService.getAllExercises().subscribe(response => {
       this.exercisesNotIn = response;
     });
 
@@ -47,37 +47,41 @@ export class ExercisesComponent implements OnInit {
   allExercises: Exercise[] = [];
 
   onSubmit() {
-    if(this.allGroups)
-    this.labService.createExercise(this.exerciseModel, this.exerciseGroupModel.minStars, this.exerciseGroupModel.maxStars);
-    this.exercisesNotIn.push(this.exerciseModel);
-    this.getAllGroups();
-    this.getAllExercises();
+    if (this.selectedOption != 'Pridať do existujúcej skupiny') {
+      this.labService.createExercise(this.exerciseModel, this.exerciseGroupModel.minStars, this.exerciseGroupModel.maxStars);
+      this.exercisesNotIn.push(this.exerciseModel);
+    }
+    else {
+      this.labService.createExercise(this.exerciseModel, 0, 0);
+      this.exercisesNotIn.push(this.exerciseModel);
+    }
+
   }
 
   dropDownChanged(event: MatSelectChange) {
     this.exerciseModel.groupName = event.value;
   }
-    selectedOrder = new FormControl();
+  selectedOrder = new FormControl();
 
-  getExestingGroup(){
+  getExestingGroup() {
     this.labService.getAllExerciseGroups().subscribe(response => {
       this.groups = response;
     });
   }
 
-  getAllGroups(){
+  getAllGroups() {
     this.labService.getAllExerciseGroups().subscribe(response => {
       this.allGroups = response;
-      console.log(response);
-    }); }
+    });
+  }
 
-  getAllExercises(){
-    this.labService.getAllExercises().subscribe(response => {  
+  getAllExercises() {
+    this.labService.getAllExercises().subscribe(response => {
       this.allExercises = response;
     })
   }
 
-  deleteExercise(exercise: Exercise){
+  deleteExercise(exercise: Exercise) {
     this.labService.deleteExercise(exercise.name);
     this.allExercises = this.allExercises.filter(h => h !== exercise);
   }

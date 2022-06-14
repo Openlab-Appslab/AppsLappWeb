@@ -25,7 +25,7 @@
             </small>
           </div>
           <div class="form-group">
-            <label>Priezvysko</label>
+            <label>Priezvisko</label>
             <input [(ngModel)]="model.lastName" type="text" class="form-control" name="lastName" required minlength="4"
               maxlength="10" #lastName="ngModel">
             <small *ngIf="lastName.touched && lastName.valid == false">
