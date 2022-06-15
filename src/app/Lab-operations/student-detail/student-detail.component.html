@@ -2,7 +2,7 @@
   <div class="example-container" style="background-color: #603cb0">
     <!---->
     <h2 style="border-radius: 10px">
-      {{ student.firstName }} {{ student.lastName }}
+      {{ student.username }} 
     </h2>
     <label>{{ student.email }}</label>
     <label style="font-size: large" for="">Score: {{ student.score }}</label>
@@ -32,11 +32,11 @@
 </div>
 <h1 style="text-align: center; font-size: xx-large;">Hotové Cvičenia <img src="https://img.icons8.com/ios-filled/40/undefined/checkmark--v1.png"/> </h1>
 <div class="center">
-  <div *ngFor="let exercise of doneExercises">
+  <div *ngFor="let exercise of exercises">
     <!---->
-    <div class="example-container" style="background-color: rgb(200, 255, 200);">
+    <div class="example-container" style="background-color: rgb(200, 255, 200);" *ngIf="exercise.isDone == true">
       <h2 style="background-color: rgb(69, 113, 69); border-radius: 10px">
-        {{ exercise }}
+        {{ exercise.name }}
       </h2>
     </div>
   </div>

@@ -15,7 +15,6 @@ export class StudentDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStudent();
-    this.getAllExercises();
   }
 
 
@@ -23,21 +22,19 @@ export class StudentDetailComponent implements OnInit {
   studentId: number;
   exercises: Exercise[];
   isDone: boolean;
-  doneExercises: string[] = ['cvicenie6', 'cvicenie7', 'cvicenie8', 'cvicenie9']
+
 
   getStudent(){
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.studentId = id;
     this.labService.getStudent(id).subscribe(response => {
-      this.student = response;
+      this.student.username = response.name;
+      this.student.score = response.score;
+      this.exercises = response.exercises; 
     });
   }
 
-  getAllExercises(){
-    this.labService.getAllExercises().subscribe(response => {
-      this.exercises = response;
-    });
-  }
+  
 
 
   updateScore(exercise: Exercise, ){

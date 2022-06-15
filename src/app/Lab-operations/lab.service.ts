@@ -176,7 +176,7 @@ export class LabService {
       });
   }
 
-  getStudent(id: number): Observable<User> {
+  getStudent(id: number): Observable<any> {
     let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`
 
     let headerHttp = new HttpHeaders({
@@ -184,7 +184,7 @@ export class LabService {
       Authorization: 'Basic ' + btoa(authString)
     });
 
-    return this.http.get<User>(`https://apps-lapp-server.herokuapp.com/api/management/getStudent/${id}`, { headers: headerHttp });
+    return this.http.get<any>(`https://apps-lapp-server.herokuapp.com/api/management/getStudent/${id}`, { headers: headerHttp });
   }
 
   updateScore(studentId: number, exerciseName: string, score: number, isDone: boolean) {
