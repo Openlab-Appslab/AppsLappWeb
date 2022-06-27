@@ -18,10 +18,9 @@ export class LabService {
   headers = new Headers();
   exerciseUrl = 'https://apps-lapp-server.herokuapp.com/api/management/getExercise';
 
+  //create lab of students
   createLab(labStudents: string[], labName: string) {
-
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
-
 
     fetch('https://apps-lapp-server.herokuapp.com/api/management/createLab', {
       method: 'POST',
@@ -42,6 +41,7 @@ export class LabService {
       });
   }
 
+  // create exercise for students
   createExercise(model: Exercise, minStars: number, maxStars: number) {
     let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
@@ -63,6 +63,7 @@ export class LabService {
       });
   }
 
+  //update exercise after edit
   updateExercise(id: number, model: Exercise, groupName: string) {
     let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
@@ -84,6 +85,7 @@ export class LabService {
       });
   }
 
+  //create array of exercises (exerciseGroup)
   createGroupOfExercises(exerciseGroupModel: ExerciseGroup) {
 
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
@@ -104,7 +106,7 @@ export class LabService {
       });
   }
 
-
+  //return all created exercises
   getAllExercises(): Observable<Exercise[]> {
 
     let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`
@@ -117,6 +119,7 @@ export class LabService {
     return this.http.get<Exercise[]>('https://apps-lapp-server.herokuapp.com/api/management/getAllExercises', { headers: headerHttp })
   }
 
+  //get all exercise groups 
   getAllExerciseGroups(): Observable<ExerciseGroup[]> {
 
     let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`
@@ -129,6 +132,8 @@ export class LabService {
 
     return this.http.get<ExerciseGroup[]>('https://apps-lapp-server.herokuapp.com/api/management/getAllGroups', { headers: headerHttp })
   }
+
+  //return all labs owned by lab master / admin
   getLabs(): Observable<Lab[]> {
 
     let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`
@@ -144,6 +149,7 @@ export class LabService {
 
   }
 
+  //get lab by id
   getLab(id: number): Observable<any> {
     let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`
 
@@ -157,6 +163,7 @@ export class LabService {
 
   }
 
+  //save lab after edit
   saveLab(labId: number, exercises: string[]) {
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
     fetch('https://apps-lapp-server.herokuapp.com/api/management/addGroupToLab', {
@@ -176,6 +183,7 @@ export class LabService {
       });
   }
 
+  //get student by id
   getStudent(id: number): Observable<any> {
     let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`
 
@@ -187,6 +195,7 @@ export class LabService {
     return this.http.get<any>(`https://apps-lapp-server.herokuapp.com/api/management/getStudent/${id}`, { headers: headerHttp });
   }
 
+  //update student score 
   updateScore(studentId: number, exerciseName: string, score: number, isDone: boolean) {
     console.log(score);
     
@@ -212,7 +221,7 @@ export class LabService {
       });
   }
 
-
+  //get exercise by name to edit
   editExercise(name: string): Observable<any> {
     let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`
 
@@ -225,7 +234,7 @@ export class LabService {
   }
 
 
-
+  //del exercise
   deleteExercise(name: string) {
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
     fetch('https://apps-lapp-server.herokuapp.com/api/management/deleteExercise/' + name, {
@@ -245,13 +254,13 @@ export class LabService {
       });
   }
 
-  searchExercise(term: string): Observable<Exercise[]> {
-    if (!term.trim()) {
-      // if not search term, return empty hero array
-      return of([]);
-    }
-    return this.http.get<Exercise[]>(`https://apps-lapp-server.herokuapp.com/api/management/getExercise/${term}`);
-  }
+  // searchExercise(term: string): Observable<Exercise[]> {
+  //   if (!term.trim()) {
+  //     // if not search term, return empty hero array
+  //     return of([]);
+  //   }
+  //   return this.http.get<Exercise[]>(`https://apps-lapp-server.herokuapp.com/api/management/getExercise/${term}`);
+  // }
 }
 
 

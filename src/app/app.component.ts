@@ -1,10 +1,9 @@
 import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
-import { SignUpService } from './User-operations/user.service';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { SignUpService } from './User-operations/user.service';
 import { LabService } from './Lab-operations/lab.service';
-import { User } from './User-operations/user';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +22,6 @@ export class AppComponent {
   isLogged: boolean = false;
 
   userName: string = '';
-  // user = new User('', '', '', '', '', );
 
   signOut(){
     this.userService.logOut();

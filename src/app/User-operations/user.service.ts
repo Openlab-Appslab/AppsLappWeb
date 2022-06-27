@@ -22,6 +22,7 @@ export class SignUpService {
 
   headers = new Headers();
 
+  //create user account
   createUser(user: User) {
     return fetch('https://apps-lapp-server.herokuapp.com/api/auth/register', {
       method: 'POST',
@@ -41,6 +42,7 @@ export class SignUpService {
       });
   }
 
+  //login verified user
   loginUser(user: User) {
 
     let authString = `${user.username}:${user.password}`
@@ -69,18 +71,19 @@ export class SignUpService {
   }
 
 
-
+  //tests if user is logged in
   isLoggedIn(): boolean {
     return !!this.cookieService.get('username', false);
   }
 
+  //logout user & delete cookies
   logOut() {
     this.cookieService.deleteAll();
   }
 
 
 
-
+  //get string array of users 
   getAllUsers(): Observable<string[]> {
 
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
@@ -94,7 +97,7 @@ export class SignUpService {
 
   }
 
-
+  //resend email for verification
   resendEmail(username: string) {
     return fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resendEmail/${username}`, {
       method: 'POST',
@@ -112,6 +115,7 @@ export class SignUpService {
       });
   }
 
+  //send request for password reset
   resetPassword(username: string) {
    return fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resetPassword/${username}`, {
       method: 'POST',
@@ -129,6 +133,7 @@ export class SignUpService {
       });
   }
 
+  //submit new password after reset
   submitNewPassword(username: string, password: string): any {
    return fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resetPassword`, {
       method: 'POST',
