@@ -53,16 +53,19 @@ export class ExercisesComponent implements OnInit {
       this.exercisesNotIn.push(this.exerciseModel);
       this.labService.createExercise(this.exerciseModel, this.exerciseGroupModel.minStars, this.exerciseGroupModel.maxStars).then(() => { 
         this.loading = false;
+        window.location.reload();
       });
       
     }
     else {
       this.labService.createExercise(this.exerciseModel, 0, 0).then(() => { 
         this.loading = false;
+        this.exercisesNotIn.push(this.exerciseModel);
+        window.location.reload();
       });
-      this.exercisesNotIn.push(this.exerciseModel);
+      
     }
-
+    
   }
 
   dropDownChanged(event: MatSelectChange) {

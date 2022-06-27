@@ -44,6 +44,8 @@ export class AppComponent {
   closeTemplateSheetMenu() {
     this.bottomSheet.dismiss();
   }
+  
+
 
   // getUser(){
   //   const id = Number(this.route.snapshot.paramMap.get('id'));
