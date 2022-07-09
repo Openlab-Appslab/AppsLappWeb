@@ -7,6 +7,9 @@
     overflow-y: scroll;
     margin-top: 2em;
 }
+.flex-container:last-child {
+    padding: 5px;
+}
 
 .flex-container::-webkit-scrollbar {
     display: none;

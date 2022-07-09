@@ -15,6 +15,9 @@
     align-items: center;
     margin-top: 2em;
 }
+.flex-container:last-child {
+    padding: 5px;
+}
 
 .flex-child {
     flex: 1;

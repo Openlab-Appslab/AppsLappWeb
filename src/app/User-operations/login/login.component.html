@@ -1,56 +1,85 @@
 <div class="flex-container">
-    <div class="flex-child text">
-        <div class="logo-text">
-            <img style="width: 65%; text-align: center;" src="/assets/images/Logo2.png" alt="">
-            <div class="line"></div>
-            <p class="welcome-text">Vitajte v AppsLappe!</p>
-            <p>Študuj moderne. Študuj v Appslabe</p>
-        </div>
+  <div class="flex-child text">
+    <div class="logo-text">
+      <img
+        style="width: 65%; text-align: center"
+        src="/assets/images/Logo2.png"
+        alt=""
+      />
+      <div class="line"></div>
+      <p class="welcome-text">Vitajte v AppsLappe!</p>
+      <p>Študuj moderne. Študuj v Appslabe</p>
     </div>
+  </div>
 
-    <div class="flex-child card">
+  <div class="flex-child card">
+    <body>
+      <div class="login-form">
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+          <h2>Prihlásenie</h2>
 
-        <body>
-            <div class="login-form">
-                <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
-                    <h2>Prihlásenie</h2>
-
-                    <div class="form-group has-error">
-                        <input [(ngModel)]="model.username" type="text" class="form-control" name="username"
-                            placeholder="Prihlasovacie Meno" required>
-                    </div>
-                    <div class="form-group">
-                        <input [(ngModel)]="model.password" type="password" class="form-control" name="password"
-                            placeholder="Heslo" required="required">
-                    </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary btn-lg btn-block"
-                            [disabled]="!loginForm.form.valid">
-                            Prihlásiť
-                            <span class="spinner-border spinner-border-sm" *ngIf="loading" role="status"
-                                aria-hidden="true"></span>
-                        </button>
-
-                    </div>
-                    <p><a (click)="openTempDialog()">Zabudli ste Heslo ?</a></p>
-                </form>
-                <p class="text-center small">Nemáte Účet ? <a [routerLink]="['/registration']">Zaregistrujte sa Tu!</a></p>
-
-
-            </div>
-
-        </body>
-    </div>
+          <div class="form-group has-error">
+            <input
+              [(ngModel)]="model.username"
+              type="text"
+              class="form-control"
+              name="username"
+              placeholder="Prihlasovacie Meno"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <input
+              [(ngModel)]="model.password"
+              type="password"
+              class="form-control"
+              name="password"
+              placeholder="Heslo"
+              required="required"
+            />
+          </div>
+          <div class="form-group">
+            <button
+              type="submit"
+              class="btn btn-primary btn-lg btn-block"
+              [disabled]="!loginForm.form.valid"
+            >
+              Prihlásiť
+              <span
+                class="spinner-border spinner-border-sm"
+                *ngIf="loading"
+                role="status"
+                aria-hidden="true"
+              ></span>
+            </button>
+          </div>
+          <p><a (click)="openTempDialog()">Zabudli ste Heslo ?</a></p>
+        </form>
+        <p class="text-center small">
+          Nemáte Účet ?
+          <a [routerLink]="['/registration']">Zaregistrujte sa Tu!</a>
+        </p>
+      </div>
+    </body>
+  </div>
 </div>
 
-
-
-
 <ng-template #dialogRef let-mydata>
-  <h2>Enter username to reset password</h2>
-  <input [(ngModel)]="userName" type="text" class="form-control" name="ressPass"placeholder="Enter Username" required>
+  <h2>Prosím zadajte prihlasovacie meno</h2>
+  <input
+    [(ngModel)]="userName"
+    type="text"
+    class="form-control"
+    name="ressPass"
+    placeholder="Enter Username"
+    required
+  />
   <div style="display: flex; justify-content: space-between; margin-top: 0.5em">
-    <button mat-raised-button color="primary" (click)="resetPassword()">Submit</button>
-    <button mat-button mat-dialog-close="I am from dialog land...">Close</button>
+    <button mat-raised-button color="primary" (click)="resetPassword()">
+      Resetovať
+    </button>
+    <button mat-button mat-dialog-close="I am from dialog land...">
+      Zavrieť
+    </button>
   </div>
 </ng-template>

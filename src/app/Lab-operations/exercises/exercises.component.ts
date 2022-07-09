@@ -55,7 +55,6 @@ export class ExercisesComponent implements OnInit {
         this.loading = false;
         window.location.reload();
       });
-      
     }
     else {
       this.labService.createExercise(this.exerciseModel, 0, 0).then(() => { 
@@ -63,9 +62,7 @@ export class ExercisesComponent implements OnInit {
         this.exercisesNotIn.push(this.exerciseModel);
         window.location.reload();
       });
-      
     }
-    
   }
 
   dropDownChanged(event: MatSelectChange) {
