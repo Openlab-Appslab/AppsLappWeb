@@ -43,7 +43,7 @@ export class SignUpService {
   }
 
   //login verified user
-  loginUser(user: User) {
+  loginUser(user: User): any {
 
     let authString = `${user.username}:${user.password}`
 

@@ -3,7 +3,7 @@ import { Exercise } from '../exercise';
 import { ExerciseGroup } from '../exercise-group';
 import { LabService } from '../lab.service';
 import { MatSelectChange } from '@angular/material/select';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 
 
@@ -68,7 +68,7 @@ export class ExercisesComponent implements OnInit {
   dropDownChanged(event: MatSelectChange) {
     this.exerciseModel.groupName = event.value;
   }
-  selectedOrder = new FormControl();
+  selectedOrder = new UntypedFormControl();
 
   getExestingGroup() {
     this.labService.getAllExerciseGroups().subscribe(response => {

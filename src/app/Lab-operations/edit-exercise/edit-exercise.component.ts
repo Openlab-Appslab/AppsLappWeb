@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { MatSelectChange } from '@angular/material/select';
 import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/User-operations/user';
@@ -31,7 +31,7 @@ export class EditExerciseComponent implements OnInit {
   
   student = new User('','','','','');
   selectedOption: string;
-  selectedOrder = new FormControl();
+  selectedOrder = new UntypedFormControl();
   group: string;
   options: string[] = ['Add to Existing Group', 'Create New Group'];
   id: number;

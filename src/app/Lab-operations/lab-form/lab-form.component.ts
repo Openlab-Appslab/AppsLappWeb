@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import { User } from 'src/app/User-operations/user';
 import { SignUpService } from 'src/app/User-operations/user.service';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 import { LabService } from '../lab.service';
 
 @Component({
@@ -12,13 +12,13 @@ import { LabService } from '../lab.service';
 })
 export class LabFormComponent implements OnInit {
 
-  constructor(private userService: SignUpService, fb: FormBuilder, private labService: LabService) { } 
+  constructor(private userService: SignUpService, fb: UntypedFormBuilder, private labService: LabService) { } 
 
   labName = '';
 
   user = new User('', '', '', '', '');
 
-  toppings: FormGroup;
+  toppings: UntypedFormGroup;
 
   labMaster = this.userService.cookieService.get('username', this.user.firstName);
   
