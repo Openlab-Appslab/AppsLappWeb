@@ -7,9 +7,11 @@
         <input class="form-control" type="text" placeholder="Exercise Name" [(ngModel)]="exercise.name" required
           name="exName" #exGroup="ngModel">
         <label style="margin-top: 2em;" for="">Popis Cvičenia</label>
-        <textarea rows="7" type="text" name="description" id="" class="form-control"
-          placeholder="Description for exercise" style="font-size: small;" [(ngModel)]="exercise.description"
-          required></textarea>
+        
+
+          <ejs-richtexteditor [(ngModel)]="exercise.description">
+            
+        </ejs-richtexteditor>
           <div class="form-group">
             <label style="margin-top: 2em;" for="">Počet hviezd za cvičenie</label>
           <input class="form-control" type="number" placeholder="Required Stars for Exercise"

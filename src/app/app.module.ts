@@ -41,6 +41,7 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResetPasswordComponent } from './User-operations/reset-password/reset-password.component';
+import { RichTextEditorModule, ToolbarService, LinkService, ImageService, HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
 
 
 
@@ -91,9 +92,9 @@ import { ResetPasswordComponent } from './User-operations/reset-password/reset-p
     MatExpansionModule,
     MatSlideToggleModule,
     NgbModule,
-    
+    RichTextEditorModule
   ],
-  providers: [],
+  providers: [ ToolbarService, LinkService, ImageService, HtmlEditorService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

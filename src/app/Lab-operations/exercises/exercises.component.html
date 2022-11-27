@@ -56,9 +56,11 @@
         <input class="form-control" type="text"  [(ngModel)]="exerciseModel.name" required
           name="exName" #exGroup="ngModel">
         <label style="margin-top: 2em;" for="">Popis Cvičenia</label>
-        <textarea rows="7" type="text" name="description" id="" class="form-control"
-           style="font-size: small;" [(ngModel)]="exerciseModel.description"
-          required></textarea>
+          <ejs-richtexteditor>
+            <ng-template class="description-text" #valueTemplate [(ngModel)]="exerciseModel.description">
+              <p>Popis Cvičenia</p>
+            </ng-template>
+        </ejs-richtexteditor>
         <div class="form-group">
           <label style="margin-top: 2em;" for="">Počet hviezd za cvičenie</label>
           <input class="form-control" type="number" [(ngModel)]="exerciseModel.requiredStars" required name="requiredStars" #exGroup="ngModel" style="margin-bottom: 2em">

@@ -25,7 +25,7 @@ export class EditExerciseComponent implements OnInit {
   }
 
   exerciseId: number;
-  exercise = new Exercise('','','', 0);
+  exercise = new Exercise('','blablalakjljlsk','', 0);
   exerciseGroupModel = new ExerciseGroup('', []);
 
   

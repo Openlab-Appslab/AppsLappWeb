@@ -108,7 +108,7 @@
     color: black;
   }
 
-  * {
+  label {
     color: white;
   }
   
@@ -120,9 +120,7 @@
     position: relative;
   }
   
-  p {
-    background-color: #6D4FD8;
-  }
+ 
   mat-radio-button{
     color: white;
   }
