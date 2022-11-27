@@ -40,6 +40,7 @@ export class EditExerciseComponent implements OnInit {
     this.exercise.groupName = event.value;
   }
   onSubmit(){
+    console.log(this.exercise);
     this.labService.updateExercise(this.id, this.exercise, this.group);
   }
   getExercise(){
