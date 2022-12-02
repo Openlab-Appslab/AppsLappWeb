@@ -16,8 +16,8 @@ export class LabService {
 
   constructor(private router: Router, private cookieService: NgxEncryptCookieService, private http: HttpClient, private userService: SignUpService) { }
   headers = new Headers();
-  url = 'https://appslab-api.herokuapp.com/api/management/';
-  
+  url = 'https://appslab-api.herokuapp.com/api/management/'; 
+   
 
   //create lab of students
   createLab(labStudents: string[], labName: string) {
