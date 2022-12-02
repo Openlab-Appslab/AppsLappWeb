@@ -1,6 +1,6 @@
 import { ExerciseGroup } from './exercise-group';
 
-xdescribe('ExerciseGroup', () => {
+describe('ExerciseGroup', () => {
   it('should create an instance', () => {
     expect(new ExerciseGroup('', [])).toBeTruthy();
   });
