@@ -16,13 +16,14 @@ export class LabService {
 
   constructor(private router: Router, private cookieService: NgxEncryptCookieService, private http: HttpClient, private userService: SignUpService) { }
   headers = new Headers();
-  exerciseUrl = 'https://apps-lapp-server.herokuapp.com/api/management/getExercise';
+  url = 'https://appslab-api.herokuapp.com/api/management/';
+  
 
   //create lab of students
   createLab(labStudents: string[], labName: string) {
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
 
-    fetch('https://apps-lapp-server.herokuapp.com/api/management/createLab', {
+    fetch( this.url + 'createLab', {
       method: 'POST',
       headers: new Headers({
         'Authorization': 'Basic ' + btoa(authString),
@@ -46,7 +47,7 @@ export class LabService {
     let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
 
-    return fetch('https://apps-lapp-server.herokuapp.com/api/management/createExercise', {
+    return fetch( this.url + 'createExercise', {
       method: 'POST',
       headers: new Headers({
         'Authorization': 'Basic ' + btoa(authString),
@@ -68,7 +69,7 @@ export class LabService {
     let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
 
-    fetch('https://apps-lapp-server.herokuapp.com/api/management/createExercise', {
+    fetch( this.url + 'createExercise', {
       method: 'POST',
       headers: new Headers({
         'Authorization': 'Basic ' + btoa(authString),
@@ -89,7 +90,7 @@ export class LabService {
   createGroupOfExercises(exerciseGroupModel: ExerciseGroup) {
 
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
-    fetch('https://apps-lapp-server.herokuapp.com/api/management/createGroupOfExercises', {
+    fetch( this.url + 'createGroupOfExercises', {
       method: 'POST',
       headers: new Headers({
         'Authorization': 'Basic ' + btoa(authString),
@@ -116,7 +117,7 @@ export class LabService {
       Authorization: 'Basic ' + btoa(authString)
     });
 
-    return this.http.get<Exercise[]>('https://apps-lapp-server.herokuapp.com/api/management/getAllExercises', { headers: headerHttp })
+    return this.http.get<Exercise[]>( 'getAllExercises', { headers: headerHttp })
   }
 
   //get all exercise groups 
@@ -130,7 +131,7 @@ export class LabService {
     });
 
 
-    return this.http.get<ExerciseGroup[]>('https://apps-lapp-server.herokuapp.com/api/management/getAllGroups', { headers: headerHttp })
+    return this.http.get<ExerciseGroup[]>( 'getAllGroups', { headers: headerHttp })
   }
 
   //return all labs owned by lab master / admin
@@ -144,7 +145,7 @@ export class LabService {
     });
     
 
-    return this.http.get<Lab[]>('https://apps-lapp-server.herokuapp.com/api/management/getLabs', { headers: headerHttp },)
+    return this.http.get<Lab[]>( 'getLabs', { headers: headerHttp },)
     
 
   }
@@ -158,7 +159,7 @@ export class LabService {
       Authorization: 'Basic ' + btoa(authString)
     });
 
-    return this.http.get<any>(`https://apps-lapp-server.herokuapp.com/api/management/getLab/${id}`, { headers: headerHttp });
+    return this.http.get<any>( `getLab/${id}`, { headers: headerHttp });
 
 
   }
@@ -166,7 +167,7 @@ export class LabService {
   //save lab after edit
   saveLab(labId: number, exercises: string[]) {
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
-    fetch('https://apps-lapp-server.herokuapp.com/api/management/addGroupToLab', {
+    fetch( this.url +  'addGroupToLab', {
       method: 'POST',
       headers: new Headers({
         'Authorization': 'Basic ' + btoa(authString),
@@ -192,7 +193,7 @@ export class LabService {
       Authorization: 'Basic ' + btoa(authString)
     });
 
-    return this.http.get<any>(`https://apps-lapp-server.herokuapp.com/api/management/getStudent/${id}`, { headers: headerHttp });
+    return this.http.get<any>( `getStudent/${id}`, { headers: headerHttp });
   }
 
   //update student score 
@@ -202,7 +203,7 @@ export class LabService {
     console.log(isDone);
     
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
-    fetch('https://apps-lapp-server.herokuapp.com/api/management/updateScore', {
+    fetch( this.url +  'updateScore', {
       method: 'POST',
       headers: new Headers({
         'Authorization': 'Basic ' + btoa(authString),
@@ -230,14 +231,14 @@ export class LabService {
       Authorization: 'Basic ' + btoa(authString)
     });
 
-    return this.http.get<any>(`https://apps-lapp-server.herokuapp.com/api/management/getExercise/${name}`, { headers: headerHttp });
+    return this.http.get<any>( `getExercise/${name}`, { headers: headerHttp });
   }
 
 
   //del exercise
   deleteExercise(name: string) {
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
-    fetch('https://apps-lapp-server.herokuapp.com/api/management/deleteExercise/' + name, {
+    fetch( this.url +  'deleteExercise/' + name, {
       method: 'DELETE',
       headers: new Headers({
         'Authorization': 'Basic ' + btoa(authString),
@@ -259,7 +260,7 @@ export class LabService {
   //     // if not search term, return empty hero array
   //     return of([]);
   //   }
-  //   return this.http.get<Exercise[]>(`https://apps-lapp-server.herokuapp.com/api/management/getExercise/${term}`);
+  //   return this.http.get<Exercise[]>( `getExercise/${term}`);
   // }
 }
 

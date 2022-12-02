@@ -38,7 +38,7 @@ export class ExercisesComponent implements OnInit {
 
   exerciseGroupModel = new ExerciseGroup('', this.exercisesIn);
 
-  exerciseModel = new Exercise('', '', '', this.stars);
+  exerciseModel = new Exercise('', 'popis cvicenia ide', '', this.stars);
 
   options: string[] = ['Pridať do existujúcej skupiny', 'Vytvoriť novú skupinu'];
   groups: any[] = [];

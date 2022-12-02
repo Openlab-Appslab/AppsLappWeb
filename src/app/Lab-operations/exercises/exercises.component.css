@@ -121,6 +121,10 @@
   .description-text {
     color: black;
   }
+
+  mat-dialog-container {
+    background-color: #6D4FD8 !important;
+  }
   
 
   mat-radio-button{

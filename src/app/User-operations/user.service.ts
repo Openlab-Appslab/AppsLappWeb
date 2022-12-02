@@ -21,10 +21,11 @@ export class SignUpService {
   appc: AppComponent;
 
   headers = new Headers();
+  url = 'https://appslab-api.herokuapp.com/api';
 
   //create user account
   createUser(user: User) {
-    return fetch('https://apps-lapp-server.herokuapp.com/api/auth/register', {
+    return fetch(this.url + '/auth/' + 'register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -50,7 +51,7 @@ export class SignUpService {
     this.headers.set('Authorization', 'Basic ' + btoa(authString))
 
 
-    return fetch('https://apps-lapp-server.herokuapp.com/api/auth/login', {
+    return fetch(this.url + '/auth/' + 'login', {
       method: 'GET',
       headers: this.headers,
     })
@@ -99,7 +100,7 @@ export class SignUpService {
 
   //resend email for verification
   resendEmail(username: string) {
-    return fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resendEmail/${username}`, {
+    return fetch(this.url + '/auth/' + `resendEmail/${username}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -117,7 +118,7 @@ export class SignUpService {
 
   //send request for password reset
   resetPassword(username: string) {
-   return fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resetPassword/${username}`, {
+   return fetch(this.url +'/auth/' + `resetPassword/${username}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -135,7 +136,7 @@ export class SignUpService {
 
   //submit new password after reset
   submitNewPassword(username: string, password: string): any {
-   return fetch(`https://apps-lapp-server.herokuapp.com/api/auth/resetPassword`, {
+   return fetch(this.url + '/auth/' + `resetPassword`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

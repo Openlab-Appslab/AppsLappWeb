@@ -56,8 +56,8 @@
         <input class="form-control" type="text"  [(ngModel)]="exerciseModel.name" required
           name="exName" #exGroup="ngModel">
         <label style="margin-top: 2em;" for="">Popis Cvičenia</label>
-          <ejs-richtexteditor>
-            <ng-template class="description-text" #valueTemplate [(ngModel)]="exerciseModel.description">
+          <ejs-richtexteditor name="des" [(ngModel)]="exerciseModel.description">
+            <ng-template class="description-text" #valueTemplate >
               <p>Popis Cvičenia</p>
             </ng-template>
         </ejs-richtexteditor>
