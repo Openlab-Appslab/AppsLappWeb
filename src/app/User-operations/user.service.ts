@@ -12,7 +12,7 @@ import { AppComponent } from '../app.component';
 
 
 @Injectable({ providedIn: 'root' })
-export class SignUpService { . 
+export class SignUpService { 
 
   constructor(public cookieService: NgxEncryptCookieService, private router: Router, public dialog: MatDialog, private http: HttpClient,) { }
 
