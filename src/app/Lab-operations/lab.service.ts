@@ -31,6 +31,7 @@ export class LabService {
       }),
       body: JSON.stringify({ name: labName, studentNames: labStudents }),
 
+
     })
       .then(response => response.json())
       .then(data => {
@@ -39,6 +40,7 @@ export class LabService {
       })
       .catch((error) => {
         console.error('Error:', error);
+        console.log(JSON.stringify({ name: labName, studentNames: labStudents }))
       });
   }
 
@@ -117,7 +119,7 @@ export class LabService {
       Authorization: 'Basic ' + btoa(authString)
     });
 
-    return this.http.get<Exercise[]>( 'getAllExercises', { headers: headerHttp })
+    return this.http.get<Exercise[]>( this.url + 'getAllExercises', { headers: headerHttp })
   }
 
   //get all exercise groups 
@@ -131,7 +133,7 @@ export class LabService {
     });
 
 
-    return this.http.get<ExerciseGroup[]>( 'getAllGroups', { headers: headerHttp })
+    return this.http.get<ExerciseGroup[]>( this.url + 'getAllGroups', { headers: headerHttp })
   }
 
   //return all labs owned by lab master / admin
@@ -145,7 +147,7 @@ export class LabService {
     });
     
 
-    return this.http.get<Lab[]>( 'getLabs', { headers: headerHttp },)
+    return this.http.get<Lab[]>(this.url + 'getLabs', { headers: headerHttp },)
     
 
   }
@@ -159,7 +161,7 @@ export class LabService {
       Authorization: 'Basic ' + btoa(authString)
     });
 
-    return this.http.get<any>( `getLab/${id}`, { headers: headerHttp });
+    return this.http.get<any>( this.url + `getLab/${id}`, { headers: headerHttp });
 
 
   }
@@ -193,7 +195,7 @@ export class LabService {
       Authorization: 'Basic ' + btoa(authString)
     });
 
-    return this.http.get<any>( `getStudent/${id}`, { headers: headerHttp });
+    return this.http.get<any>( this.url + `getStudent/${id}`, { headers: headerHttp });
   }
 
   //update student score 
@@ -231,7 +233,7 @@ export class LabService {
       Authorization: 'Basic ' + btoa(authString)
     });
 
-    return this.http.get<any>( `getExercise/${name}`, { headers: headerHttp });
+    return this.http.get<any>( this.url + `getExercise/${name}`, { headers: headerHttp });
   }
 
 

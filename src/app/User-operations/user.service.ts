@@ -94,7 +94,7 @@ export class SignUpService {
       Authorization: 'Basic ' + btoa(authString)
     });
 
-    return this.http.get<string[]>('https://apps-lapp-server.herokuapp.com/api/management/getStudents', { headers: headerHttp },)
+    return this.http.get<string[]>(this.url + '/management/getStudents', { headers: headerHttp },)
 
   }
 
