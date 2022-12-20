@@ -6,6 +6,7 @@ export class ExerciseGroup {
     exercises: Exercise[];
     maxStars: number;
     minStars: number;
+    award: string;
 
     constructor(name: string, exercises: Exercise[]) { 
         this.name = name;

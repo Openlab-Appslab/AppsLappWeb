@@ -35,6 +35,7 @@ export class ExercisesComponent implements OnInit {
   exercisesNotIn: Exercise[] = [];
   exercisesIn: Exercise[] = [];
   stars: any = undefined;
+  awards = ['Žiadne','Junior', 'Medior', 'Senior'];
 
   exerciseGroupModel = new ExerciseGroup('', this.exercisesIn);
 
@@ -68,6 +69,10 @@ export class ExercisesComponent implements OnInit {
 
   dropDownChanged(event: MatSelectChange) {
     this.exerciseModel.groupName = event.value;
+  }
+
+  dropDownChangedd(event: MatSelectChange) {
+    this.exerciseGroupModel.award = event.value;
   }
   selectedOrder = new UntypedFormControl();
 

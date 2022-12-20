@@ -91,8 +91,8 @@
           </div>
         </div>
   
-  
-        <div class="flex" style="display: flex; flex-direction: row; justify-content: space-evenly;"  *ngIf="selectedOption == 'Vytvoriť novú skupinu'">
+      <div *ngIf="selectedOption == 'Vytvoriť novú skupinu'">
+        <div class="flex" style="display: flex; flex-direction: row; justify-content: space-evenly;"  >
           <div class="form-group">
             <label for="">Minimálny počet hviezd</label>
             <input class="form-control" type="number" 
@@ -105,8 +105,20 @@
               [(ngModel)]="exerciseGroupModel.maxStars" required name="maxStars" #exGroup="ngModel">
           </div>
         </div>
-        
+        <div class="select" style="display: flex; justify-content: center; align-items: center; margin-top: 0.5em;">
+          <section>
+            <mat-form-field appearance="outline">
+              <mat-label>Vyberte ocenenie:</mat-label>
+              <mat-select [formControl]="selectedOrder" (selectionChange)="dropDownChangedd($event)" >
+                <mat-option color="secondary" *ngFor="let award of awards" [value]="award">
+                  {{ award }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </section>
+        </div>
       </div>
+    </div>
   
   
   

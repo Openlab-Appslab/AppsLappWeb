@@ -25,3 +25,11 @@ body {
 #js-licensing {
     display: none !important;
 }
+
+.mat-form-field-wrapper {
+    padding-bottom: 0 !important;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-wrapper {
+    margin: 0 !important;
+  }

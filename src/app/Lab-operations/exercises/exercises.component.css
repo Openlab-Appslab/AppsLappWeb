@@ -139,9 +139,8 @@
 
   section {
     background-color: white;
-    width: 50%;
+    width: fit-content;
     border-radius: 5px;
-    margin: 5px;
   }
   
   .sel {
@@ -153,3 +152,4 @@
     color: black;
   }
  
+  
