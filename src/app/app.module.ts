@@ -42,7 +42,8 @@ import { HomeComponent } from './home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ResetPasswordComponent } from './User-operations/reset-password/reset-password.component';
 import { RichTextEditorModule, ToolbarService, LinkService, ImageService, HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 @NgModule({
@@ -92,7 +93,9 @@ import { RichTextEditorModule, ToolbarService, LinkService, ImageService, HtmlEd
     MatExpansionModule,
     MatSlideToggleModule,
     NgbModule,
-    RichTextEditorModule
+    RichTextEditorModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [ ToolbarService, LinkService, ImageService, HtmlEditorService ],
   bootstrap: [AppComponent]

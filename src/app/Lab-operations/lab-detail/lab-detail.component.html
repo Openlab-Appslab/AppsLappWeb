@@ -42,8 +42,12 @@
           <mat-panel-title>
             <h2>{{group.name}}</h2>
           </mat-panel-title>
-          <mat-panel-description style="margin-left: 2.5em;">
-            {{group.minStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /> - {{group.maxStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" />
+          <mat-panel-description>
+            <div class="des">
+              <p>{{group.minStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /> - {{group.maxStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /></p>
+              <p style="margin-left: 2em;">{{group.award}}</p>
+              <p>{{group.deadline}}</p>
+            </div>
           </mat-panel-description>
         </mat-expansion-panel-header>
 
