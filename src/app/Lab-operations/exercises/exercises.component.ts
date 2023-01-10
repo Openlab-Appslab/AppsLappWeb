@@ -61,7 +61,7 @@ export class ExercisesComponent implements OnInit {
       });
     }
     else {
-      this.labService.createExercise(this.exerciseModel, 0, 0, '', null).then(() => { 
+      this.labService.createExercise(this.exerciseModel, 0, 0, '', this.date).then(() => { 
         this.loading = false;
         this.exercisesNotIn.push(this.exerciseModel);
         window.location.reload();
