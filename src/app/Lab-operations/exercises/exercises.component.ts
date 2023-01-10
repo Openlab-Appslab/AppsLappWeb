@@ -47,7 +47,7 @@ export class ExercisesComponent implements OnInit {
   allGroups: ExerciseGroup[] = [];
   allExercises: Exercise[] = [];
   loading: boolean = false;
-  deadline = this.exerciseGroupModel.deadline.getDay()+'.'+this.exerciseGroupModel.deadline.getMonth()+'.'+this.exerciseGroupModel.deadline.getFullYear()
+  // deadline = this.exerciseGroupModel.deadline.getDay()+'.'+this.exerciseGroupModel.deadline.getMonth()+'.'+this.exerciseGroupModel.deadline.getFullYear()
   date = new Date();
 
   onSubmit() {
@@ -55,13 +55,13 @@ export class ExercisesComponent implements OnInit {
     this.loading = true;
     if (this.selectedOption != 'Pridať do existujúcej skupiny') {
       this.exercisesNotIn.push(this.exerciseModel);
-      this.labService.createExercise(this.exerciseModel, this.exerciseGroupModel.minStars, this.exerciseGroupModel.maxStars, this.exerciseGroupModel.deadline).then(() => { 
+      this.labService.createExercise(this.exerciseModel, this.exerciseGroupModel.minStars, this.exerciseGroupModel.maxStars, this.exerciseGroupModel.award, this.exerciseGroupModel.deadline).then(() => { 
         this.loading = false;
         // window.location.reload();
       });
     }
     else {
-      this.labService.createExercise(this.exerciseModel, 0, 0, this.date).then(() => { 
+      this.labService.createExercise(this.exerciseModel, 0, 0, '', null).then(() => { 
         this.loading = false;
         this.exercisesNotIn.push(this.exerciseModel);
         window.location.reload();

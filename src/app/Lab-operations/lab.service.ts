@@ -45,7 +45,7 @@ export class LabService {
   }
 
   // create exercise for students
-  createExercise(model: Exercise, minStars: number, maxStars: number, deadline: Date) {
+  createExercise(model: Exercise, minStars: number, maxStars: number, award: string, deadline: Date) {
     let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
     let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
     console.log(JSON.stringify({ exercise: exerciseM, minStars: minStars, maxStars: maxStars, deadline: deadline }));
@@ -56,7 +56,7 @@ export class LabService {
         'Authorization': 'Basic ' + btoa(authString),
         'Content-Type': 'application/json'
       }),
-      body: JSON.stringify({ exercise: exerciseM, minStars: minStars, maxStars: maxStars, deadline: deadline }),
+      body: JSON.stringify({ exercise: exerciseM, minStars: minStars, maxStars: maxStars, award: award, deadline: deadline }),
     })
       .then(response => response.json())
       .then(data => {
