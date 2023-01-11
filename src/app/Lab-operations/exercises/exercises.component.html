@@ -1,145 +1,284 @@
-<button mat-raised-button color="primary" (click)="openTempDialog()"><img src="https://img.icons8.com/windows/30/ffffff/add--v1.png"/> Vytvoriť Cvičenie</button>
+<button mat-raised-button color="primary" (click)="openTempDialog()">
+  <img src="https://img.icons8.com/windows/30/ffffff/add--v1.png" /> Vytvoriť
+  Cvičenie
+</button>
 
-
-
-<div class="center" style="width: max-content !important;">
+<div class="center" style="width: max-content !important">
   <h2>Zoznam Cvičení</h2>
-<!-- <app-exercise-search></app-exercise-search> -->
-  
-  <div  *ngFor="let group of allGroups">
-    <div class="example-container" *ngIf="group.exercises.length != 0">
-    <mat-accordion>
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <h2>{{group.name}}</h2>
-          </mat-panel-title>
-          <mat-panel-description style="margin-left: 2.5em;">
-            {{group.minStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /> - {{group.maxStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" />
-          </mat-panel-description>
-        </mat-expansion-panel-header>
+  <!-- <app-exercise-search></app-exercise-search> -->
 
-        <div *ngFor="let exercise of allExercises">
-          <div *ngIf="exercise.groupName == group.name">
-            <mat-accordion>
-              <mat-expansion-panel hideToggle
-                style="margin-bottom: 20px; color: black; justify-content: space-between;">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    <h3>{{exercise.name}} </h3>
-                  </mat-panel-title>
-                  <mat-panel-description>
-                    {{exercise.requiredStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" />
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-                <p style="background-color: transparent;" [innerHTML]="exercise.description"></p><br>
-                <button mat-raised-button color="primary" style="margin: 1em;" routerLink="/edit-exercise/{{exercise.name}}">Upraviť Cvičenie</button>
-                <button mat-raised-button color="primary" (click)="deleteExercise(exercise)">Vymazať Cvičenie</button>
-              </mat-expansion-panel>
-            </mat-accordion>
+  <div *ngFor="let group of allGroups">
+    <div class="example-container" *ngIf="group.exercises.length != 0">
+      <mat-accordion>
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <h2>{{ group.name }}</h2>
+            </mat-panel-title>
+            <mat-panel-description style="margin-left: 2.5em">
+              {{ group.minStars }}
+              <img src="https://img.icons8.com/fluency/18/000000/star.png" /> -
+              {{ group.maxStars }}
+              <img src="https://img.icons8.com/fluency/18/000000/star.png" />
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div *ngFor="let exercise of allExercises">
+            <div *ngIf="exercise.groupName == group.name">
+              <mat-accordion>
+                <mat-expansion-panel
+                  hideToggle
+                  style="
+                    margin-bottom: 20px;
+                    color: black;
+                    justify-content: space-between;
+                  "
+                >
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <h3>{{ exercise.name }}</h3>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      {{ exercise.requiredStars }}
+                      <img
+                        src="https://img.icons8.com/fluency/18/000000/star.png"
+                      />
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <p
+                    style="background-color: transparent"
+                    [innerHTML]="exercise.description"
+                  ></p>
+                  <br />
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    style="margin: 1em"
+                    routerLink="/edit-exercise/{{ exercise.name }}"
+                  >
+                    Upraviť Cvičenie
+                  </button>
+                  <button
+                    mat-raised-button
+                    color="primary"
+                    (click)="deleteExercise(exercise)"
+                  >
+                    Vymazať Cvičenie
+                  </button>
+                </mat-expansion-panel>
+              </mat-accordion>
+            </div>
           </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
   </div>
 </div>
-</div>
-
 
 <ng-template #dialogRef let-mydata class="dialog">
-  <div class="centel" style="color: black;">
+  <div class="centel" style="color: black">
     <form #createExerciseForm="ngForm" (ngSubmit)="onSubmit()">
-      <h2 style="color: white;">Vytvorenie Cvičenia</h2>
-  
+      <h2 style="color: white">Vytvorenie Cvičenia</h2>
+
       <div class="form-group">
-        <label for="">Meno Cvičenia</label>
-        <input class="form-control" type="text"  [(ngModel)]="exerciseModel.name" required
-          name="exName" #exGroup="ngModel">
-        <label style="margin-top: 2em;" for="">Popis Cvičenia</label>
-          <ejs-richtexteditor name="des" [(ngModel)]="exerciseModel.description">
-            
-          </ejs-richtexteditor>
+        <label for="exName">Meno Cvičenia</label>
+        <input
+          class="form-control"
+          type="text"
+          [(ngModel)]="exerciseModel.name"
+          required
+          name="exName"
+          #exGroup="ngModel"
+        />
+        <label style="margin-top: 2em" for="">Popis Cvičenia</label>
+        <!-- <ejs-richtexteditor name="des" [(ngModel)]="exerciseModel.description">
+        </ejs-richtexteditor> -->
+        <ckeditor name="editor" [(ngModel)]="exerciseModel.description">
+          <ckbutton
+            [name]="'saveButton'"
+            [command]="'saveCmd'"
+            (click)="save($event)"
+            [icon]="'save.png'"
+            [label]="'Save Document'"
+            [toolbar]="'clipboard,1'"
+          >
+          </ckbutton>
+        </ckeditor>
         <div class="form-group">
-          <label style="margin-top: 2em;" for="">Počet hviezd za cvičenie</label>
-          <input class="form-control" type="number" [(ngModel)]="exerciseModel.requiredStars" required name="requiredStars" #exGroup="ngModel" style="margin-bottom: 2em">
+          <label style="margin-top: 2em" for="">Počet hviezd za cvičenie</label>
+          <input
+            class="form-control"
+            type="number"
+            [(ngModel)]="exerciseModel.requiredStars"
+            required
+            name="requiredStars"
+            #exGroup="ngModel"
+            style="margin-bottom: 2em"
+          />
         </div>
-        <div class="form-group" style="margin-bottom: 0.5em;">
-          <label for="">Pridajte cvičenie do skupiny</label> <br>
-          <mat-radio-group color="primary" aria-label="Select an option" [(ngModel)]="selectedOption" name="option">
-            <mat-radio-button class="example-radio-button" *ngFor="let option of options" [value]="option" style="margin-bottom: 0.5em;">
-              {{option}}
+        <div class="form-group" style="margin-bottom: 0.5em">
+          <label for="">Pridajte cvičenie do skupiny</label> <br />
+          <mat-radio-group
+            color="primary"
+            aria-label="Select an option"
+            [(ngModel)]="selectedOption"
+            name="option"
+          >
+            <mat-radio-button
+              class="example-radio-button"
+              *ngFor="let option of options"
+              [value]="option"
+              style="margin-bottom: 0.5em"
+            >
+              {{ option }}
             </mat-radio-button>
           </mat-radio-group>
-  
-  
-          <div class="sel" *ngIf="selectedOption == 'Pridať do existujúcej skupiny';">
+
+          <div
+            class="sel"
+            *ngIf="selectedOption == 'Pridať do existujúcej skupiny'"
+          >
             <section>
               <mat-form-field appearance="outline">
                 <mat-label>Add to Group:</mat-label>
-                <mat-select [formControl]="selectedOrder" (selectionChange)="dropDownChanged($event)" >
-                  <mat-option color="secondary" *ngFor="let group of groups" [value]="group.name">
+                <mat-select
+                  [formControl]="selectedOrder"
+                  (selectionChange)="dropDownChanged($event)"
+                >
+                  <mat-option
+                    color="secondary"
+                    *ngFor="let group of groups"
+                    [value]="group.name"
+                  >
                     {{ group.name }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
             </section>
           </div>
-  
-          <div *ngIf="selectedOption == 'Vytvoriť novú skupinu';" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <input class="form-control" type="text" placeholder="Exercise Group" [(ngModel)]="exerciseModel.groupName"
-              required name="group" #exGroup="ngModel" style="margin-bottom: 0.5em;">
+
+          <div
+            *ngIf="selectedOption == 'Vytvoriť novú skupinu'"
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+            "
+          >
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Exercise Group"
+              [(ngModel)]="exerciseModel.groupName"
+              required
+              name="group"
+              #exGroup="ngModel"
+              style="margin-bottom: 0.5em"
+            />
             <section>
-              <mat-form-field appearance="fill" >
+              <mat-form-field appearance="fill">
                 <mat-label>Choose a date</mat-label>
-                <input matInput [matDatepicker]="picker" name="deadline" [(ngModel)]="exerciseGroupModel.deadline">
+                <input
+                  matInput
+                  [matDatepicker]="picker"
+                  name="deadline"
+                  [(ngModel)]="exerciseGroupModel.deadline"
+                />
                 <mat-hint>MM/DD/YYYY</mat-hint>
-                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="picker"
+                ></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>
             </section>
           </div>
         </div>
-  
-      <div *ngIf="selectedOption == 'Vytvoriť novú skupinu'">
-        <div class="flex" style="display: flex; flex-direction: row; justify-content: space-evenly;"  >
-          <div class="form-group">
-            <label for="">Minimálny počet hviezd</label>
-            <input class="form-control" type="number" 
-              [(ngModel)]="exerciseGroupModel.minStars" required name="minStars" #exGroup="ngModel">
-          </div>
-  
-          <div class="form-group">
-              <label for="">Maximálny počet hviezd</label>
-            <input class="form-control" type="number" 
-              [(ngModel)]="exerciseGroupModel.maxStars" required name="maxStars" #exGroup="ngModel">
-          </div>
-        </div>
-        <div class="select" style="display: flex; justify-content: center; align-items: center; margin-top: 0.5em;">
-          <section>
-            <mat-form-field appearance="outline">
-              <mat-label>Vyberte ocenenie:</mat-label>
-              <mat-select [formControl]="selectedOrder" (selectionChange)="dropDownChangedd($event)" >
-                <mat-option color="secondary" *ngFor="let award of awards" [value]="award">
-                  {{ award }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </section>
 
-         
+        <div *ngIf="selectedOption == 'Vytvoriť novú skupinu'">
+          <div
+            class="flex"
+            style="
+              display: flex;
+              flex-direction: row;
+              justify-content: space-evenly;
+            "
+          >
+            <div class="form-group">
+              <label for="">Minimálny počet hviezd</label>
+              <input
+                class="form-control"
+                type="number"
+                [(ngModel)]="exerciseGroupModel.minStars"
+                required
+                name="minStars"
+                #exGroup="ngModel"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="">Maximálny počet hviezd</label>
+              <input
+                class="form-control"
+                type="number"
+                [(ngModel)]="exerciseGroupModel.maxStars"
+                required
+                name="maxStars"
+                #exGroup="ngModel"
+              />
+            </div>
+          </div>
+          <div
+            class="select"
+            style="
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin-top: 0.5em;
+            "
+          >
+            <section>
+              <mat-form-field appearance="outline">
+                <mat-label>Vyberte ocenenie:</mat-label>
+                <mat-select
+                  [formControl]="selectedOrder"
+                  (selectionChange)="dropDownChangedd($event)"
+                >
+                  <mat-option
+                    color="secondary"
+                    *ngFor="let award of awards"
+                    [value]="award"
+                  >
+                    {{ award }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </section>
+          </div>
         </div>
       </div>
 
-        
-
-    </div>
-  
-  
-  
       <div class="form-group">
-        <button style="margin-top: 2em;" mat-flat-button color="primary" type="submit"
-          [disabled]="!createExerciseForm.valid || exerciseGroupModel.maxStars < exerciseGroupModel.minStars || exerciseModel.requiredStars > exerciseGroupModel.maxStars">Vytvoriť <span class="spinner-border spinner-border-sm" *ngIf="loading" role="status"
-          aria-hidden="true"></span></button>
+        <button
+          style="margin-top: 2em"
+          mat-flat-button
+          color="primary"
+          type="submit"
+          [disabled]="
+            !createExerciseForm.valid ||
+            exerciseGroupModel.maxStars < exerciseGroupModel.minStars ||
+            exerciseModel.requiredStars > exerciseGroupModel.maxStars
+          "
+        >
+          Vytvoriť
+          <span
+            class="spinner-border spinner-border-sm"
+            *ngIf="loading"
+            role="status"
+            aria-hidden="true"
+          ></span>
+        </button>
       </div>
     </form>
   </div>

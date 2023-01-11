@@ -9,6 +9,24 @@ import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-exercises',
+  template: `
+  <ckeditor
+    [(ngModel)]="ckeditorContent"
+    [config]="{uiColor: '#99000'}"
+    [readonly]="false"
+    (change)="onChange($event)"
+    (editorChange)="onEditorChange($event)" <!-- CKEditor change event -->
+    (ready)="onReady($event)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+    (contentDom)="onContentDom($event)"
+    (fileUploadRequest)="onFileUploadRequest($event)"
+    (fileUploadResponse)="onFileUploadResponse($event)"
+    (paste)="onPaste($event)"
+    (drop)="onDrop($event)"
+    debounce="500">
+  </ckeditor>
+  `,
   templateUrl: './exercises.component.html',
   styleUrls: ['./exercises.component.css']
 })
@@ -30,6 +48,8 @@ export class ExercisesComponent implements OnInit {
     this.getExestingGroup();
     this.getAllGroups();
   }
+
+  save($event:any){}
 
 
   exercisesNotIn: Exercise[] = [];
@@ -64,7 +84,7 @@ export class ExercisesComponent implements OnInit {
       this.labService.createExercise(this.exerciseModel, 0, 0, '', this.date).then(() => { 
         this.loading = false;
         this.exercisesNotIn.push(this.exerciseModel);
-        window.location.reload();
+        // window.location.reload();
       });
     }
   }

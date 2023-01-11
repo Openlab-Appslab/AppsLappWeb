@@ -44,6 +44,7 @@ import { ResetPasswordComponent } from './User-operations/reset-password/reset-p
 import { RichTextEditorModule, ToolbarService, LinkService, ImageService, HtmlEditorService } from '@syncfusion/ej2-angular-richtexteditor';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { CKEditorModule } from 'ng2-ckeditor';
 
 
 @NgModule({
@@ -95,7 +96,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     NgbModule,
     RichTextEditorModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    CKEditorModule
   ],
   providers: [ ToolbarService, LinkService, ImageService, HtmlEditorService ],
   bootstrap: [AppComponent]
