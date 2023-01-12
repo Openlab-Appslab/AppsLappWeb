@@ -129,4 +129,5 @@ export class ExercisesComponent implements OnInit {
     });
     myTempDialog.afterClosed();
   }
+
 }

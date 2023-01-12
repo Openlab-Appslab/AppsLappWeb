@@ -136,7 +136,7 @@
 
   section {
     background-color: white;
-    width: fit-content;
+    width: 100%;
     border-radius: 5px;
   }
   
@@ -149,4 +149,10 @@
     color: black;
   }
  
-  
+  .mat-form-field {
+    width: 100%;
+  }
+
+  .form-group {
+    width: 100%;
+  }
