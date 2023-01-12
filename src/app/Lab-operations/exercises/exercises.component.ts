@@ -122,7 +122,11 @@ export class ExercisesComponent implements OnInit {
   }
 
   openTempDialog() {
-    const myTempDialog = this.dialog.open(this.dialogRef);
+    const myTempDialog = this.dialog.open(this.dialogRef, {
+      width: '1500px',
+      height: '800px',
+      panelClass: 'custom-modalbox'
+    });
     myTempDialog.afterClosed();
   }
 }
