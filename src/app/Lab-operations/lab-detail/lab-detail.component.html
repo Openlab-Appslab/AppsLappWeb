@@ -63,7 +63,7 @@
                     {{exercise.requiredStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png"/>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
-                {{exercise.description}}
+                <p [innerHTML]="exercise.description"></p>
               </mat-expansion-panel>
             </mat-accordion>
           </div>
