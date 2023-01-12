@@ -9,9 +9,12 @@
         <label style="margin-top: 2em;" for="">Popis Cvičenia</label>
         
 
-          <ejs-richtexteditor [(ngModel)]="exercise.description" name="description">
+        <editor name="editor" [(ngModel)]="exercise.description" apiKey="0v7zftkfzknl2y86q95632yntxev9r73ttowluj6b7d2hjoq" 
+        [init]="{
+          plugins: 'lists link image media paste help wordcount table',
+          toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image | media'
+        }"></editor>
 
-        </ejs-richtexteditor>
           <div class="form-group">
             <label style="margin-top: 2em;" for="">Počet hviezd za cvičenie</label>
           <input class="form-control" type="number" placeholder="Required Stars for Exercise"

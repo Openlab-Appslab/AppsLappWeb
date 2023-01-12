@@ -42,6 +42,8 @@ export class ExercisesComponent implements OnInit {
   ngOnInit(): void {
     this.labService.getAllExercises().subscribe(response => {
       this.exercisesNotIn = response;
+      console.log(response);
+      
     });
 
     this.getAllExercises();

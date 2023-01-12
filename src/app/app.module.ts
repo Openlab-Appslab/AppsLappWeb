@@ -45,7 +45,7 @@ import { RichTextEditorModule, ToolbarService, LinkService, ImageService, HtmlEd
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { CKEditorModule } from 'ng2-ckeditor';
-
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -97,7 +97,8 @@ import { CKEditorModule } from 'ng2-ckeditor';
     RichTextEditorModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    CKEditorModule
+    CKEditorModule,
+    EditorModule
   ],
   providers: [ ToolbarService, LinkService, ImageService, HtmlEditorService ],
   bootstrap: [AppComponent]
