@@ -3,7 +3,7 @@ export class Exercise {
     description: string;
     groupName: string;
     requiredStars: number; 
-    isDone: boolean = false;
+    done: boolean = false;
 
     constructor(name: string, description: string, groupName: string, requiredStars: number) {
         this.name = name;

@@ -195,7 +195,7 @@ export class LabService {
       'Content-Type': 'application/json',
       Authorization: 'Basic ' + btoa(authString)
     });
-
+    
     return this.http.get<any>( this.url + `getStudent/${id}`, { headers: headerHttp });
   }
 

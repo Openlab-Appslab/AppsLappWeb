@@ -31,17 +31,19 @@ export class StudentDetailComponent implements OnInit {
       this.student.username = response.name;
       this.student.score = response.score;
       this.exercises = response.exercises; 
+      console.log(response.exercises);
+      
     });
   }
 
   
 
 
-  updateScore(exercise: Exercise, ){
-    exercise.isDone = true;
+  updateScore(exercise: Exercise){
+    exercise.done = true;
     this.student.score = this.student.score + exercise.requiredStars;
     
-    this.labService.updateScore(this.studentId, exercise.name, exercise.requiredStars, exercise.isDone); 
+    this.labService.updateScore(this.studentId, exercise.name, exercise.requiredStars, true); 
 
   }
   

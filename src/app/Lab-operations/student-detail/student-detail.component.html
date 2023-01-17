@@ -14,7 +14,7 @@
 <div class="center">
   
   <div *ngFor="let exercise of exercises">
-    <div class="example-container" *ngIf="exercise.isDone != true">
+    <div class="example-container" *ngIf="exercise.done != true">
       <h2 style="background-color: #603cb0; border-radius: 10px">
         {{ exercise.name }}
       </h2>
@@ -34,7 +34,7 @@
 <div class="center">
   <div *ngFor="let exercise of exercises">
     <!---->
-    <div class="example-container" style="background-color: rgb(200, 255, 200);" *ngIf="exercise.isDone == true">
+    <div class="example-container" style="background-color: rgb(200, 255, 200);" *ngIf="exercise.done == true">
       <h2 style="background-color: rgb(69, 113, 69); border-radius: 10px">
         {{ exercise.name }}
       </h2>
