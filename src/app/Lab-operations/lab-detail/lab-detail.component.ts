@@ -28,6 +28,7 @@ export class LabDetailComponent implements OnInit {
   isStudent: boolean = false;
   sortedStudents: any[];
   event: string = '';
+  date: Date = new Date();  
 
   ngOnInit(): void {
     this.getLab();
@@ -35,6 +36,7 @@ export class LabDetailComponent implements OnInit {
     this.getAllGroups();
     // this.dataSource.data = this.dataSource.data.sort((a, b) => a.score < b.score ? -1 : a.score > b.score ? 1 : 0);
       
+    console.log(this.date.getDate());
     
   }
 
@@ -44,7 +46,17 @@ export class LabDetailComponent implements OnInit {
     this.labService.getLab(id)
       .subscribe(lab => {
         this.labGroups = lab.groupOfExercises;
+        console.log(lab);
         this.lab = lab;
+        //for loop through students and run this.labService.getStudent(id) to get their trophies
+        for (let i = 0; i < lab.studentNames.length; i++) {
+          this.labService.getStudent(lab.studentNames[i].id).subscribe(response => {
+            this.dataSource.data[i].trophies = response.awards;
+            this.dataSource.data[i].score = response.score;
+            console.log(response.awards);
+            
+          });
+        }
         this.dataSource.data = lab.studentNames;
       });
   }
@@ -69,6 +81,8 @@ export class LabDetailComponent implements OnInit {
   getAllExercises(){
     this.labService.getAllExercises().subscribe(response => {
       this.allExercises = response;
+      console.log(response, 'allExercises');
+      
     });
   }
 
@@ -88,12 +102,26 @@ export class LabDetailComponent implements OnInit {
   labGroupsNames: string[] = [];
 
 
-
-  getAllGroups(){
+  deadlines: any[] = [];
+  datef: Date = new Date();
+  getAllGroups() {
     this.labService.getAllExerciseGroups().subscribe(response => {
       this.allGroups = response;
-    }); }
 
+      //calculate time difference and convert to days
+      for (let i = 0; i < response.length; i++) {
+        let dateString = response[i].deadline;
+        this.datef = new Date(dateString);
+        if (Math.round((this.datef.getTime() - this.date.getTime())/86400000) < 0) {
+          this.deadlines.push('Skupina je uzavretá');
+          
+        }
+        else {
+          this.deadlines.push(Math.round((this.datef.getTime() - this.date.getTime())/86400000));
+        }
+      }
+    });
+  }
     saveLab(){
       this.labService.saveLab(this.labId, this.labGroupsNames);
       this.editExerciseTester = false;

@@ -10,8 +10,8 @@
     justify-content: center;
 }
 .example-container {
-    width: 600px;
-    max-width: 100%;
+    width: 120%;
+    height: auto;
     display: flex;
     flex-direction: column;
     margin-right: 0px !important;

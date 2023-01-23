@@ -5,15 +5,17 @@
 
 <div class="center" style="width: max-content !important">
   <h2>Zoznam Cvičení</h2>
+
   <!-- <app-exercise-search></app-exercise-search> -->
 
-  <div *ngFor="let group of allGroups">
+  <div *ngFor="let group of allGroups; let i = index">
     <div class="example-container" *ngIf="group.exercises.length != 0">
       <mat-accordion>
         <mat-expansion-panel hideToggle>
           <mat-expansion-panel-header>
             <mat-panel-title>
               <h2>{{ group.name }}</h2>
+              <!-- <p>{{ deadlines[i] === "Skupina je uzavretá" ? deadlines[i] : deadlines[i] + ' days' }}</p> -->
             </mat-panel-title>
             <mat-panel-description style="margin-left: 2.5em">
               {{ group.minStars }}

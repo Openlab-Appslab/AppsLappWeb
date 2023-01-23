@@ -15,7 +15,7 @@
   
     <ng-container matColumnDef="Trophies">
       <th mat-header-cell *matHeaderCellDef>Trofeje</th>
-      <td mat-cell *matCellDef="let element">-</td>
+      <td mat-cell *matCellDef="let element">{{element.trophies}}</td>
     </ng-container>
     <div >
     <ng-container matColumnDef="Edit" >
@@ -35,7 +35,7 @@
 
 <div class="center" style="width: max-content !important;">
   <h2 *ngIf="labGroups.length != 0">Exercises</h2>
-  <div class="example-container" *ngFor="let group of labGroups">
+  <div class="example-container" *ngFor="let group of labGroups; let i = index">
     <mat-accordion>
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
@@ -45,18 +45,22 @@
           <mat-panel-description>
             <div class="des">
               <p>{{group.minStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /> - {{group.maxStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /></p>
-              <p style="margin-left: 2em;">{{group.award}}</p>
-              <p>{{group.deadline}}</p>
+              <p *ngIf="group.award != 'Žiadne'" style="margin-left: 2em;">{{group.award}}</p>
+              
             </div>
           </mat-panel-description>
         </mat-expansion-panel-header>
-
+        <h2>Deadline:</h2>
+        <!-- <mat-progress-bar mode="determinate" [value]="deadlines[i] <= 1 ? 99 : (deadlines[i]/Math.round((datef.getTime() - date.getTime())/86400000))*100"></mat-progress-bar> -->
+        <p>{{ deadlines[i] === "Skupina je uzavretá" ? deadlines[i] : deadlines[i] + ' dní' }}</p>
         <div *ngFor="let exercise of allExercises">
           <div *ngIf="exercise.groupName == group.name">
+            
             <mat-accordion>
               <mat-expansion-panel hideToggle style="margin-bottom: 20px;">
                 <mat-expansion-panel-header>
                   <mat-panel-title>
+                    
                     <h3>{{exercise.name}} </h3>
                   </mat-panel-title>
                   <mat-panel-description>

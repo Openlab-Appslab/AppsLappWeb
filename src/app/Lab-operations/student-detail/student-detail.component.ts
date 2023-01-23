@@ -31,6 +31,8 @@ export class StudentDetailComponent implements OnInit {
       this.student.username = response.name;
       this.student.score = response.score;
       this.exercises = response.exercises; 
+      console.log(response);
+      
       console.log(response.exercises);
       
     });

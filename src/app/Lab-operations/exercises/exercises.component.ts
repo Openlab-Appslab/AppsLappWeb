@@ -53,7 +53,7 @@ export class ExercisesComponent implements OnInit {
 
   save($event:any){}
 
-
+  date = new Date();
   exercisesNotIn: Exercise[] = [];
   exercisesIn: Exercise[] = [];
   stars: any = undefined;
@@ -70,7 +70,6 @@ export class ExercisesComponent implements OnInit {
   allExercises: Exercise[] = [];
   loading: boolean = false;
   // deadline = this.exerciseGroupModel.deadline.getDay()+'.'+this.exerciseGroupModel.deadline.getMonth()+'.'+this.exerciseGroupModel.deadline.getFullYear()
-  date = new Date();
 
   onSubmit() {
     console.log(this.exerciseModel.description);
@@ -91,6 +90,8 @@ export class ExercisesComponent implements OnInit {
     }
   }
 
+ 
+
   dropDownChanged(event: MatSelectChange) {
     this.exerciseModel.groupName = event.value;
   }
@@ -105,10 +106,24 @@ export class ExercisesComponent implements OnInit {
       this.groups = response;
     });
   }
-
+  datef = new Date();
+  deadlines: any[] = [];
   getAllGroups() {
     this.labService.getAllExerciseGroups().subscribe(response => {
       this.allGroups = response;
+
+      // //calculate time difference and convert to days
+      // for (let i = 0; i < response.length; i++) {
+      //   let dateString = response[i].deadline;
+      //   this.datef = new Date(dateString);
+      //   if (Math.round((this.datef.getTime() - this.date.getTime())/86400000) < 0) {
+      //     this.deadlines.push('Skupina je uzavretá');
+          
+      //   }
+      //   else {
+      //     this.deadlines.push(Math.round((this.datef.getTime() - this.date.getTime())/86400000));
+      //   }
+      // }
     });
   }
 
