@@ -15,7 +15,8 @@ export class AppComponent {
   showFiller = false;
 
   constructor(private userService: SignUpService, private cookieService: NgxEncryptCookieService, private router: Router, private bottomSheet: MatBottomSheet, private labService: LabService, private route: ActivatedRoute){
-     this.userName = this.cookieService.get('username', false); 
+    let username = localStorage.getItem('username');
+    this.userName = username ? username : '';
     }
 
     

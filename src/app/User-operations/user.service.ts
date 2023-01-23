@@ -7,8 +7,7 @@ import { Observable } from 'rxjs';
 import { LoginFailedComponent } from './login-failed/login-failed.component';
 import { User } from './user';
 import { AppComponent } from '../app.component';
-
-
+import * as CryptoJS from 'crypto-js';
 
 
 @Injectable({ providedIn: 'root' })
@@ -16,12 +15,14 @@ export class SignUpService {
 
   constructor(public cookieService: NgxEncryptCookieService, private router: Router, public dialog: MatDialog, private http: HttpClient,) { }
 
-  key = this.cookieService.generateKey();
-
   appc: AppComponent;
 
   headers = new Headers();
   url = 'https://appslab-api.herokuapp.com/api';
+
+  //generate crypto key
+  key = CryptoJS.lib.WordArray.random(128/8).toString(CryptoJS.enc.Hex);
+  
 
   //create user account
   createUser(user: User) {
@@ -58,9 +59,11 @@ export class SignUpService {
       .then(response => {
         if (response.ok) {
           console.log('Success:',);
-          this.cookieService.set('username', user.username, false);
-          this.cookieService.set('password', user.password, false);
-          this.router.navigate(['/dashboard']);
+          let authStringEncrypted = CryptoJS.AES.encrypt(authString, this.key).toString();
+          localStorage.setItem('key', this.key);
+          localStorage.setItem('authString', authStringEncrypted);
+          localStorage.setItem('username', user.username);
+          // this.router.navigate(['/dashboard']);
         }
         else {
           this.openDialogLoginFailed();
@@ -74,12 +77,12 @@ export class SignUpService {
 
   //tests if user is logged in
   isLoggedIn(): boolean {
-    return !!this.cookieService.get('username', false);
+    return !!localStorage.getItem('authString');
   }
 
   //logout user & delete cookies
   logOut() {
-    this.cookieService.deleteAll();
+    localStorage.removeItem('authString');
   }
 
 
@@ -94,7 +97,7 @@ export class SignUpService {
       Authorization: 'Basic ' + btoa(authString)
     });
 
-    return this.http.get<string[]>(this.url + '/management/getStudents', { headers: headerHttp },)
+    return this.http.get<string[]>(this.url + '/student/', { headers: headerHttp },)
 
   }
 

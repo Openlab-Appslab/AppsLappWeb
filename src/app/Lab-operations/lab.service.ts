@@ -6,7 +6,8 @@ import { Observable, of } from 'rxjs';
 import { Exercise, Exerciseh, Lab } from './exercise';
 import { SignUpService } from '../User-operations/user.service';
 import { ExerciseGroup } from './exercise-group';
-import { User } from '../User-operations/user';
+import * as CryptoJS from 'crypto-js';
+
 
 
 @Injectable({
@@ -16,17 +17,29 @@ export class LabService {
 
   constructor(private router: Router, private cookieService: NgxEncryptCookieService, private http: HttpClient, private userService: SignUpService) { }
   headers = new Headers();
-  url = 'https://appslab-api.herokuapp.com/api/management/'; 
-   
+  url = 'https://appslab-api.herokuapp.com/api/'; 
+ 
+
+
+  getAuthString() {
+    // get the authString from local storage or cookie
+    const authString = localStorage.getItem('authString');
+    const key = localStorage.getItem('key');
+    // decrypt the authString
+    const bytes = CryptoJS.AES.decrypt(authString as string, key as string);
+    const decryptedAuth = bytes.toString(CryptoJS.enc.Utf8);
+
+    return decryptedAuth;
+  }
+
 
   //create lab of students
   createLab(labStudents: string[], labName: string) {
-    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
 
-    fetch( this.url + 'createLab', {
+    fetch( this.url + 'lab/', {
       method: 'POST',
       headers: new Headers({
-        'Authorization': 'Basic ' + btoa(authString),
+        'Authorization': 'Basic ' + btoa(this.getAuthString()),
         'Content-Type': 'application/json'
       }),
       body: JSON.stringify({ name: labName, studentNames: labStudents }),
@@ -36,7 +49,7 @@ export class LabService {
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['dashboard']);
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -47,13 +60,12 @@ export class LabService {
   // create exercise for students
   createExercise(model: Exercise, minStars: number, maxStars: number, award: string, deadline: Date) {
     let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
-    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
     console.log(JSON.stringify({ exercise: exerciseM, minStars: minStars, maxStars: maxStars, deadline: deadline }));
     
-    return fetch( this.url + 'createExercise', {
+    return fetch( this.url + 'exercise/', {
       method: 'POST',
       headers: new Headers({
-        'Authorization': 'Basic ' + btoa(authString),
+        'Authorization': 'Basic ' + btoa(this.getAuthString()),
         'Content-Type': 'application/json'
       }),
       body: JSON.stringify({ exercise: exerciseM, minStars: minStars, maxStars: maxStars, award: award, deadline: deadline }),
@@ -70,12 +82,11 @@ export class LabService {
   //update exercise after edit
   updateExercise(id: number, model: Exercise, groupName: string) {
     let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
-    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
 
-    fetch( this.url + 'createExercise', {
+    fetch( this.url + 'exercise/', {
       method: 'POST',
       headers: new Headers({
-        'Authorization': 'Basic ' + btoa(authString),
+        'Authorization': 'Basic ' + btoa(this.getAuthString()),
         'Content-Type': 'application/json'
       }),
       body: JSON.stringify({ id: id, exercise: exerciseM, groupName: groupName }),
@@ -92,11 +103,10 @@ export class LabService {
   //create array of exercises (exerciseGroup)
   createGroupOfExercises(exerciseGroupModel: ExerciseGroup) {
 
-    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
-    fetch( this.url + 'createGroupOfExercises', {
+    fetch( this.url + 'lab/createGroupOfExercises/', {
       method: 'POST',
       headers: new Headers({
-        'Authorization': 'Basic ' + btoa(authString),
+        'Authorization': 'Basic ' + btoa(this.getAuthString()),
         'Content-Type': 'application/json'
       }),
       body: JSON.stringify(exerciseGroupModel),
@@ -113,67 +123,61 @@ export class LabService {
   //return all created exercises
   getAllExercises(): Observable<Exercise[]> {
 
-    let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`
-
     let headerHttp = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Basic ' + btoa(authString)
+      Authorization: 'Basic ' + btoa(this.getAuthString())
     });
 
-    return this.http.get<Exercise[]>( this.url + 'getAllExercises', { headers: headerHttp })
+    return this.http.get<Exercise[]>( this.url + 'exercise/', { headers: headerHttp })
   }
 
   //get all exercise groups 
   getAllExerciseGroups(): Observable<ExerciseGroup[]> {
 
-    let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`
-
     let headerHttp = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Basic ' + btoa(authString)
+      Authorization: 'Basic ' + btoa(this.getAuthString())
     });
 
 
-    return this.http.get<ExerciseGroup[]>( this.url + 'getAllGroups', { headers: headerHttp })
+    return this.http.get<ExerciseGroup[]>( this.url + 'lab/getAllGroups', { headers: headerHttp })
   }
 
   //return all labs owned by lab master / admin
   getLabs(): Observable<Lab[]> {
-
-    let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`
-
+    
+    
     let headerHttp = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Basic ' + btoa(authString)
+      Authorization: 'Basic ' + btoa(this.getAuthString())
     });
     
-
-    return this.http.get<Lab[]>(this.url + 'getLabs', { headers: headerHttp },)
+    
+    return this.http.get<Lab[]>(this.url + 'lab/labmaster', { headers: headerHttp },)
     
 
   }
 
   //get lab by id
   getLab(id: number): Observable<any> {
-    let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`
 
     let headerHttp = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Basic ' + btoa(authString)
+      Authorization: 'Basic ' + btoa(this.getAuthString())
     });
 
-    return this.http.get<any>( this.url + `getLab/${id}`, { headers: headerHttp });
+    return this.http.get<any>( this.url + `lab/${id}`, { headers: headerHttp });
 
 
   }
 
   //save lab after edit
   saveLab(labId: number, exercises: string[]) {
-    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
-    fetch( this.url +  'addGroupToLab', {
+
+    fetch( this.url + `lab/${labId}/addGroup`, {
       method: 'POST',
       headers: new Headers({
-        'Authorization': 'Basic ' + btoa(authString),
+        'Authorization': 'Basic ' + btoa(this.getAuthString()),
         'Content-Type': 'application/json'
       }),
       body: JSON.stringify({ labId: labId, groupsOfExercises: exercises }),
@@ -189,14 +193,13 @@ export class LabService {
 
   //get student by id
   getStudent(id: number): Observable<any> {
-    let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`
 
     let headerHttp = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Basic ' + btoa(authString)
+      Authorization: 'Basic ' + btoa(this.getAuthString())
     });
     
-    return this.http.get<any>( this.url + `getStudent/${id}`, { headers: headerHttp });
+    return this.http.get<any>( this.url + `student/${id}`, { headers: headerHttp });
   }
 
   //update student score 
@@ -205,11 +208,10 @@ export class LabService {
     
     console.log(isDone);
     
-    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
-    fetch( this.url +  'updateScore', {
+    fetch( this.url +  'exercise/updateScore', {
       method: 'POST',
       headers: new Headers({
-        'Authorization': 'Basic ' + btoa(authString),
+        'Authorization': 'Basic ' + btoa(this.getAuthString()),
         'Content-Type': 'application/json',
         'Accept': 'application/json'
       }),
@@ -227,24 +229,23 @@ export class LabService {
 
   //get exercise by name to edit
   editExercise(name: string): Observable<any> {
-    let authString = `${this.userService.cookieService.get('username', false)}:${this.userService.cookieService.get('password', false)}`
 
     let headerHttp = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: 'Basic ' + btoa(authString)
+      Authorization: 'Basic ' + btoa(this.getAuthString())
     });
 
-    return this.http.get<any>( this.url + `getExercise/${name}`, { headers: headerHttp });
+    return this.http.get<any>( this.url + `exercise/${name}`, { headers: headerHttp });
   }
 
 
   //del exercise
   deleteExercise(name: string) {
-    let authString = `${this.cookieService.get('username', false)}:${this.cookieService.get('password', false)}`
-    fetch( this.url +  'deleteExercise/' + name, {
+
+    fetch( this.url +  'exercise/' + name, {
       method: 'DELETE',
       headers: new Headers({
-        'Authorization': 'Basic ' + btoa(authString),
+        'Authorization': 'Basic ' + btoa(this.getAuthString()),
         'Content-Type': 'application/json'
       }),
 
@@ -265,6 +266,8 @@ export class LabService {
   //   }
   //   return this.http.get<Exercise[]>( `getExercise/${term}`);
   // }
+
+
 }
 
 
