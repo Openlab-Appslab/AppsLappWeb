@@ -20,7 +20,7 @@ export class LabFormComponent implements OnInit {
 
   toppings: UntypedFormGroup;
 
-  labMaster = this.userService.cookieService.get('username', this.user.firstName);
+  labMaster = localStorage.getItem('username');
   
   inLab: string[] = [];
 

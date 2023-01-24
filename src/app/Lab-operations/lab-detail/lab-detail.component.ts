@@ -35,9 +35,6 @@ export class LabDetailComponent implements OnInit {
     this.getAllExercises();
     this.getAllGroups();
     // this.dataSource.data = this.dataSource.data.sort((a, b) => a.score < b.score ? -1 : a.score > b.score ? 1 : 0);
-      
-    console.log(this.date.getDate());
-    
   }
 
   getLab(): void {
@@ -46,15 +43,12 @@ export class LabDetailComponent implements OnInit {
     this.labService.getLab(id)
       .subscribe(lab => {
         this.labGroups = lab.groupOfExercises;
-        console.log(lab);
         this.lab = lab;
         //for loop through students and run this.labService.getStudent(id) to get their trophies
         for (let i = 0; i < lab.studentNames.length; i++) {
           this.labService.getStudent(lab.studentNames[i].id).subscribe(response => {
             this.dataSource.data[i].trophies = response.awards;
             this.dataSource.data[i].score = response.score;
-            console.log(response.awards);
-            
           });
         }
         this.dataSource.data = lab.studentNames;
@@ -81,8 +75,6 @@ export class LabDetailComponent implements OnInit {
   getAllExercises(){
     this.labService.getAllExercises().subscribe(response => {
       this.allExercises = response;
-      console.log(response, 'allExercises');
-      
     });
   }
 

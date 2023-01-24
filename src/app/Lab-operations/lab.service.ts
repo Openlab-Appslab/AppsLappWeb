@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { Exercise, Exerciseh, Lab } from './exercise';
 import { SignUpService } from '../User-operations/user.service';
 import { ExerciseGroup } from './exercise-group';
@@ -167,8 +167,6 @@ export class LabService {
     });
 
     return this.http.get<any>( this.url + `lab/${id}`, { headers: headerHttp });
-
-
   }
 
   //save lab after edit
