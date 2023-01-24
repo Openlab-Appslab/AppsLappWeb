@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable, tap } from 'rxjs';
 import { LoginFailedComponent } from './login-failed/login-failed.component';
 import { User } from './user';
 import { AppComponent } from '../app.component';
@@ -44,36 +44,36 @@ export class SignUpService {
       });
   }
 
-  //login verified user
-  loginUser(user: User): any {
+  //login verified user with http
+  loginUserHttp(user: User): Observable<any> {
 
     let authString = `${user.username}:${user.password}`
-
-    this.headers.set('Authorization', 'Basic ' + btoa(authString))
-
-
-    return fetch(this.url + '/auth/' + 'login', {
-      method: 'GET',
-      headers: this.headers,
-    })
-      .then(response => {
-        if (response.ok) {
+    let headerHttp = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Basic ' + btoa(authString)
+    });
+    //return and than set authString in local storage
+    return this.http.get(this.url + '/auth/' + 'login', { headers: headerHttp }).pipe(
+      tap(response => {
+        if (response) {
           console.log('Success:',);
           let authStringEncrypted = CryptoJS.AES.encrypt(authString, this.key).toString();
           localStorage.setItem('key', this.key);
           localStorage.setItem('authString', authStringEncrypted);
           localStorage.setItem('username', user.username);
+          console.log(response);
+          
           // this.router.navigate(['/dashboard']);
         }
-        else {
-          this.openDialogLoginFailed();
-        }
-      })
-      .catch((error) => {
-        console.log('Error:', error);
-      });
+       
+      }),
+      catchError(error => {
+        console.log(error);
+        this.openDialogLoginFailed();
+        return error;
+    }),
+  );
   }
-
 
   //tests if user is logged in
   isLoggedIn(): boolean {

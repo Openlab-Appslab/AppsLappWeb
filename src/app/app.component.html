@@ -26,7 +26,7 @@
         </a>
         <a *ngIf="userName == ''" [routerLink]="['/registration']" mat-button>
           REGISTRÁCIA
-        </a>
+        </a> 
         <button *ngIf="userName != ''" mat-raised-button color="primary" (click)="openTemplateSheetMenu()" >
           {{userName}} <img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/24/ffffff/external-chevron-arrows-tanah-basah-basic-outline-tanah-basah-4.png"/>
         </button>
@@ -46,6 +46,7 @@
         <a  [routerLink]="['/home']" mat-button>
           DOMOV
         </a>
+        <br>
         <a *ngIf="userName == ''" [routerLink]="['/login']" mat-list-item>
           PRIHLÁSENIE
         </a>
