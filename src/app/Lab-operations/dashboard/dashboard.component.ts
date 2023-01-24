@@ -22,7 +22,9 @@ export class DashboardComponent implements OnInit {
   a: any[];
 
    constructor(private router: Router, private labService: LabService){ 
-     
+     if(localStorage.getItem('authority') == 'PUPIL'){
+       this.isStudent = true;
+     }
    }
 
   ngOnInit(): void {
