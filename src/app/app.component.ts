@@ -16,12 +16,16 @@ export class AppComponent {
 
   constructor(private userService: SignUpService, private cookieService: NgxEncryptCookieService, private router: Router, private bottomSheet: MatBottomSheet, private labService: LabService, private route: ActivatedRoute){
     let username = localStorage.getItem('username');
+    //get role from local storage
+    let role = localStorage.getItem('authority');
+    this.role = role;    
     this.userName = username ? username : '';
     }
 
     
   isLogged: boolean = false;
 
+  role = localStorage.getItem('authority');
   userName: string = '';
 
   signOut(){

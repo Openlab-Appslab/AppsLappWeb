@@ -15,7 +15,7 @@
         <a *ngIf="userName != ''" [routerLink]="['/dashboard']" mat-button>
           LABY
         </a>
-        <a *ngIf="userName != ''" [routerLink]="['/exercises']" mat-button>
+        <a *ngIf="role != 'PUPIL' && userName != ''" [routerLink]="['/exercises']" mat-button>
           CVIČENIA
         </a>
         <a  [routerLink]="['/home']" mat-button>
@@ -40,7 +40,7 @@
         <a *ngIf="userName != ''" [routerLink]="['/dashboard']" mat-list-item>
           LABY
         </a>
-        <a *ngIf="userName != ''" [routerLink]="['/exercises']" mat-list-item>
+        <a *ngIf="role != 'PUPIL' && userName != ''" [routerLink]="['/exercises']" mat-list-item>
           CVIČENIA
         </a>
         <a  [routerLink]="['/home']" mat-button>
