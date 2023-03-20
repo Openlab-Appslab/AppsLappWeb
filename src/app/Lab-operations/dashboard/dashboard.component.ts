@@ -19,25 +19,27 @@ export class DashboardComponent implements OnInit {
   lab: Lab;
   
   isStudent: boolean = false;
-  a: any[];
+  authority: string ;
 
    constructor(private router: Router, private labService: LabService){ 
      if(localStorage.getItem('authority') == 'PUPIL'){
        this.isStudent = true;
+       this.authority = 'student';
      }
+      else{
+        this.isStudent = false;
+        this.authority = 'labmaster';
+      }
    }
 
   ngOnInit(): void {
-    this.labService.getLabs().subscribe(response => {
+    this.labService.getLabs(this.authority).subscribe(response => {
       this.loaded = false;
       this.labs = response;
-      this.lab = response[0]
+      console.log(this.labs, 'response');
+      
       // this.userService.cookieService.set('role', 'labMaster', false);
-    },
-      error => {
-            this.loaded = false;
-            // this.userService.cookieService.set('role', 'student', false);
-        });
+    });
 
     if(this.isStudent == true){
       this.router.navigate(['/lab-detail']);
