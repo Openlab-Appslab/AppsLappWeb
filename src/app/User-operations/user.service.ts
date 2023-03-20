@@ -74,7 +74,6 @@ export class SignUpService {
           localStorage.setItem('username', user.username);
           localStorage.setItem('authority', response[0].authority);
           this.router.navigate(['/dashboard']);
-       
       }),
       catchError(error => {
         console.log(error);
