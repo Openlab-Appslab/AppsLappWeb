@@ -1,5 +1,3 @@
-<mat-slide-toggle [(ngModel)]="isStudent">Is Student: {{isStudent}}</mat-slide-toggle>
-
 <div class="center" *ngIf="lab">
   <h1 style="background-color: #6D4FD8; border-radius: 10px; color: white; padding: 1em;">{{lab.name}}</h1> 
   <table mat-table [dataSource]="dataSource">
@@ -10,7 +8,7 @@
   
     <ng-container matColumnDef="Score">
       <th mat-header-cell *matHeaderCellDef>Score</th>
-      <td mat-cell *matCellDef="let element"> {{element.score}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.score  }}  </td>
     </ng-container>
   
     <ng-container matColumnDef="Trophies">
@@ -37,7 +35,7 @@
   <h2 *ngIf="labGroups.length != 0">Exercises</h2>
   <div class="example-container" *ngFor="let group of labGroups; let i = index">
     <mat-accordion>
-      <mat-expansion-panel hideToggle>
+      <mat-expansion-panel hideToggle [disabled]="group.enabled == false">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <h2>{{group.name}}</h2>
@@ -68,6 +66,8 @@
                   </mat-panel-description>
                 </mat-expansion-panel-header>
                 <p [innerHTML]="exercise.description"></p>
+                <h3 *ngIf="exercise.hint != undefined ">Nápoveda: <br> {{exercise.hint}}</h3>
+                <button *ngIf="exercise.hint == undefined" mat-raised-button (click)="openConfirmDialog(exercise)">Nápoveda</button>
               </mat-expansion-panel>
             </mat-accordion>
           </div>
@@ -81,5 +81,16 @@
 <ng-template #dialogRef let-mydata>
   <div class="center" *ngFor="let exercise of allGroups">
     <h2>{{exercise.name}} <button mat-raised-button (click)="addExercise(exercise)">PRIDAŤ</button></h2>
+  </div>
+</ng-template>
+
+<ng-template #confirmDialog let-mydata>
+  <div class="center">
+    <h2>Ste si istý, že chcete zobraziť nápovedu?</h2>
+    <p>Po zobrazení nápovedy prídete o 3 hviezdy</p>
+    <mat-dialog-actions align="end">
+      <button mat-raised-button color="primary" (click)="exerciseHint()" mat-dialog-close>Áno</button>
+      <button mat-raised-button color="primary" mat-dialog-close>Nie</button>
+    </mat-dialog-actions>
   </div>
 </ng-template>

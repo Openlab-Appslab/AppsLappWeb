@@ -10,7 +10,7 @@
     justify-content: center;
 }
 .example-container {
-    width: 120%;
+    width: 600px;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -20,6 +20,7 @@
     border-radius: 13px;
     padding: 10px;
   }
+  
 
   table {
     width: 100%;
@@ -39,4 +40,5 @@
     justify-content: start;
     width: 100%;
  }
+ 
  

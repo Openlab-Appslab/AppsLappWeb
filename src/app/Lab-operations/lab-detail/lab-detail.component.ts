@@ -2,11 +2,9 @@ import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
-import { User } from 'src/app/User-operations/user';
 import { Exercise, Lab } from '../exercise';
 import { ExerciseGroup } from '../exercise-group';
 import { LabService } from '../lab.service';
-
 
 @Component({
   selector: 'app-lab-detail',
@@ -27,13 +25,20 @@ export class LabDetailComponent implements OnInit {
   labExercises: Exercise[] = [];
   isStudent: boolean = false;
   sortedStudents: any[];
-  event: string = '';
-  date: Date = new Date();  
 
-  ngOnInit(): void {
+  date: Date = new Date();  
+  hint: string = 'Text sa dá zmeniť v súbore app.component.ts';
+
+  ngOnInit(): void {    
     this.getLab();
     this.getAllExercises();
     this.getAllGroups();
+    if(localStorage.getItem('authority') == 'PUPIL'){
+      this.isStudent = true;
+    }
+    else {
+      this.isStudent = false;
+    }
     // this.dataSource.data = this.dataSource.data.sort((a, b) => a.score < b.score ? -1 : a.score > b.score ? 1 : 0);
   }
 
@@ -43,7 +48,13 @@ export class LabDetailComponent implements OnInit {
     this.labService.getLab(id)
       .subscribe(lab => {
         this.labGroups = lab.groupOfExercises;
+        //create mock labGroup
+        this.labGroups.push({ name: 'Group 1', exercises: [], maxStars: 20, minStars: 30, award: 'junior', deadline: new Date('2021-01-01'), enabled: false}, )
+        console.log(this.labGroups, 'labGroups');
+        
         this.lab = lab;
+        console.log(this.lab, 'lab');
+        
         //for loop through students and run this.labService.getStudent(id) to get their trophies
         for (let i = 0; i < lab.studentNames.length; i++) {
           this.labService.getStudent(lab.studentNames[i].id).subscribe(response => {
@@ -67,18 +78,28 @@ export class LabDetailComponent implements OnInit {
   @ViewChild('dialogRef')
   dialogRef!: TemplateRef<any>;
 
+  @ViewChild('confirmDialog')
+  confirmDialog!: TemplateRef<any>;
+
   openTempDialog() {
     const myTempDialog = this.dialog.open(this.dialogRef);
+    myTempDialog.afterClosed();
+  }
+
+  currentExercise: Exercise;
+  openConfirmDialog(exercise: any) {
+    const myTempDialog = this.dialog.open(this.confirmDialog);
+    this.currentExercise = exercise;
     myTempDialog.afterClosed();
   }
 
   getAllExercises(){
     this.labService.getAllExercises().subscribe(response => {
       this.allExercises = response;
+      console.log(this.allExercises[1].hint, 'allExercises');
+      
     });
   }
-
-
 
   addExercise(exercise: ExerciseGroup){
     this.labGroups.push(exercise);
@@ -89,7 +110,7 @@ export class LabDetailComponent implements OnInit {
   allGroups: ExerciseGroup[] = [];
   
   labGroups: ExerciseGroup[] = [
-    { name: 'Group 1', exercises: [], maxStars: 0, minStars: 0, award: '', deadline: new Date('2021-01-01') ,}, 
+    
   ];
   labGroupsNames: string[] = [];
 
@@ -128,6 +149,19 @@ export class LabDetailComponent implements OnInit {
     }
     editExercise(){
       this.editExerciseTester = true
+    }
+
+    exerciseHint(){
+      //open dialog and after clicking on yes button log hint
+    
+      this.currentExercise.hint = this.hint;
+      this.currentExercise.requiredStars = this.currentExercise.requiredStars - 3;
+      // send user id and exercise name to backend and get hint from exercise and display it
+      // let userId = 1;
+      // this.labService.getExerciseHint(userId, exerciseName).subscribe(response => {
+      //   this.allExercises = response;
+      // 
+      // });
     }
 
     // sortStudents(){
