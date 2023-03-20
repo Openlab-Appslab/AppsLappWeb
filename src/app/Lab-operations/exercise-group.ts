@@ -8,6 +8,7 @@ export class ExerciseGroup {
     minStars: number;
     award: string;
     deadline: Date;
+    enabled: boolean;
 
     constructor(name: string, exercises: Exercise[]) { 
         this.name = name;

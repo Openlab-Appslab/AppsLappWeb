@@ -4,6 +4,7 @@ export class Exercise {
     groupName: string;
     requiredStars: number; 
     done: boolean = false;
+    hint: string;
 
     constructor(name: string, description: string, groupName: string, requiredStars: number) {
         this.name = name;
