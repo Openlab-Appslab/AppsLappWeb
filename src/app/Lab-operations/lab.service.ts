@@ -144,7 +144,7 @@ export class LabService {
   }
 
   //return all labs owned by lab master / admin
-  getLabs(): Observable<Lab[]> {
+  getLabs(role: string): Observable<Lab[]> {
     
     
     let headerHttp = new HttpHeaders({
@@ -153,7 +153,7 @@ export class LabService {
     });
     
     
-    return this.http.get<Lab[]>(this.url + 'lab/labmaster', { headers: headerHttp },)
+    return this.http.get<Lab[]>(this.url + `lab/${role}`, { headers: headerHttp },)
     
 
   }
