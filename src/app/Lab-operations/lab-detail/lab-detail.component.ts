@@ -86,7 +86,7 @@ export class LabDetailComponent implements OnInit {
     myTempDialog.afterClosed();
   }
 
-  currentExercise: Exercise;
+  currentExercise: any;
   openConfirmDialog(exercise: any) {
     const myTempDialog = this.dialog.open(this.confirmDialog);
     this.currentExercise = exercise;
@@ -153,15 +153,17 @@ export class LabDetailComponent implements OnInit {
 
     exerciseHint(){
       //open dialog and after clicking on yes button log hint
-    
-      this.currentExercise.hint = this.hint;
-      this.currentExercise.requiredStars = this.currentExercise.requiredStars - 3;
+      let username = localStorage.getItem('username');
+      // this.currentExercise.hint = this.hint;
+      // this.currentExercise.requiredStars = this.currentExercise.requiredStars - 3;
       // send user id and exercise name to backend and get hint from exercise and display it
       // let userId = 1;
-      // this.labService.getExerciseHint(userId, exerciseName).subscribe(response => {
-      //   this.allExercises = response;
-      // 
-      // });
+      this.labService.getExerciseHint(username, this.currentExercise.id).then(response => response)
+      .then(data => {
+        this.currentExercise.hint = data.hint;
+        this.currentExercise.requiredStars = this.currentExercise.requiredStars - 3;
+      })
+      
     }
 
     // sortStudents(){

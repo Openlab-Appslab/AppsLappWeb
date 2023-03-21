@@ -257,6 +257,24 @@ export class LabService {
       });
   }
 
+  //get hint
+  getExerciseHint(userName: any, exerciseId: number){
+    
+    return fetch( this.url + `exercise/getHint/${exerciseId}`, {
+      method: 'POST',
+      headers: new Headers({
+        'Authorization': 'Basic ' + btoa(this.getAuthString()),
+        'Content-Type': 'application/json'
+      }),
+      body: JSON.stringify({ userName: userName }),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Success:', data);
+        return data;
+      })
+  }
+
   // searchExercise(term: string): Observable<Exercise[]> {
   //   if (!term.trim()) {
   //     // if not search term, return empty hero array
