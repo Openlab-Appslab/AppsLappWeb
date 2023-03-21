@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { SignUpService } from '../user.service';
 
 import { LoginFailedComponent } from './login-failed.component';
 
@@ -8,7 +9,10 @@ describe('LoginFailedComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LoginFailedComponent ]
+      declarations: [ LoginFailedComponent ],
+      providers: [
+        SignUpService
+      ]
     })
     .compileComponents();
   });

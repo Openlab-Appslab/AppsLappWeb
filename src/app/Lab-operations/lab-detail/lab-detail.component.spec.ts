@@ -1,4 +1,9 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialogModule } from '@angular/material/dialog';
+import { RouterTestingModule } from '@angular/router/testing';
+import { LabService } from '../lab.service';
+import { RouterModule } from '@angular/router'; // Import the RouterModule
 
 import { LabDetailComponent } from './lab-detail.component';
 
@@ -8,7 +13,9 @@ describe('LabDetailComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LabDetailComponent ]
+      declarations: [ LabDetailComponent ],
+      providers: [LabService],
+      imports: [RouterTestingModule, HttpClientTestingModule, MatDialogModule, RouterModule] // Include RouterModule here
     })
     .compileComponents();
   });

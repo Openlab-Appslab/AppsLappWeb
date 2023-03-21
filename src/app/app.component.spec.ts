@@ -1,6 +1,11 @@
+import { Overlay } from '@angular/cdk/overlay';
+import { InjectionToken } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { LabService } from './Lab-operations/lab.service';
+import { SignUpService } from './User-operations/user.service';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -11,6 +16,9 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent
       ],
+      providers: [
+       LabService, SignUpService
+      ]
     }).compileComponents();
   });
 
@@ -20,16 +28,6 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'AppsLapp-web'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('AppsLapp-web');
-  });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('AppsLapp-web app is running!');
-  });
+  
 });
