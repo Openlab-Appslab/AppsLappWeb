@@ -55,3 +55,14 @@
     margin: 0;
   }
   
+  .mat-expansion-panel-header {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    font-size: 16px;
+    color: #333;
+  }
+
+  .mat-expansion-panel {
+        margin: 2em;
+}
+
