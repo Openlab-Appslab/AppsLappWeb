@@ -22,12 +22,13 @@ export class RegistrationComponent implements OnInit {
   comfirmPassword: any;
 
   model = new User('', '', '', '','');
+  gitName: string = '';
 
   loading: boolean = false;
 
   onSubmit(){
     this.loading = true;
     
-    this.userService.createUser(this.model).then(() => { this.loading = false });;
+    this.userService.createUser(this.model, this.gitName).then(() => { this.loading = false });;
   }
 }

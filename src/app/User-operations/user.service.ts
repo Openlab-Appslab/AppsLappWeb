@@ -37,22 +37,25 @@ export class SignUpService {
   }
 
   //create user account
-  createUser(user: User) {
+  createUser(user: User, gitName: string) {
     return fetch(this.url + '/auth/' + 'register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json', 
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify({username: user.username, password: user.password, email: user.email, gitName: gitName}),
     })
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
-        this.router.navigate(['/login']);
+        // this.router.navigate(['/login']);
+        console.log({username: user.username, password: user.password, email: user.email, gitName: gitName});
       })
       .catch((error) => {
         console.error('Error:', error);
         alert("Registration failed, please try again.")
+        console.log({username: user.username, password: user.password, email: user.email, gitName: gitName});
+        
       });
   }
 

@@ -41,6 +41,12 @@
             </small>
           </div>
           <div class="form-group">
+            <label>Meno na GitHub <mat-icon style="font-size: 15px;" #tooltip="matTooltip"
+              matTooltip="Po pridaní mena bude mocť váš Labmaster sledovať vašu aktivitu"
+              matTooltipPosition="right">info</mat-icon></label>
+            <input [(ngModel)]="gitName" type="text" class="form-control" name="gitName">
+          </div>
+          <div class="form-group">
             <label>Emailová Adresa</label>
             <input [(ngModel)]="model.email" type="email" class="form-control" name="email" required
               pattern="^[_A-Za-z0-9-+]+(.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(.[A-Za-z0-9]+)*(.[A-Za-z]{2,})$"
