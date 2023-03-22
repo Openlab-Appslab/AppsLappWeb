@@ -22,3 +22,36 @@
   label, h2{
       color: white;
   }
+
+  .activity-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+  }
+  
+  .activity {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .type {
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .created-at {
+    margin: 0.5rem 0;
+  }
+  
+  .message {
+    font-style: italic;
+    margin: 0.5rem 0;
+  }
+  
+  .repo-name {
+    margin: 0;
+  }
+  

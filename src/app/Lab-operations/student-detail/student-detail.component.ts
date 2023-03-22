@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs';
+import { GithubService } from 'src/app/User-operations/github.service';
 import { User } from 'src/app/User-operations/user';
 import { Exercise } from '../exercise';
 import { LabService } from '../lab.service';
@@ -11,10 +13,11 @@ import { LabService } from '../lab.service';
 })
 export class StudentDetailComponent implements OnInit {
 
-  constructor(private labService: LabService, private route: ActivatedRoute) { }
+  constructor(private labService: LabService, private route: ActivatedRoute, private gitService: GithubService) { }
 
   ngOnInit(): void {
     this.getStudent();
+    this.getGithubActivity('FilipDavid1');
   }
 
 
@@ -22,6 +25,7 @@ export class StudentDetailComponent implements OnInit {
   studentId: number;
   exercises: Exercise[];
   isDone: boolean;
+  activity: any;
 
 
   getStudent(){
@@ -38,15 +42,18 @@ export class StudentDetailComponent implements OnInit {
     });
   }
 
-  
-
-
   updateScore(exercise: Exercise){
     exercise.done = true;
     this.student.score = this.student.score + exercise.requiredStars;
     
     this.labService.updateScore(this.studentId, exercise.name, exercise.requiredStars, true); 
-
   }
-  
+
+  getGithubActivity(username: string){
+    this.gitService.getUserActivity(username).subscribe(response => {
+      this.activity = response;
+      console.log(this.activity);
+      
+    });
+  }
 }

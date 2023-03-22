@@ -9,6 +9,29 @@
   </div>
 </div>
 
+
+
+<mat-accordion style="margin: 2em; width: 90%;">
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Aktivita na GitHub
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <div class="activity-container" *ngFor="let event of activity">
+      <div class="activity">
+        <p class="type">{{ event.type }}</p>
+        <p class="created-at">{{ event.created_at | date:'medium' }}</p>
+        <p class="message">{{ event.payload?.commits?.[0]?.message }}</p>
+        <p class="repo-name">{{ event.repo?.name }}</p>
+      </div>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>
+
+
+
+
 <!--Exercises-->
 <h1 style="text-align: center; font-size: xx-large;">Cvičenia</h1>
 <div class="center">
