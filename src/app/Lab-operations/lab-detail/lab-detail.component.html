@@ -33,9 +33,9 @@
 
 <div class="center" style="width: max-content !important;">
   <h2 *ngIf="labGroups.length != 0">Exercises</h2>
-  <div class="example-container" *ngFor="let group of labGroups; let i = index">
+  <div class="example-container"  *ngFor="let group of labGroups; let i = index" [ngStyle]="{'background-color': getBackgroundColor(group)}">
     <mat-accordion>
-      <mat-expansion-panel hideToggle [disabled]="group.enabled == false">
+      <mat-expansion-panel hideToggle >
         <mat-expansion-panel-header>
           <mat-panel-title>
             <h2>{{group.name}}</h2>

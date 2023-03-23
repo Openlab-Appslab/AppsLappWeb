@@ -15,9 +15,11 @@ export class LabDetailComponent implements OnInit {
   
 
 
-  constructor(private labService: LabService,  private route: ActivatedRoute, public dialog: MatDialog) {  }
+  constructor(private labService: LabService,  private route: ActivatedRoute, public dialog: MatDialog) { 
+   
+   }
 
-
+  backgroundColors: string[] = ['red', 'yellow', 'green'];
 
   lab: Lab;
   labId: number;
@@ -49,7 +51,7 @@ export class LabDetailComponent implements OnInit {
       .subscribe(lab => {
         this.labGroups = lab.groupOfExercises;
         //create mock labGroup
-        this.labGroups.push({ name: 'Group 1', exercises: [], maxStars: 20, minStars: 30, award: 'junior', deadline: new Date('2021-01-01'), enabled: false}, )
+        // this.labGroups.push({ name: 'Group 1', exercises: [], maxStars: 20, minStars: 30, award: 'junior', deadline: new Date('2021-01-01'), enabled: false}, )
         console.log(this.labGroups, 'labGroups');
         
         this.lab = lab;
@@ -95,9 +97,7 @@ export class LabDetailComponent implements OnInit {
 
   getAllExercises(){
     this.labService.getAllExercises().subscribe(response => {
-      this.allExercises = response;
-      console.log(this.allExercises[1].hint, 'allExercises');
-      
+      this.allExercises = response;      
     });
   }
 
@@ -125,12 +125,13 @@ export class LabDetailComponent implements OnInit {
       for (let i = 0; i < response.length; i++) {
         let dateString = response[i].deadline;
         this.datef = new Date(dateString);
-        if (Math.round((this.datef.getTime() - this.date.getTime())/86400000) < 0) {
-          this.deadlines.push('Skupina je uzavretá');
+        if (Math.round((this.date.getTime() - this.datef.getTime())/86400000) < 0) {
+          this.deadlines.push(Math.round((this.datef.getTime() - this.date.getTime())/86400000));
+          
           
         }
         else {
-          this.deadlines.push(Math.round((this.datef.getTime() - this.date.getTime())/86400000));
+          this.deadlines.push('Skupina je uzavretá');
         }
       }
     });
@@ -165,6 +166,21 @@ export class LabDetailComponent implements OnInit {
       })
       
     }
+
+    getBackgroundColor(group: any) {
+      let dateString = group.deadline;
+      let datef = new Date(dateString);
+      
+      if (Math.round((datef.getTime() - this.date.getTime())/86400000) < 2) {
+        return 'red'; // set the color to red if the group is closed
+      } else if (Math.round((datef.getTime() - this.date.getTime())/86400000) < 15) {
+        return '#FFA500'; // set the color to white if the group is open
+      }
+      else {
+        return '#32CD32';
+      }
+    }
+    
 
     // sortStudents(){
     //  // this.dataSource.data.sort((a, b) => a.score < b.score ? -1 : a.score > b.score ? 1 : 0);

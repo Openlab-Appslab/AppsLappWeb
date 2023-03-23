@@ -55,16 +55,17 @@
     justify-content: center;
 }
 .example-container {
-    width: 600px;
+    width: 1000px;
     max-width: 100%;
     display: flex;
     flex-direction: column;
     margin-right: 0px !important;
     margin-bottom: 10px;
     background-color: #6D4FD8 !important;
-    border-radius: 13px;
-    padding: 10px;
+    border-radius: 10px;
+    padding: 5px;
   }
+
 
   table {
     width: 100%;
