@@ -17,7 +17,7 @@ export class StudentDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getStudent();
-    this.getGithubActivity('FilipDavid1');
+      
   }
 
 
@@ -35,10 +35,7 @@ export class StudentDetailComponent implements OnInit {
       this.student.username = response.name;
       this.student.score = response.score;
       this.exercises = response.exercises; 
-      console.log(response, 'studentisek');
-      
-      console.log(response.exercises);
-      
+      this.getGithubActivity(response.gitName);   
     });
   }
 

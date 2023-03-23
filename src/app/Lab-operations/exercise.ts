@@ -20,13 +20,15 @@ export class Exerciseh {
     description: string;
     groupName: string;
     requiredStars: number; 
+    hint: string;
     
 
-    constructor(name: string, description: string, groupName: string, requiredStars: number) {
+    constructor(name: string, description: string, groupName: string, requiredStars: number, hint: string) {
         this.name = name;
         this.description = description;
         this.groupName = groupName;
         this.requiredStars = requiredStars;
+        this.hint = hint;
     }
         
 }

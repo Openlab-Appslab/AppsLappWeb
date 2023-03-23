@@ -43,12 +43,14 @@ export class SignUpService {
       headers: {
         'Content-Type': 'application/json', 
       },
-      body: JSON.stringify({username: user.username, password: user.password, email: user.email, gitName: gitName}),
+      body: JSON.stringify({firstName: user.firstName, lastName: user.lastName, username: user.username, password: user.password, email: user.email, gitName: gitName}),
     })
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
-        this.router.navigate(['/login']);
+        console.log(JSON.stringify({firstName: user.firstName, lastName: user.lastName, username: user.username, password: user.password, email: user.email, gitName: gitName}));
+        
+        // this.router.navigate(['/login']);
       })
       .catch((error) => {
         console.error('Error:', error);

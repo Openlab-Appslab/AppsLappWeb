@@ -78,6 +78,8 @@ export class ExercisesComponent implements OnInit {
       this.exercisesNotIn.push(this.exerciseModel);
       this.labService.createExercise(this.exerciseModel, this.exerciseGroupModel.minStars, this.exerciseGroupModel.maxStars, this.exerciseGroupModel.award, this.exerciseGroupModel.deadline).then(() => { 
         this.loading = false;
+        console.log(this.exerciseModel, 'robo');
+        
         // window.location.reload();
       });
     }
@@ -85,6 +87,8 @@ export class ExercisesComponent implements OnInit {
       this.labService.createExercise(this.exerciseModel, 0, 0, '', this.date).then(() => { 
         this.loading = false;
         this.exercisesNotIn.push(this.exerciseModel);
+        console.log(this.exerciseModel, 'robo2');
+        
         // window.location.reload();
       });
     }

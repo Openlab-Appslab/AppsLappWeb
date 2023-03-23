@@ -59,7 +59,7 @@ export class LabService {
 
   // create exercise for students
   createExercise(model: Exercise, minStars: number, maxStars: number, award: string, deadline: Date) {
-    let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
+    let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars, model.hint);
     console.log(JSON.stringify({ exercise: exerciseM, minStars: minStars, maxStars: maxStars, deadline: deadline }));
     
     return fetch( this.url + 'exercise/', {
@@ -73,6 +73,8 @@ export class LabService {
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
+        console.log(JSON.stringify({ exercise: exerciseM, minStars: minStars, maxStars: maxStars, deadline: deadline }));
+        
       })
       .catch((error) => {
         console.error('Error:', error);
@@ -81,7 +83,7 @@ export class LabService {
 
   //update exercise after edit
   updateExercise(id: number, model: Exercise, groupName: string) {
-    let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars);
+    let exerciseM = new Exerciseh(model.name, model.description, model.groupName, model.requiredStars, model.hint);
 
     fetch( this.url + 'exercise/', {
       method: 'POST',

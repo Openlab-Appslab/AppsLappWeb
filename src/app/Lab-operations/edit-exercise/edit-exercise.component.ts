@@ -49,6 +49,7 @@ export class EditExerciseComponent implements OnInit {
       this.exercise = response;
       this.id = response.id;
       this.group = response.groupName;
+      console.log(response);
       
     });
   }
