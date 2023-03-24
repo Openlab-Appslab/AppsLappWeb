@@ -47,10 +47,8 @@ export class SignUpService {
     })
       .then(response => response.json())
       .then(data => {
-        console.log('Success:', data);
-        console.log(JSON.stringify({firstName: user.firstName, lastName: user.lastName, username: user.username, password: user.password, email: user.email, gitName: gitName}));
-        
-        // this.router.navigate(['/login']);
+        console.log('Success:', data);        
+        this.router.navigate(['/login']);
       })
       .catch((error) => {
         console.error('Error:', error);

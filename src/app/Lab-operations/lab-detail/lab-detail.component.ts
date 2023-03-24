@@ -19,7 +19,7 @@ export class LabDetailComponent implements OnInit {
    
    }
 
-  backgroundColors: string[] = ['red', 'yellow', 'green'];
+  backgroundColors: string[];
 
   lab: Lab;
   labId: number;
@@ -114,24 +114,25 @@ export class LabDetailComponent implements OnInit {
   ];
   labGroupsNames: string[] = [];
 
-
-  deadlines: any[] = [];
+  deadlines: (number | null)[] = [];
   datef: Date = new Date();
+  
   getAllGroups() {
     this.labService.getAllExerciseGroups().subscribe(response => {
       this.allGroups = response;
-
       //calculate time difference and convert to days
       for (let i = 0; i < response.length; i++) {
         let dateString = response[i].deadline;
-        this.datef = new Date(dateString);
-        if (Math.round((this.date.getTime() - this.datef.getTime())/86400000) < 0) {
-          this.deadlines.push(Math.round((this.datef.getTime() - this.date.getTime())/86400000));
-          
-          
+        if (!dateString) {
+          this.deadlines.push(null);
+          continue;
         }
-        else {
-          this.deadlines.push('Skupina je uzavretá');
+        this.datef = new Date(dateString);
+        const timeDiff = Math.round((this.datef.getTime() - new Date().getTime()) / 86400000);
+        if (timeDiff > 0) {
+          this.deadlines.push(timeDiff);
+        } else {
+          this.deadlines.push(null);
         }
       }
     });
@@ -167,7 +168,7 @@ export class LabDetailComponent implements OnInit {
       
     }
 
-    getBackgroundColor(group: any) {
+    getBackgroundColor(group: ExerciseGroup) {
       let dateString = group.deadline;
       let datef = new Date(dateString);
       

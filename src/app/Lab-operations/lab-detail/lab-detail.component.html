@@ -31,52 +31,49 @@
 <button mat-raised-button style="margin-left: 5em;" color="primary" (click)="openTempDialog()" *ngIf="!isStudent"><img
     src="https://img.icons8.com/material-rounded/24/000000/create.png" /> Pridať Cvičenie</button>
 
-<div class="center" style="width: max-content !important;">
-  <h2 *ngIf="labGroups.length != 0">Exercises</h2>
-  <div class="example-container"  *ngFor="let group of labGroups; let i = index" [ngStyle]="{'background-color': getBackgroundColor(group)}">
-    <mat-accordion>
-      <mat-expansion-panel hideToggle >
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <h2>{{group.name}}</h2>
-          </mat-panel-title>
-          <mat-panel-description>
-            <div class="des">
-              <p>{{group.minStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /> - {{group.maxStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /></p>
-              <p *ngIf="group.award != 'Žiadne'" style="margin-left: 2em;">{{group.award}}</p>
-              
+    <div class="center" style="width: max-content !important;">
+      <h2 *ngIf="labGroups.length != 0">Exercises</h2>
+      <div class="example-container" *ngFor="let group of labGroups; let i = index" [ngStyle]="{'background-color': getBackgroundColor(group)}">
+        <mat-accordion>
+          <mat-expansion-panel hideToggle>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                <h2>{{group.name}}</h2>
+              </mat-panel-title>
+              <mat-panel-description>
+                <div class="des">
+                  <p>{{group.minStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /> - {{group.maxStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /></p>
+                  <p *ngIf="group.award != 'Žiadne'" style="margin-left: 2em;">{{group.award}}</p>
+                </div>
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <h2>Deadline:</h2>
+            <p *ngIf="deadlines[i] !== null">{{ deadlines[i] }} dní</p>
+            <p *ngIf="deadlines[i] === null">Skupina je uzavretá</p>
+            <div *ngFor="let exercise of group.exercises">
+              <mat-accordion>
+                <mat-expansion-panel hideToggle style="margin-bottom: 20px;">
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      <h3>{{exercise.name}} </h3>
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      {{exercise.requiredStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png"/>
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <p [innerHTML]="exercise.description"></p>
+                  <h3 *ngIf="exercise.hint != undefined ">Nápoveda: <br> {{exercise.hint}}</h3>
+                  <button *ngIf="exercise.hint == undefined" mat-raised-button (click)="openConfirmDialog(exercise)">Nápoveda</button>
+                </mat-expansion-panel>
+              </mat-accordion>
             </div>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <h2>Deadline:</h2>
-        <!-- <mat-progress-bar mode="determinate" [value]="deadlines[i] <= 1 ? 99 : (deadlines[i]/Math.round((datef.getTime() - date.getTime())/86400000))*100"></mat-progress-bar> -->
-        <p>{{ deadlines[i] === "Skupina je uzavretá" ? deadlines[i] : deadlines[i] + ' dní' }}</p>
-        <div *ngFor="let exercise of allExercises">
-          <div *ngIf="exercise.groupName == group.name">
-            
-            <mat-accordion>
-              <mat-expansion-panel hideToggle style="margin-bottom: 20px;">
-                <mat-expansion-panel-header>
-                  <mat-panel-title>
-                    
-                    <h3>{{exercise.name}} </h3>
-                  </mat-panel-title>
-                  <mat-panel-description>
-                    {{exercise.requiredStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png"/>
-                  </mat-panel-description>
-                </mat-expansion-panel-header>
-                <p [innerHTML]="exercise.description"></p>
-                <h3 *ngIf="exercise.hint != undefined ">Nápoveda: <br> {{exercise.hint}}</h3>
-                <button *ngIf="exercise.hint == undefined" mat-raised-button (click)="openConfirmDialog(exercise)">Nápoveda</button>
-              </mat-expansion-panel>
-            </mat-accordion>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-  </div>
-  <button  mat-raised-button color="primary" (click)="saveLab()" *ngIf="labGroups.length != 0 && !isStudent" >Save</button>
-</div>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+      
+      <button  mat-raised-button color="primary" (click)="saveLab()" *ngIf="labGroups.length != 0 && !isStudent" >Save</button>
+    </div>
+    
 
 <ng-template #dialogRef let-mydata>
   <div class="center" *ngFor="let exercise of allGroups">
