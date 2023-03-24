@@ -35,9 +35,13 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.labService.getLabs(this.authority).subscribe(response => {
       this.loaded = false;
-      this.labs = response;
+      //add lab only if lab.students.length > 0
+      for(let i = 0; i < response.length; i++){
+        if(response[i].studentNames.length > 0){
+          this.labs.push(response[i]);
+        }
+      }
       console.log(this.labs, 'response');
-      
       // this.userService.cookieService.set('role', 'labMaster', false);
     });
 
