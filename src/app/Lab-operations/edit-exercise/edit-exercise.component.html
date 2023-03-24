@@ -15,6 +15,12 @@
           toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image | media'
         }"></editor>
 
+        <div class="form-group">
+          <label style="margin-top: 2em" for="">Nápoveda</label>
+          <textarea class="form-control" type="number" required [(ngModel)]="exercise.hint"
+            name="hint"  style="margin-bottom: 2em" ></textarea>
+        </div>
+
           <div class="form-group">
             <label style="margin-top: 2em;" for="">Počet hviezd za cvičenie</label>
           <input class="form-control" type="number" placeholder="Required Stars for Exercise"
