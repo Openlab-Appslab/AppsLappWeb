@@ -49,8 +49,6 @@ export class StudentDetailComponent implements OnInit {
   getGithubActivity(username: string){
     this.gitService.getUserActivity(username).subscribe(response => {
       this.activity = response;
-      console.log(this.activity);
-      
     });
   }
 }

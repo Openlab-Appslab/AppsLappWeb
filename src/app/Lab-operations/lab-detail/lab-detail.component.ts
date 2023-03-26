@@ -52,10 +52,8 @@ export class LabDetailComponent implements OnInit {
         this.labGroups = lab.groupOfExercises;
         //create mock labGroup
         // this.labGroups.push({ name: 'Group 1', exercises: [], maxStars: 20, minStars: 30, award: 'junior', deadline: new Date('2021-01-01'), enabled: false}, )
-        console.log(this.labGroups, 'labGroups');
         
         this.lab = lab;
-        console.log(this.lab, 'lab');
         
         //for loop through students and run this.labService.getStudent(id) to get their trophies
         for (let i = 0; i < lab.studentNames.length; i++) {

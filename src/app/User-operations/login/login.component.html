@@ -26,7 +26,11 @@
               name="username"
               placeholder="Prihlasovacie Meno"
               required
+              #userN="ngModel"
             />
+            <small class="text-danger" *ngIf="userN.touched && userN.errors?.['required']">
+              Prihlasovacie meno je povinné.
+            </small>
           </div>
           <div class="form-group">
             <input
@@ -36,7 +40,11 @@
               name="password"
               placeholder="Heslo"
               required="required"
+              #pass="ngModel"
             />
+            <small class="text-danger" *ngIf="pass.touched && pass.errors?.['required']">
+              Heslo meno je povinné.
+            </small>
           </div>
           <div class="form-group">
             <button
