@@ -1,4 +1,4 @@
-<div style="height: 100vh;">
+<div>
   <mat-toolbar class="nav-bar" >
     <mat-toolbar-row>
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
@@ -43,7 +43,7 @@
         <a *ngIf="role != 'PUPIL' && userName != ''" [routerLink]="['/exercises']" mat-list-item>
           CVIČENIA
         </a>
-        <a  [routerLink]="['/home']" mat-button>
+        <a  [routerLink]="['/home']" mat-list-item>
           DOMOV
         </a>
         <br>
@@ -57,7 +57,7 @@
             {{userName}} <img src="https://img.icons8.com/external-tanah-basah-basic-outline-tanah-basah/24/ffffff/external-chevron-arrows-tanah-basah-basic-outline-tanah-basah-4.png"/>
           </button>
         
-        <a (click)="sidenav.toggle()" mat-list-item>
+        <a (click)="sidenav.toggle()" class="close-button" mat-list-item>
           <img src="https://img.icons8.com/material-sharp/24/000000/close-window.png"/> CLOSE
         </a>
       </mat-nav-list>

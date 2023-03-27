@@ -46,3 +46,90 @@ a {
   color: white;
 }
 
+mat-sidenav {
+  width: 200px;
+}
+
+mat-nav-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+mat-list-item {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+mat-list-item:hover {
+  background-color: #eee;
+}
+
+mat-list-item img {
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+mat-raised-button {
+  margin: 16px;
+  display: block;
+}
+
+mat-raised-button img {
+  margin-left: 8px;
+}
+
+mat-raised-button:hover {
+  background-color: #007bff;
+  color: #fff;
+}
+
+mat-raised-button:focus {
+  outline: none;
+}
+
+mat-raised-button:active {
+  background-color: #0062cc;
+  color: #fff;
+}
+
+mat-raised-button mat-icon {
+  margin-right: 8px;
+}
+
+mat-divider {
+  margin: 8px 0;
+}
+
+a[routerLink] {
+  text-decoration: none;
+  color: #333;
+}
+
+a[routerLink]:hover {
+  background-color: #eee;
+}
+
+a[routerLink].active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+a[routerLink].active:hover {
+  background-color: #0062cc;
+  color: #fff;
+}
+.mat-nav-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+a.close-button {
+  margin-top: auto;
+}
+
