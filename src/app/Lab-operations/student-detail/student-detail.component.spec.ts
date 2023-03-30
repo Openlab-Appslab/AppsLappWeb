@@ -7,6 +7,7 @@ import { LabService } from '../lab.service';
 
 import { StudentDetailComponent } from './student-detail.component';
 
+
 describe('StudentDetailComponent', () => {
   let component: StudentDetailComponent;
   let fixture: ComponentFixture<StudentDetailComponent>;

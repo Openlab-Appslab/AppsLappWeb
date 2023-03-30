@@ -10,58 +10,47 @@
 </div>
 
 
-
-<mat-accordion>
-  <mat-expansion-panel hideToggle>
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Aktivita na GitHub
-      </mat-panel-title>
-      
-    </mat-expansion-panel-header>
+<mat-tab-group animationDuration="500ms" mat-align-tabs="center">
+  <mat-tab label="Github Aktivita">    
     <div class="activity-container" *ngFor="let event of activity">
-      <div class="activity">
-        <p class="type">{{ event.type }}</p>
-        <p class="created-at">{{ event.created_at | date:'medium' }}</p>
-        <p class="message">{{ event.payload?.commits?.[0]?.message }}</p>
-        <p class="repo-name">{{ event.repo?.name }}</p>
-      </div>
+    <div class="activity">
+      <p class="type">{{ event.type }}</p>
+      <p class="created-at">{{ event.created_at | date:'medium' }}</p>
+      <p class="message">{{ event.payload?.commits?.[0]?.message }}</p>
+      <p class="repo-name">{{ event.repo?.name }}</p>
     </div>
-  </mat-expansion-panel>
-</mat-accordion>
-
-
-
-
-<!--Exercises-->
-<h1 style="text-align: center; font-size: xx-large;">Cvičenia</h1>
-<div class="center">
+  </div></mat-tab>
+  <mat-tab label="Cvičenia">
+    <div class="center">
   
-  <div *ngFor="let exercise of exercises">
-    <div class="example-container" *ngIf="exercise.done != true">
-      <h2 style="background-color: #603cb0; border-radius: 10px">
-        {{ exercise.name }}
-      </h2>
-      <label for="">{{ exercise.requiredStars }}
-        <img src="https://img.icons8.com/fluency/18/000000/star.png" />
-      </label>
-
-      <div class="example-container">
-        <button mat-raised-button color="primary" (click)="updateScore(exercise)">
-          OZNAČIŤ AKO HOTOVÉ
-        </button>
+      <div *ngFor="let exercise of exercises">
+        <div class="example-container" *ngIf="exercise.done != true">
+          <h2 style="background-color: #603cb0; border-radius: 10px">
+            {{ exercise.name }}
+          </h2>
+          <label for="">{{ exercise.requiredStars }}
+            <img src="https://img.icons8.com/fluency/18/000000/star.png" />
+          </label>
+    
+          <div class="example-container">
+            <button mat-raised-button color="primary" (click)="updateScore(exercise)">
+              OZNAČIŤ AKO HOTOVÉ
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<h1 style="text-align: center; font-size: xx-large;">Hotové Cvičenia <img src="https://img.icons8.com/ios-filled/40/undefined/checkmark--v1.png"/> </h1>
-<div class="center">
-  <div *ngFor="let exercise of exercises">
-    <!---->
-    <div class="example-container" style="background-color: rgb(200, 255, 200);" *ngIf="exercise.done == true">
-      <h2 style="background-color: rgb(69, 113, 69); border-radius: 10px">
-        {{ exercise.name }}
-      </h2>
+  </mat-tab>
+  <mat-tab label="Hotové Cvičenia">
+    <div class="center">
+      <div *ngFor="let exercise of exercises">
+        <!---->
+        <div class="example-container" style="background-color: rgb(200, 255, 200);" *ngIf="exercise.done == true">
+          <h2 style="background-color: rgb(69, 113, 69); border-radius: 10px">
+            {{ exercise.name }}
+          </h2>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </mat-tab>
+</mat-tab-group>

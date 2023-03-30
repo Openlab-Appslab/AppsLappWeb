@@ -47,6 +47,7 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 @NgModule({
@@ -102,7 +103,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     EditorModule,
     MatProgressBarModule,
     MatTooltipModule,
-
+    MatTabsModule,
+    
     
   ],
   providers: [ ToolbarService, LinkService, ImageService, HtmlEditorService ],
