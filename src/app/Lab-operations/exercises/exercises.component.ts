@@ -80,7 +80,7 @@ export class ExercisesComponent implements OnInit {
         this.loading = false;
         console.log(this.exerciseModel, 'robo');
         
-        // window.location.reload();
+        window.location.reload();
       });
     }
     else {
@@ -89,7 +89,7 @@ export class ExercisesComponent implements OnInit {
         this.exercisesNotIn.push(this.exerciseModel);
         console.log(this.exerciseModel, 'robo2');
         
-        // window.location.reload();
+        window.location.reload();
       });
     }
   }
