@@ -42,8 +42,11 @@
               </mat-panel-title>
               <mat-panel-description>
                 <div class="des">
-                  <p>{{group.minStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /> - {{group.maxStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /></p>
-                  <p *ngIf="group.award != 'Žiadne'" style="margin-left: 2em;">{{group.award}}</p>
+                  <p>
+                    {{group.minStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" /> - {{group.maxStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png" />
+                  </p>
+                  <p *ngIf="group.award != null" style="margin-left: 2em;">{{group.award}}</p>
+                  <p *ngIf="group.award == null" style="margin-left: 2em;">ziadne</p>
                 </div>
               </mat-panel-description>
             </mat-expansion-panel-header>
@@ -70,7 +73,7 @@
           </mat-expansion-panel>
         </mat-accordion>
       </div>
-      
+    
       <button  mat-raised-button color="primary" (click)="saveLab()" *ngIf="labGroups.length != 0 && !isStudent" >Save</button>
     </div>
     
@@ -91,3 +94,4 @@
     </mat-dialog-actions>
   </div>
 </ng-template>
+

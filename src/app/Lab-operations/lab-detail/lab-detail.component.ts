@@ -35,7 +35,6 @@ export class LabDetailComponent implements OnInit {
     this.getLab();
     this.getAllExercises();
     this.getAllGroups();
-    
     if(localStorage.getItem('authority') == 'PUPIL'){
       this.isStudent = true;
     }
@@ -50,12 +49,11 @@ export class LabDetailComponent implements OnInit {
     this.labId = id;
     this.labService.getLab(id)
       .subscribe(lab => {
-        this.labGroups = lab.groupOfExercises;        
+        this.labGroups = lab.groupOfExercises;
         //create mock labGroup
         // this.labGroups.push({ name: 'Group 1', exercises: [], maxStars: 20, minStars: 30, award: 'junior', deadline: new Date('2021-01-01'), enabled: false}, )
         
         this.lab = lab;
-        console.log(lab, 'lab');
         
         //for loop through students and run this.labService.getStudent(id) to get their trophies
         for (let i = 0; i < lab.studentNames.length; i++) {
@@ -67,6 +65,7 @@ export class LabDetailComponent implements OnInit {
         this.dataSource.data = lab.studentNames;
       });
   }
+  
 
 
   studentss: any[];
@@ -97,9 +96,7 @@ export class LabDetailComponent implements OnInit {
 
   getAllExercises(){
     this.labService.getAllExercises().subscribe(response => {
-      this.allExercises = response;     
-      console.log(response, 'all exercises');
-       
+      this.allExercises = response;      
     });
   }
 
@@ -122,8 +119,6 @@ export class LabDetailComponent implements OnInit {
   getAllGroups() {
     this.labService.getAllExerciseGroups().subscribe(response => {
       this.allGroups = response;
-      console.log(response, 'all groups');
-      
       //calculate time difference and convert to days
       for (let i = 0; i < response.length; i++) {
         let dateString = response[i].deadline;
