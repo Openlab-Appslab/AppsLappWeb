@@ -18,10 +18,12 @@
               <!-- <p>{{ deadlines[i] === "Skupina je uzavretá" ? deadlines[i] : deadlines[i] + ' days' }}</p> -->
             </mat-panel-title>
             <mat-panel-description style="margin-left: 2.5em">
-              {{ group.minStars }}
-              <img src="https://img.icons8.com/fluency/18/000000/star.png" /> -
-              {{ group.maxStars }}
-              <img src="https://img.icons8.com/fluency/18/000000/star.png" />
+              <div class="des">
+                {{ group.minStars }}
+                <img src="https://img.icons8.com/fluency/18/000000/star.png" /> -
+                {{ group.maxStars }}
+                <img src="https://img.icons8.com/fluency/18/000000/star.png" />
+              </div>
             </mat-panel-description>
           </mat-expansion-panel-header>
 
@@ -38,8 +40,10 @@
                       <h3>{{ exercise.name }}</h3>
                     </mat-panel-title>
                     <mat-panel-description>
-                      {{ exercise.requiredStars }}
-                      <img src="https://img.icons8.com/fluency/18/000000/star.png" />
+                      <div class="des">
+                        {{ exercise.requiredStars }}
+                        <img src="https://img.icons8.com/fluency/18/000000/star.png" />
+                      </div>
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   <p style="background-color: transparent" [innerHTML]="exercise.description"></p>

@@ -27,8 +27,8 @@
         <a *ngIf="userName == ''" [routerLink]="['/registration']" mat-button>
           REGISTRÁCIA
         </a> 
-        <button *ngIf="userName != ''" mat-raised-button color="primary" (click)="signOut()" >
-          {{userName}} <img src="https://img.icons8.com/external-inkubators-glyph-inkubators/25/FFFFFF/external-sign-out-video-interface-inkubators-glyph-inkubators.png"/>
+        <button *ngIf="userName != ''" mat-raised-button color="white" (click)="signOut()" >
+          <span>{{userName}} <img src="https://img.icons8.com/external-tal-revivo-regular-tal-revivo/24/1A1A1A/external-online-account-logout-with-arrow-direction-mark-login-regular-tal-revivo.png"/></span>
         </button>
       </div>
     </mat-toolbar-row>
@@ -53,8 +53,8 @@
         <a *ngIf="userName == ''" [routerLink]="['/registration']" mat-list-item>
           REGISTRÁCIA
         </a>
-          <button *ngIf="userName != ''" mat-raised-button color="primary" (click)="signOut()" >
-            <span>{{userName}} <img src="https://img.icons8.com/external-inkubators-glyph-inkubators/25/FFFFFF/external-sign-out-video-interface-inkubators-glyph-inkubators.png"/></span>
+          <button *ngIf="userName != ''" mat-raised-button color="white" (click)="signOut()" >
+            <span>{{userName}} <img src="https://img.icons8.com/external-tal-revivo-regular-tal-revivo/24/1A1A1A/external-online-account-logout-with-arrow-direction-mark-login-regular-tal-revivo.png"/></span>
           </button>
         
         <a (click)="sidenav.toggle()" class="close-button" mat-list-item>

@@ -157,3 +157,14 @@
   .form-group {
     width: 100%;
   }
+
+  .des {
+    position: absolute;
+    top: 0;
+    right: 0;
+    justify-content: end;
+    align-items: center;
+    height: 100%;
+    padding-right: 1rem;
+    padding-top: 1em;
+  }
