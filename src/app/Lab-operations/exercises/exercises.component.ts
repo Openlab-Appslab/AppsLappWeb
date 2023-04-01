@@ -34,6 +34,8 @@ export class ExercisesComponent implements OnInit {
 
   @ViewChild('dialogRef')
   dialogRef!: TemplateRef<any>;
+  @ViewChild('deleteExerciseDialog')
+  deleteExerciseDialog!: TemplateRef<any>;
 
   constructor(private labService: LabService, public dialog: MatDialog) {
 
@@ -58,6 +60,7 @@ export class ExercisesComponent implements OnInit {
   exercisesIn: Exercise[] = [];
   stars: any = undefined;
   awards = ['Žiadne','Junior', 'Medior', 'Senior'];
+  exerceseForDelete: Exercise;
 
   exerciseGroupModel = new ExerciseGroup('', this.exercisesIn);
 
@@ -135,6 +138,12 @@ export class ExercisesComponent implements OnInit {
     this.labService.getAllExercises().subscribe(response => {
       this.allExercises = response;
     })
+  }
+
+  setExerciseForDelete(exercise: Exercise) {
+    this.exerceseForDelete = exercise;
+    const myTempDialog = this.dialog.open(this.deleteExerciseDialog);
+    myTempDialog.afterClosed();
   }
 
   deleteExercise(exercise: Exercise) {

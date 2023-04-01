@@ -48,7 +48,7 @@
                     routerLink="/edit-exercise/{{ exercise.name }}">
                     Upraviť Cvičenie
                   </button>
-                  <button mat-raised-button color="primary" (click)="deleteExercise(exercise)">
+                  <button mat-raised-button color="primary" (click)="setExerciseForDelete(exercise)">
                     Vymazať Cvičenie
                   </button>
                 </mat-expansion-panel>
@@ -71,15 +71,15 @@
         <input class="form-control" type="text" [(ngModel)]="exerciseModel.name" required name="exName"
           #exGroup="ngModel" />
         <label style="margin-top: 2em" for="">Popis Cvičenia</label>
-        <editor name="editor" [(ngModel)]="exerciseModel.description" apiKey="0v7zftkfzknl2y86q95632yntxev9r73ttowluj6b7d2hjoq" 
-        [init]="{
+        <editor name="editor" [(ngModel)]="exerciseModel.description"
+          apiKey="0v7zftkfzknl2y86q95632yntxev9r73ttowluj6b7d2hjoq" [init]="{
           plugins: 'lists link image media paste help wordcount table',
           toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | table | link image | media'
         }"></editor>
         <div class="form-group">
           <label style="margin-top: 2em" for="">Nápoveda</label>
-          <textarea class="form-control" type="number" required [(ngModel)]="exerciseModel.hint"
-            name="hint"  style="margin-bottom: 2em" ></textarea>
+          <textarea class="form-control" type="number" required [(ngModel)]="exerciseModel.hint" name="hint"
+            style="margin-bottom: 2em"></textarea>
         </div>
         <div class="form-group">
           <label style="margin-top: 2em" for="">Počet hviezd za cvičenie</label>
@@ -181,5 +181,16 @@
         </button>
       </div>
     </form>
+  </div>
+</ng-template>
+
+<ng-template #deleteExerciseDialog let-mydata class="dialog">
+  <h1 mat-dialog-title>Vymazanie cvičenia</h1>
+  <div mat-dialog-content>
+    Naozaj chcete vymazať {{exerceseForDelete.name}}?
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Nie</button>
+    <button mat-button mat-dialog-close cdkFocusInitial (click)="deleteExercise(exerceseForDelete)">Áno</button>
   </div>
 </ng-template>

@@ -50,3 +50,14 @@
   }
   
  
+  .description-ex {
+    display: flex;
+    align-items: center;
+  }
+  
+  .description-ex img {
+    margin-right: 4px;
+  }
+  
+
+  

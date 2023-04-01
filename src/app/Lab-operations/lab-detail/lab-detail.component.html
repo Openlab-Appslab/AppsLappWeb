@@ -38,7 +38,7 @@
           <mat-expansion-panel hideToggle>
             <mat-expansion-panel-header>
               <mat-panel-title>
-                <h2>{{group.name}}</h2>
+                <h2 style="padding-top: 0.8em;">{{group.name}}</h2>
               </mat-panel-title>
               <mat-panel-description>
                 <div class="des">
@@ -61,7 +61,9 @@
                       <h3>{{exercise.name}} </h3>
                     </mat-panel-title>
                     <mat-panel-description>
-                      {{exercise.requiredStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png"/>
+                      <div class="description-ex">
+                        {{exercise.requiredStars}} <img src="https://img.icons8.com/fluency/18/000000/star.png"/>
+                      </div>
                     </mat-panel-description>
                   </mat-expansion-panel-header>
                   <p [innerHTML]="exercise.description"></p>
