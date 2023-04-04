@@ -4,6 +4,7 @@ import { NgxEncryptCookieService } from 'ngx-encrypt-cookie';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { SignUpService } from './User-operations/user.service';
 import { LabService } from './Lab-operations/lab.service';
+import { Lab } from './Lab-operations/exercise';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,9 @@ import { LabService } from './Lab-operations/lab.service';
 export class AppComponent {
   title = 'AppsLapp-web';
   showFiller = false;
+  currentLabName: string | null;
+  currentLabId: string | null;
+  labs: Lab[] =[];
 
   constructor(private userService: SignUpService, private cookieService: NgxEncryptCookieService, private router: Router, private bottomSheet: MatBottomSheet, private labService: LabService, private route: ActivatedRoute){
     let username = localStorage.getItem('username');
@@ -20,9 +24,16 @@ export class AppComponent {
     let role = localStorage.getItem('authority');
     this.role = role;    
     this.userName = username ? username : '';
+    this.currentLabName = localStorage.getItem('currentLabName');    
+    this.currentLabId = localStorage.getItem('currentLabId');
     }
 
-    
+
+    ngOnInit(): void {
+      this.labService.getLabs('labmaster').subscribe(response => {
+        this.labs = response;
+      });
+    }    
   isLogged: boolean = false;
 
   role = localStorage.getItem('authority');
