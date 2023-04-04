@@ -7,7 +7,7 @@ export class ExerciseGroup {
     maxStars: number;
     minStars: number;
     award: string;
-    deadline: Date;
+    deadline: any;
     enabled: boolean;
 
     constructor(name: string, exercises: Exercise[]) { 

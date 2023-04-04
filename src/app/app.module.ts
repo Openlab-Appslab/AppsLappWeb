@@ -18,7 +18,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './User-operations/login/login.component';
-import { DashboardComponent } from './Lab-operations/dashboard/dashboard.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { EmailVerificationComponent } from './Email/email-verification/email-verification.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -55,7 +54,6 @@ import {MatTabsModule} from '@angular/material/tabs';
     AppComponent,
     RegistrationComponent,
     LoginComponent,
-    DashboardComponent,
     EmailVerificationComponent,
     LoginFailedComponent,
     LabFormComponent,

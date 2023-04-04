@@ -33,7 +33,7 @@
 
     <div class="center" style="width: max-content !important;">
       <h2 *ngIf="labGroups.length != 0">Exercises</h2>
-      <div class="example-container" *ngFor="let group of labGroups; let i = index" [ngStyle]="{'background-color': getBackgroundColor(group)}">
+      <div class="example-container" *ngFor="let group of labGroups" [ngStyle]="{'background-color': getBackgroundColor(group)}">
         <mat-accordion>
           <mat-expansion-panel hideToggle>
             <mat-expansion-panel-header>
@@ -51,8 +51,8 @@
               </mat-panel-description>
             </mat-expansion-panel-header>
             <h2>Deadline:</h2>
-            <p *ngIf="deadlines[i] !== null">{{ deadlines[i] }} dní</p>
-            <p *ngIf="deadlines[i] === null">Skupina je uzavretá</p>
+            <p *ngIf="group.deadline > 0">{{ group.deadline }} dní</p>
+            <p *ngIf="group.deadline <= 0">Skupina je uzavretá</p>
             <div *ngFor="let exercise of group.exercises">
               <mat-accordion>
                 <mat-expansion-panel hideToggle style="margin-bottom: 20px;">

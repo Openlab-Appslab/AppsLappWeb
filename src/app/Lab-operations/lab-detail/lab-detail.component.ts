@@ -119,21 +119,9 @@ export class LabDetailComponent implements OnInit {
   getAllGroups() {
     this.labService.getAllExerciseGroups().subscribe(response => {
       this.allGroups = response;
+      console.log(this.allGroups[0].deadline);
+      
       //calculate time difference and convert to days
-      for (let i = 0; i < response.length; i++) {
-        let dateString = response[i].deadline;
-        if (!dateString) {
-          this.deadlines.push(null);
-          continue;
-        }
-        this.datef = new Date(dateString);
-        const timeDiff = Math.round((this.datef.getTime() - new Date().getTime()) / 86400000);
-        if (timeDiff > 0) {
-          this.deadlines.push(timeDiff);
-        } else {
-          this.deadlines.push(null);
-        }
-      }
     });
   }
     saveLab(){
@@ -168,12 +156,10 @@ export class LabDetailComponent implements OnInit {
     }
 
     getBackgroundColor(group: ExerciseGroup) {
-      let dateString = group.deadline;
-      let datef = new Date(dateString);
       
-      if (Math.round((datef.getTime() - this.date.getTime())/86400000) < 2) {
+      if (group.deadline < 2) {
         return 'red'; // set the color to red if the group is closed
-      } else if (Math.round((datef.getTime() - this.date.getTime())/86400000) < 15) {
+      } else if (group.deadline < 15) {
         return '#FFA500'; // set the color to white if the group is open
       }
       else {
