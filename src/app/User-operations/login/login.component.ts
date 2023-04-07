@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.model = new User('', '', '','','');
     
     if(this.userService.isLoggedIn()){
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/home']);
     }
   }
 

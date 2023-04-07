@@ -18,6 +18,8 @@ export class LabFormComponent implements OnInit {
 
   user = new User('', '', '', '', '');
 
+  description = '';
+
   toppings: UntypedFormGroup;
 
   labMaster = localStorage.getItem('username');
@@ -36,7 +38,7 @@ export class LabFormComponent implements OnInit {
 
   onSubmit(){
     
-    this.labService.createLab(this.inLab, this.labName);    
+    this.labService.createLab(this.inLab, this.labName, this.description);    
   }
 
   addToLab(item: string){

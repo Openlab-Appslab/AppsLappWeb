@@ -15,8 +15,9 @@ export class AppComponent {
   title = 'AppsLapp-web';
   showFiller = false;
   currentLabName: string | null;
-  currentLabId: string | null;
+  currentLabId: number | null;
   labs: Lab[] =[];
+
 
   constructor(private userService: SignUpService, private cookieService: NgxEncryptCookieService, private router: Router, private bottomSheet: MatBottomSheet, private labService: LabService, private route: ActivatedRoute){
     let username = localStorage.getItem('username');
@@ -25,7 +26,7 @@ export class AppComponent {
     this.role = role;    
     this.userName = username ? username : '';
     this.currentLabName = localStorage.getItem('currentLabName');    
-    this.currentLabId = localStorage.getItem('currentLabId');
+    this.currentLabId = this.cookieService.get('currentLabId', false)
     }
 
 
@@ -45,6 +46,11 @@ export class AppComponent {
     this.router.navigate(['/login']);
   }
 
+  setCurrentLab(lab: Lab){
+    //set it to cookie
+    this.cookieService.set('currentLabId', lab.id, false);
+    this.cookieService.set('currentLabName', lab.name, false);
+  }
   
 
   onSubmit(){

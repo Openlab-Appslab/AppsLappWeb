@@ -6,6 +6,9 @@
             <small *ngIf="labN.touched && labN.valid == false">
               Lab name is required (minimum 4 characters).
             </small>
+            <label style="margin-top: 2em" for="">Popis Labu</label>
+            <textarea placeholder="Lab Description" [(ngModel)]="description" type="text" class="form-control" name="username" required minlength="4"
+              maxlength="10" #labD="ngModel"></textarea>
     <div>
         <div class="example-container">
           <h2>Uživatelia V Labe</h2>

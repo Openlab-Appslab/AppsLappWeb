@@ -73,7 +73,11 @@ export class SignUpService {
           localStorage.setItem('authString', authStringEncrypted);
           localStorage.setItem('username', user.username);
           localStorage.setItem('authority', response[0].authority);
-          this.router.navigate(['/dashboard']);
+          if(response[0].authority == "LABMASTER"){
+            this.router.navigate(['/exercises']);
+          }else{
+            this.router.navigate(['/home']);
+          }
       }),
       catchError(error => {
         console.log(error);

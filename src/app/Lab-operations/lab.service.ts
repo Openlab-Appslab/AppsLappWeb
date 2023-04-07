@@ -34,7 +34,7 @@ export class LabService {
 
 
   //create lab of students
-  createLab(labStudents: string[], labName: string) {
+  createLab(labStudents: string[], labName: string, description: string) {
 
     fetch( this.url + 'lab/', {
       method: 'POST',
@@ -42,14 +42,17 @@ export class LabService {
         'Authorization': 'Basic ' + btoa(this.getAuthString()),
         'Content-Type': 'application/json'
       }),
-      body: JSON.stringify({ name: labName, studentNames: labStudents }),
+      body: JSON.stringify({ name: labName, studentNames: labStudents, description: description }),
 
 
     })
       .then(response => response.json())
       .then(data => {
         console.log('Success:', data);
-        this.router.navigate(['dashboard']);
+        //get current lab from localstorage and route to it
+        let labId;
+        labId = localStorage.getItem('currentLabId');
+        this.router.navigate(['/lab-detail', labId]);
       })
       .catch((error) => {
         console.error('Error:', error);

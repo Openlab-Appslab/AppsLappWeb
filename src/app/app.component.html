@@ -5,7 +5,7 @@
         <img src="https://img.icons8.com/material-rounded/30/ffffff/menu--v1.png"/>
       </button>
       <span class="example-spacer1"></span>
-      <img [routerLink]="['/dashboard']" class="openlab-logo"  src="/assets/images/LogoEffect.png" alt="openlab-logo">
+      <img routerLink="/lab-detail/{{currentLabId}}" class="openlab-logo"  src="/assets/images/LogoEffect.png" alt="openlab-logo">
       <span class="example-spacer"></span>
      
       
@@ -16,9 +16,9 @@
           LABY
         </a>
         <mat-menu #labsInMenu="matMenu">
+          <button mat-menu-item [routerLink]="['/lab-form']">Vytvoriť Lab</button>
           <div  *ngFor="let lab of labs">
-            <button mat-menu-item [routerLink]="['/lab-form']">Vytvoriť Lab</button>
-            <button mat-menu-item routerLink="/lab-detail/{{lab.id}}">{{lab.name}}</button>
+            <button mat-menu-item routerLink="/lab-detail/{{lab.id}}" (click)="setCurrentLab(lab)">{{lab.name}}</button>
           </div>
         </mat-menu>
         <a *ngIf="role != 'PUPIL' && userName != ''" [routerLink]="['/exercises']" mat-button>
@@ -44,7 +44,7 @@
   <mat-sidenav-container fxFlexFill style="background-color: white;">
     <mat-sidenav #sidenav>
       <mat-nav-list>
-        <a *ngIf="userName != ''"  mat-list-item>
+        <a *ngIf="userName != ''"  mat-list-item [matMenuTriggerFor]="labsInMenu">
           LABY
         </a>
         <a *ngIf="role != 'PUPIL' && userName != ''" [routerLink]="['/exercises']" mat-list-item>
